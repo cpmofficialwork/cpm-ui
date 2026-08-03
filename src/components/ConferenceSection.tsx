@@ -132,18 +132,18 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
     e.preventDefault();
     if (!visitorName.trim() || isSubmitting) return;
 
-    // The form collects the number with the +91 dial code / spacing for readability,
-    // but the backend stores the national-number digits only — so strip everything
-    // down to the last 10 digits (India mobile numbers) before sending.
     const digitsOnly = visitorPhone.replace(/\D/g, '');
-    const nationalMobile = digitsOnly.length > 10 ? digitsOnly.slice(-10) : digitsOnly;
+    if (digitsOnly.length !== 10) {
+      setSubmitError(t('joinModal.invalidMobile'));
+      return;
+    }
 
     setSubmitError('');
     setIsSubmitting(true);
     try {
       const user = await createUser({
         name: visitorName.trim(),
-        mobile: nationalMobile,
+        mobile: digitsOnly,
         state: visitorState,
         district: visitorDistrict,
         constituency: visitorConstituency.trim(),
@@ -454,14 +454,14 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
               initial={{ scale: 0.92, opacity: 0, y: 25 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 25 }}
-              className="bg-[#F8F6F0] text-[#0A1F44] border-2 border-[#0A1F44]/20 max-w-lg w-full p-6 sm:p-8 rounded-3xl shadow-[0_25px_70px_rgba(10,31,68,0.4)] relative overflow-hidden max-h-[90vh] overflow-y-auto"
+              className="bg-[#F8F6F0] text-[#0A1F44] border-2 border-[#0A1F44]/20 max-w-lg w-full p-6 sm:p-8 rounded-none shadow-[0_25px_70px_rgba(10,31,68,0.4)] relative overflow-hidden max-h-[90vh] overflow-y-auto"
             >
               {/* Decorative Header Accent */}
               <div className="bg-gradient-to-r from-[#0A1F44] via-[#8B0000] to-[#D97706] h-2.5 -mx-6 sm:-mx-8 -mt-6 sm:-mt-8 mb-6" />
 
               <button 
                 onClick={closeModal}
-                className="absolute top-4 right-4 p-2 text-[#0A1F44]/60 hover:text-[#0A1F44] hover:bg-[#0A1F44]/10 rounded-full transition-colors cursor-pointer"
+                className="absolute top-4 right-4 p-2 text-[#0A1F44]/60 hover:text-[#0A1F44] hover:bg-[#0A1F44]/10 rounded-none transition-colors cursor-pointer"
                 aria-label={t('joinModal.close')}
               >
                 <X className="w-5 h-5" />
@@ -470,7 +470,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
               {!passClaimed ? (
                 <form onSubmit={handleGeneratePass} className="space-y-5">
                   <div className="space-y-1.5 border-b border-[#0A1F44]/15 pb-4">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#D97706]/10 text-[#D97706] rounded-full text-[11px] font-mono font-extrabold uppercase tracking-wider border border-[#D97706]/20">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#D97706]/10 text-[#D97706] rounded-none text-[11px] font-mono font-extrabold uppercase tracking-wider border border-[#D97706]/20">
                       <UserPlus className="w-3.5 h-3.5" />
                       <span>{t('joinModal.badge')}</span>
                     </div>
@@ -494,7 +494,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         placeholder={t('joinModal.fullNamePlaceholder')}
                         value={visitorName}
                         onChange={(e) => setVisitorName(e.target.value)}
-                        className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-xl text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
+                        className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
                       />
                     </div>
 
@@ -505,11 +505,14 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                       </label>
                       <input
                         type="tel"
+                        inputMode="numeric"
+                        pattern="[0-9]{10}"
+                        maxLength={10}
                         required
                         placeholder={t('joinModal.mobilePlaceholder')}
                         value={visitorPhone}
-                        onChange={(e) => setVisitorPhone(e.target.value)}
-                        className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-xl text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
+                        onChange={(e) => setVisitorPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                        className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
                       />
                     </div>
 
@@ -523,7 +526,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         <select
                           value={visitorState}
                           onChange={(e) => setVisitorState(e.target.value)}
-                          className="w-full px-3.5 py-3 bg-white border border-[#0A1F44]/25 rounded-xl text-[#0A1F44] font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm cursor-pointer"
+                          className="w-full px-3.5 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm cursor-pointer"
                         >
                           {indianStates.map((st) => (
                             <option key={st} value={st}>{st}</option>
@@ -540,7 +543,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                           <select
                             value={visitorDistrict}
                             onChange={(e) => setVisitorDistrict(e.target.value)}
-                            className="w-full px-3.5 py-3 bg-white border border-[#0A1F44]/25 rounded-xl text-[#0A1F44] font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm cursor-pointer"
+                            className="w-full px-3.5 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm cursor-pointer"
                           >
                             {tnDistricts.map((d) => (
                               <option key={d} value={d}>{d}</option>
@@ -553,7 +556,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                             placeholder={t('joinModal.districtPlaceholder')}
                             value={visitorDistrict}
                             onChange={(e) => setVisitorDistrict(e.target.value)}
-                            className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-xl text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
+                            className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
                           />
                         )}
                       </div>
@@ -570,13 +573,13 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         placeholder={t('joinModal.constituencyPlaceholder')}
                         value={visitorConstituency}
                         onChange={(e) => setVisitorConstituency(e.target.value)}
-                        className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-xl text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
+                        className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
                       />
                     </div>
                   </div>
 
                   {submitError && (
-                    <div className="px-4 py-3 bg-red-50 border border-red-300 text-red-700 text-xs font-sans-body rounded-xl">
+                    <div className="px-4 py-3 bg-red-50 border border-red-300 text-red-700 text-xs font-sans-body rounded-none">
                       {submitError}
                     </div>
                   )}
@@ -584,16 +587,63 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-black text-xs uppercase tracking-[0.2em] rounded-xl shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 border border-[#FFD700]/30 active:scale-[0.99] mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full py-3.5 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-black text-xs uppercase tracking-[0.2em] rounded-none shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 border border-[#FFD700]/30 active:scale-[0.99] mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <CheckCircle2 className="w-4 h-4 text-[#FFD700]" />
                     <span>{isSubmitting ? t('joinModal.submitting') : t('joinModal.submit')}</span>
                   </button>
                 </form>
               ) : (
-                <div className="space-y-5 text-center">
-                  <div className="p-6 bg-white border-2 border-[#0A1F44] rounded-2xl space-y-4 relative overflow-hidden shadow-xl text-[#0A1F44]">
-                    <div className="bg-[#0A1F44] text-[#FFD700] py-2 px-3 rounded-lg text-center font-mono text-[11px] font-extrabold uppercase tracking-widest flex items-center justify-center gap-2">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="space-y-5 text-center"
+                >
+                  {/* Animated Checkmark & Thank You Header */}
+                  <div className="space-y-2.5">
+                    <div className="relative w-16 h-16 mx-auto">
+                      <motion.div
+                        initial={{ scale: 0.4, opacity: 0.6 }}
+                        animate={{ scale: [1, 1.5], opacity: [0.5, 0] }}
+                        transition={{ duration: 1.4, repeat: Infinity, ease: 'easeOut', delay: 0.4 }}
+                        className="absolute inset-0 bg-emerald-500/40 border border-emerald-500"
+                      />
+                      <motion.div
+                        initial={{ scale: 0, rotate: -30 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ type: 'spring', stiffness: 260, damping: 16, delay: 0.1 }}
+                        className="relative w-16 h-16 bg-emerald-600 border-2 border-[#0A1F44] flex items-center justify-center shadow-lg"
+                      >
+                        <CheckCircle2 className="w-9 h-9 text-white" />
+                      </motion.div>
+                    </div>
+
+                    <motion.h3
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3, duration: 0.4 }}
+                      className="text-2xl font-serif-display font-black text-[#0A1F44]"
+                    >
+                      {t('joinModal.successTitle')}
+                    </motion.h3>
+                    <motion.p
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4, duration: 0.4 }}
+                      className="text-xs text-[#0A1F44]/70 font-sans-body max-w-sm mx-auto"
+                    >
+                      {t('joinModal.welcomeMessage')}
+                    </motion.p>
+                  </div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.4 }}
+                    className="p-6 bg-white border-2 border-[#0A1F44] rounded-none space-y-4 relative overflow-hidden shadow-xl text-[#0A1F44]"
+                  >
+                    <div className="bg-[#0A1F44] text-[#FFD700] py-2 px-3 rounded-none text-center font-mono text-[11px] font-extrabold uppercase tracking-widest flex items-center justify-center gap-2">
                       <Shield className="w-3.5 h-3.5 text-[#FFD700]" />
                       <span>{t('joinModal.officialMember')}</span>
                     </div>
@@ -607,20 +657,20 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                       </div>
                     </div>
 
-                    <div className="bg-[#F8F6F0] p-3.5 rounded-xl border border-[#0A1F44]/15 grid grid-cols-2 gap-2 text-[11px] font-mono text-[#0A1F44] text-left">
+                    <div className="bg-[#F8F6F0] p-3.5 rounded-none border border-[#0A1F44]/15 grid grid-cols-2 gap-2 text-[11px] font-mono text-[#0A1F44] text-left">
                       <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.mobileLabel')}</span> {visitorPhone || t('joinModal.notAvailable')}</div>
                       <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.stateLabel')}</span> {visitorState}</div>
                       <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.districtLabel')}</span> {visitorDistrict}</div>
                       <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.constituencyLabel')}</span> {visitorConstituency || t('joinModal.notAvailable')}</div>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <p className="text-xs text-emerald-700 font-mono font-bold flex items-center justify-center gap-1.5">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                    <span>{t('joinModal.welcomeMessage')}</span>
-                  </p>
-
-                  <div className="flex gap-3">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.65, duration: 0.4 }}
+                    className="flex gap-3"
+                  >
                     <button
                       onClick={() => {
                         setPassClaimed(false);
@@ -628,7 +678,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         setVisitorPhone('');
                         setVisitorConstituency('');
                       }}
-                      className="flex-1 py-3 bg-white hover:bg-[#F8F6F0] text-[#0A1F44] font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-colors cursor-pointer border border-[#0A1F44]/30 shadow-sm"
+                      className="flex-1 py-3 bg-white hover:bg-[#F8F6F0] text-[#0A1F44] font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border border-[#0A1F44]/30 shadow-sm"
                     >
                       {t('joinModal.addAnother')}
                     </button>
@@ -641,12 +691,12 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         setVisitorPhone('');
                         setVisitorConstituency('');
                       }}
-                      className="flex-1 py-3 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-colors cursor-pointer shadow-md"
+                      className="flex-1 py-3 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer shadow-md"
                     >
                       {t('joinModal.closeWindow')}
                     </button>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               )}
 
             </motion.div>
