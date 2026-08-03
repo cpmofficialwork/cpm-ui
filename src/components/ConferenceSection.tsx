@@ -195,7 +195,6 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
         >
           <div className="flex items-center gap-3">
             <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-[#FFB800] via-[#FFA000] to-[#FF8F00] text-[#0A1F44] font-mono text-xs font-black uppercase tracking-[0.25em] rounded-full shadow-[0_0_20px_rgba(255,184,0,0.4)] border border-[#FFE082]">
-              <Sparkles className="w-4 h-4 text-[#0A1F44] animate-spin" style={{ animationDuration: '5s' }} />
               <span>{t('badge')}</span>
             </div>
           </div>

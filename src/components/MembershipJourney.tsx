@@ -168,7 +168,7 @@ export const MembershipJourney: React.FC<MembershipJourneyProps> = ({ onComplete
                   <input
                     type="tel"
                     required
-                    placeholder="+91 9876543210"
+                    placeholder="+91 XXXXXXXXXX"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full bg-[#F8F6F0] border border-[#0A1F44]/20 focus:border-[#0A1F44] text-[#0A1F44] p-3 outline-none"
