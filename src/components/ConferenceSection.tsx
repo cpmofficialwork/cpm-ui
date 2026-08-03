@@ -6,6 +6,7 @@ import leaderImg from '../assets/images/leader_portrait_1785579952921.jpg';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
 import pamphletCoverImg from '../assets/images/pamphlet_cover_page1_1785666053368.jpg';
 import { ConferencePamphlet } from './ConferencePamphlet';
+import { createUser, ApiError } from '../lib/api';
 
 interface ConferenceSectionProps {
   isPassModalOpen?: boolean;
@@ -41,6 +42,8 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
   const [visitorDistrict, setVisitorDistrict] = useState(tnDistricts[0]);
   const [visitorConstituency, setVisitorConstituency] = useState('');
   const [passNumber, setPassNumber] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const isModalOpen = externalPassModalOpen !== undefined ? externalPassModalOpen : internalPassModal;
   const isPamphletOpen = externalPamphletModalOpen !== undefined ? externalPamphletModalOpen : internalPamphletModal;
@@ -125,12 +128,41 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
     }
   };
 
-  const handleGeneratePass = (e: React.FormEvent) => {
+  const handleGeneratePass = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!visitorName.trim()) return;
-    const randomPass = "CPM-MEM-" + Math.floor(100000 + Math.random() * 900000);
-    setPassNumber(randomPass);
-    setPassClaimed(true);
+    if (!visitorName.trim() || isSubmitting) return;
+
+    // The form collects the number with the +91 dial code / spacing for readability,
+    // but the backend stores the national-number digits only — so strip everything
+    // down to the last 10 digits (India mobile numbers) before sending.
+    const digitsOnly = visitorPhone.replace(/\D/g, '');
+    const nationalMobile = digitsOnly.length > 10 ? digitsOnly.slice(-10) : digitsOnly;
+
+    setSubmitError('');
+    setIsSubmitting(true);
+    try {
+      const user = await createUser({
+        name: visitorName.trim(),
+        mobile: nationalMobile,
+        state: visitorState,
+        district: visitorDistrict,
+        constituency: visitorConstituency.trim(),
+      });
+      setPassNumber(user.memberID);
+      setPassClaimed(true);
+    } catch (err) {
+      if (err instanceof ApiError && err.status === 409) {
+        setSubmitError(t('joinModal.duplicateMobile'));
+      } else if (err instanceof ApiError && err.fieldErrors.length > 0) {
+        setSubmitError(err.fieldErrors[0].message);
+      } else if (err instanceof ApiError) {
+        setSubmitError(err.message);
+      } else {
+        setSubmitError(t('joinModal.genericError'));
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -543,12 +575,19 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                     </div>
                   </div>
 
+                  {submitError && (
+                    <div className="px-4 py-3 bg-red-50 border border-red-300 text-red-700 text-xs font-sans-body rounded-xl">
+                      {submitError}
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-black text-xs uppercase tracking-[0.2em] rounded-xl shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 border border-[#FFD700]/30 active:scale-[0.99] mt-2"
+                    disabled={isSubmitting}
+                    className="w-full py-3.5 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-black text-xs uppercase tracking-[0.2em] rounded-xl shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 border border-[#FFD700]/30 active:scale-[0.99] mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <CheckCircle2 className="w-4 h-4 text-[#FFD700]" />
-                    <span>{t('joinModal.submit')}</span>
+                    <span>{isSubmitting ? t('joinModal.submitting') : t('joinModal.submit')}</span>
                   </button>
                 </form>
               ) : (

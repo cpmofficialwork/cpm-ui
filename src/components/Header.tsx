@@ -19,8 +19,8 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
     { name: t('common:nav.conference'), href: '#conference', badge: t('common:nav.badgeDate') },
     { name: t('common:nav.whoConducts'), href: '#who-conducts' },
     { name: t('common:nav.whyProtect'), href: '#why-it-matters' },
-    { name: t('common:nav.demands'), href: '#conference-demands', badge: t('common:nav.badgeNew') },
-    { name: t('common:nav.genzHub'), href: '#genz-hub', badge: t('common:nav.badgePop') },
+    { name: t('common:nav.demands'), href: '#conference-demands' },
+    { name: t('common:nav.genzHub'), href: '#genz-hub' },
     { name: t('common:nav.coreValues'), href: '#constitutional-values' },
     { name: t('common:nav.responsibilities'), href: '#responsibilities' },
   ];
@@ -91,7 +91,7 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center justify-center flex-wrap gap-x-8 gap-y-1 py-2.5 border-t border-[#0A1F44]/10 text-[11px] font-sans-body uppercase tracking-[0.18em] font-semibold text-[#0A1F44]/80">
+        <nav className="hidden lg:flex items-center justify-center flex-wrap gap-x-8 gap-y-1 py-2.5 text-[11px] font-sans-body uppercase tracking-[0.18em] font-semibold text-[#0A1F44]/80">
           {navLinks.map((link) => (
             <a
               key={link.name}
