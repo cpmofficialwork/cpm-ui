@@ -1,0 +1,37 @@
+{
+  "badge": "MISSION MANDATE • STRATEGIC GOALS",
+  "heading": "Core Movement Objectives",
+  "subheading": "Our strategic priorities to ensure the Constitution remains a living, breathing safeguard for future generations of Indians.",
+  "items": [
+    {
+      "num": "01",
+      "title": "Nationwide Constitutional Literacy",
+      "iconName": "BookOpen",
+      "desc": "Establish Samvidhan Pathshalas in all 780+ districts of India, ensuring every citizen reads and understands the Preamble, Fundamental Rights, and RTI."
+    },
+    {
+      "num": "02",
+      "title": "Safeguard Judicial Independence",
+      "iconName": "Shield",
+      "desc": "Advocate for transparent judicial appointments, resist political interference in constitutional courts, and oppose extra-judicial executive demolitions."
+    },
+    {
+      "num": "03",
+      "title": "Pro-Bono Legal Defense Network",
+      "iconName": "Scale",
+      "desc": "Mobilize 10,000 advocate members to provide immediate, free constitutional writ representation for citizens facing illegal arrest or censorship."
+    },
+    {
+      "num": "04",
+      "title": "Youth Samvidhan Fellowships",
+      "iconName": "Users",
+      "desc": "Train 5,000 young university scholars in constitutional research, public interest litigation drafting, and grassroots civic organizing."
+    },
+    {
+      "num": "05",
+      "title": "Strengthen Federal Autonomy",
+      "iconName": "Landmark",
+      "desc": "Empower state governments and local Gram Panchayats to defend their 73rd and 74th Amendment powers against over-centralized executive control."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "badge": "NATIONWIDE NETWORK • 28 STATES & UTs",
+  "heading": "National Chapters & Civic Hubs",
+  "subheading": "Locate your local state or district chapter to join weekly Pathshalas, legal clinics, and grassroots constitutional campaigns.",
+  "searchPlaceholder": "Search state, district or coordinator name...",
+  "districts": "Districts",
+  "volunteers": "Volunteers",
+  "chapterBrief": "STATE CHAPTER BRIEF",
+  "chapterSuffix": "Chapter",
+  "activeChapter": "ACTIVE CHAPTER",
+  "activeVolunteers": "ACTIVE VOLUNTEERS",
+  "districtsCovered": "DISTRICTS COVERED",
+  "chapterCoordinator": "CHAPTER COORDINATOR",
+  "regionalHeadquarters": "Regional Headquarters:",
+  "hqMapLink": "HQ Map Link",
+  "activeChapterInitiatives": "Active Chapter Initiatives:",
+  "joinChapter": "Join {{state}} Chapter"
+}

@@ -1,0 +1,28 @@
+{
+  "badge": "CONSTITUTIONAL ARCHIVE • 15 SACRED VALUES",
+  "heading": "The 15 Pillars of India's Constitution",
+  "subheading": "Each article in our archive represents an inviolable principle designed by the founders to defend freedom, dignity, and equality for every citizen.",
+  "categories": {
+    "all": "All 15 Values",
+    "core": "Core Republic",
+    "rights": "Fundamental Rights",
+    "governance": "Governance & Federalism",
+    "pluralism": "Pluralism & Fraternity"
+  },
+  "searchPlaceholder": "Search by article, value, keyword...",
+  "valueOf15": "VALUE {{number}} OF 15",
+  "landmarkRulings": "Landmark Rulings",
+  "coreDoctrine": "Core Doctrine",
+  "inspectArticle": "Inspect Article →",
+  "noResults": "No constitutional values match your query \"{{query}}\".",
+  "resetFilters": "Reset Filters",
+  "modal": {
+    "valueOf15": "CONSTITUTIONAL VALUE #{{number}} OF 15",
+    "constitutionalLocation": "CONSTITUTIONAL LOCATION:",
+    "scopeTitle": "Fundamental Scope & Definition",
+    "relevanceTitle": "Relevance in 21st Century India",
+    "originsTitle": "Historical Assembly Origins",
+    "landmarkTitle": "Supreme Court Landmark Precedent",
+    "close": "Close Article File"
+  }
+}

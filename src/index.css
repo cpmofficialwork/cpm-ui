@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-serif-display {
+    font-family: 'Playfair Display', 'Noto Sans Tamil', Georgia, serif;
+  }
+  .font-serif-heading {
+    font-family: 'Merriweather', 'Noto Sans Tamil', Georgia, serif;
+  }
+  .font-serif-quote {
+    font-family: 'Libre Baskerville', 'Noto Sans Tamil', Georgia, serif;
+  }
+  .font-sans-body {
+    font-family: 'Inter', 'Noto Sans Tamil', 'Source Sans Pro', sans-serif;
+  }
+}
+
+/* Custom Scrollbar for archive feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #06152e;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e3a6a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff9933;
+}
+
+/* Subtle parchment and seal effects */
+.parchment-card {
+  background: radial-gradient(circle at top left, #12284c, #0a1f44);
+  border: 1px solid rgba(255, 153, 51, 0.2);
+}
+
+.gold-border-glow {
+  box-shadow: 0 0 20px -5px rgba(255, 153, 51, 0.15);
+}
+
+/* Print and Certificate Styling */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+

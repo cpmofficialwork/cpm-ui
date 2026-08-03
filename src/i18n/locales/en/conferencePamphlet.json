@@ -1,0 +1,99 @@
+{
+  "share": {
+    "navigatorTitle": "Constitution Protection Conference Pamphlet",
+    "navigatorText": "Official 4-Page Pamphlet: Constitution Protection Conference (Friday, 21 August 2026, YMCA Grounds, Nandanam, Chennai)."
+  },
+  "banner": {
+    "badge": "OFFICIAL 4-PAGE CONSTITUTIONAL PAMPHLET • 4 ஏடுகள் கொண்ட மாநாட்டுப் பிரசுரம்",
+    "title": "Read the Official 4-Page Conference Booklet",
+    "description": "Review the complete 4-sheet publication featuring the core resolution, judicial background, case references, 4 major demands, and event details for Friday, 21 August 2026 at YMCA Grounds, Nandanam, Chennai.",
+    "pages": {
+      "page1Label": "PAGE 1",
+      "page1Title": "Cover & Proclamation",
+      "page2Label": "PAGE 2",
+      "page2Title": "Rule of Law & Case Details",
+      "page3Label": "PAGE 3",
+      "page3Title": "Observations & Convening",
+      "page4Label": "PAGE 4",
+      "page4Title": "4 Core Demands & Conveners"
+    },
+    "openButton": "Open Interactive 4-Page Pamphlet",
+    "previewClickToView": "Click to view full 4-page pamphlet",
+    "officialPamphlet": "OFFICIAL PAMPHLET",
+    "fourPages": "4 PAGES",
+    "coverTitle": "Constitution Protection Conference",
+    "coverDateTime": "Friday, 21 August 2026 • 4:00 p.m.",
+    "coverVenue": "Venue: YMCA Grounds, Nandanam, Chennai - 600035",
+    "cpmTamilnadu": "CPM TAMILNADU",
+    "clickToView": "Click to View →"
+  },
+  "modal": {
+    "documentTitle": "Official Conference Pamphlet Booklet",
+    "documentSubtitle": "CONSTITUTION PROTECTION MOVEMENT (CPM) TAMILNADU • 4 PAGES",
+    "pageButton": "Page {{num}}",
+    "shareTooltip": "Share Pamphlet",
+    "share": "Share",
+    "previous": "Previous",
+    "next": "Next",
+    "closeTooltip": "Close / Cancel Reader",
+    "close": "Cancel / Close"
+  },
+  "page1": {
+    "badge": "OFFICIAL PAMPHLET • PAGE 1 COVER",
+    "cpmTamilnadu": "CPM TAMILNADU",
+    "coverAlt": "Constitution Protection Conference Official Pamphlet Cover",
+    "footerDateTime": "Friday, 21 August 2026 • 4:00 p.m. • YMCA Grounds, Nandanam, Chennai - 600035",
+    "footerOrg": "CONSTITUTION PROTECTION MOVEMENT (CPM) TAMILNADU"
+  },
+  "page2": {
+    "sectionLabel": "OFFICIAL PAMPHLET • SECTION II",
+    "pageOf": "PAGE 2 OF 4",
+    "headline1": "“Protect the Constitution!”",
+    "headline2": "“Uphold the Rule of Law!”",
+    "para1": "The Constitution of India is founded upon the noble principles of justice, liberty, equality, fraternity, secularism, and the rule of law, guaranteeing these values to every citizen.",
+    "para2": "Safeguarding these constitutional ideals is not merely the responsibility of the judiciary, the legislature and the executive; it is the collective duty of every citizen who believes in democracy.",
+    "para3": "In recent years, public concern and debate have intensified across the country on issues relating to judicial independence, judicial discipline, the constitutional responsibilities of judges, secularism, social justice, the constitutional rights of minorities, and the preservation of the basic structure of the Constitution.",
+    "para4": "Protecting the Constitution’s foundational principles; secularism, equality, equality before the law, freedom of religion, and the constitutional rights of minorities are among the foremost constitutional responsibilities entrusted to the High Courts and the Supreme Court as they are the guardians of the Constitution.",
+    "para5": "Public confidence in the judiciary rests upon the consistent and impartial application of these constitutional principles, free from discrimination or prejudice.",
+    "caseBoxLabel": "REGARDING MADURAI BENCH JUDGMENT (SAMEER AHMED CASE):",
+    "caseBoxText": "Against this backdrop, the judgment delivered by the Madurai Bench of the Madras High Court in the Sameer Ahmed reservation case concerning Muslims who have converted to Islam included the unnecessary observation that <strong>“Islam being a proselytising religion.”</strong> By recording this remark, the Bench comprising <strong>Justices G.R. Swaminathan and P.B. Balaji</strong> conveyed an impression that Islam, as a whole, is a religion engaged in proselytisation.",
+    "para6": "A court is expected to adjudicate disputes strictly on the basis of law and the issues before it. Recording observations that are unrelated to the case, unnecessary for deciding the dispute and unsupported by the factual record not only unfairly targets a particular religion but also creates conditions that may encourage prejudice and hatred against that faith.",
+    "footerPage": "PAGE 2 OF 4",
+    "footerNext": "TURN PAGE FOR COIMBATORE CASE & CONVENING DETAILS →"
+  },
+  "page3": {
+    "sectionLabel": "OFFICIAL PAMPHLET • SECTION III",
+    "pageOf": "PAGE 3 OF 4",
+    "para1": "Similarly, in the case concerning the construction of a Christian church at Kalapatti in Coimbatore district, the court’s order contained several political and religious observations that had no direct relevance to the legal questions requiring adjudication. Among them were the following:",
+    "quotes": [
+      "“Following the change of Government headed by the Hon’ble Chief Minister Shri C. Joseph Vijay, certain fundamentalist organisations have become emboldened.”",
+      "“The Hon’ble Speaker Shri JCD Prabhakar, who proclaims that he had distributed thousands of free copies of the Bible…”",
+      "“Posters have appeared in some parts of Tamil Nadu calling for construction of churches in every village.”",
+      "“Since there has been a disruption in the political ecosystem.”"
+    ],
+    "para2": "These remarks include the unfounded assertion that “certain fundamentalist organisations have become emboldened” after the assumption of office by the Government led by Hon’ble Chief Minister Shri C. Joseph Vijay; the reference to the Hon’ble Speaker Shri J.C.D. Prabhakar as having distributed thousands of free copies of the Bible; the observation regarding posters calling for churches to be built in every village; and the suggestion that the political ecosystem of Tamil Nadu has been disrupted, while specifically referring to the Chief Minister and the Speaker as members of the Christian community.",
+    "para3": "Such observations are liable to be understood as portraying the Christian minority community in a negative light and as reflecting religious prejudice.",
+    "para4": "These remarks are not part of the legal reasoning necessary to decide the case. Instead, they risk fostering unwarranted suspicion and negative perceptions about minority religions, giving rise to serious concern.",
+    "para5": "The Constitution of India guarantees every citizen equality before the law and the freedom to profess, practise and propagate the religion of their choice. Courts are expected to decide cases solely on the basis of law and judicial neutrality requires avoiding observations that may create an impression of bias against any religious community.",
+    "para6": "It is therefore imperative that democratic forces come together to uphold public confidence in the judiciary, protect the constitutional principles of secularism, equality, judicial impartiality and minority rights and resist policies and actions of the Union Government that undermine these constitutional guarantees.",
+    "convening": "With this objective, retired judges, advocates, political parties, people’s movements, minority welfare organisations and democratic forces committed to constitutional values have resolved to convene the <strong>Constitution Protection Conference</strong> to present the following demands before the Union Government, the Government of Tamil Nadu and the Judiciary.",
+    "footerPage": "PAGE 3 OF 4",
+    "footerNext": "NEXT: 4 CONFERENCE DEMANDS →"
+  },
+  "page4": {
+    "sectionLabel": "OFFICIAL PAMPHLET • SECTION IV",
+    "pageOf": "PAGE 4 OF 4",
+    "title": "Conference Demands",
+    "demand1": "<strong>The Government of Tamil Nadu</strong> should immediately amend the <em>Tamil Nadu Backward Class Muslims (Reservation of Seats in Educational Institutions, including Private Educational Institutions, and of Appointments or Posts in the Services under the State) Act, 2007</em>, to safeguard the reservation rights of socially and educationally backward Muslims who have converted to Islam.",
+    "demand2": "<strong>The Union Government</strong> must withdraw the unconstitutional amendments to the <em>Foreign Contribution (Regulation) Act (FCRA)</em>, which adversely affect the lawful utilisation of foreign contributions received by religious institutions, charitable trusts, and voluntary organisations for education, healthcare, social welfare, and humanitarian services benefiting socially and economically marginalised communities.",
+    "demand3": "The pending <strong>impeachment proceedings in Parliament against Justice G.R. Swaminathan</strong>, who has been accused of repeatedly acting contrary to the Constitution and violating the oath taken under Article 219 of the Constitution upon assuming judicial office, should be expedited. Further, the Supreme Court should initiate an in-house inquiry based on the complaint submitted by Members of Parliament to the Chief Justice of India.",
+    "demand4": "<strong>The Union Government</strong> should undertake the necessary constitutional and statutory amendments to extend Scheduled Caste reservation benefits to Christians <strong>(SC-Christians)</strong> in accordance with the constitutional guarantees of equality and freedom of religion. In addition, Most Backward Class reservation <strong>(MBC-Christian)</strong> should be provided to eligible Most Backward Class persons who have embraced Christianity.",
+    "callToAction": "We call upon all those who cherish democracy and the Constitution to participate in large numbers in the Constitution Protection Conference to be held in Chennai on <strong>21 August 2026</strong>, and to join the collective effort to safeguard the constitutional rights guaranteed to the Muslim and Christian minority communities and uphold the fundamental constitutional principle that all are equal before the law.",
+    "onBehalfOf": "————— On behalf of —————",
+    "orgName": "CONSTITUTION PROTECTION MOVEMENT (CPM)",
+    "signatories": "Justice D. Hari Paranthaman (Retd.) &nbsp;|&nbsp; Th. Mano Thangaraj, Former Minister &nbsp;|&nbsp; Adv. C. Vanchi Nathan",
+    "contact": "Contact: 98653 48163",
+    "footerEnd": "END OF PAMPHLET • PAGE 4 OF 4",
+    "backToCover": "↺ Back to Cover Page"
+  }
+}

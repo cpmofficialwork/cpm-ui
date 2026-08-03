@@ -1,0 +1,103 @@
+{
+  "badge": "NATIONAL CIVIC ENROLLMENT • STEP {{step}} OF 5",
+  "heading": "Become a Constitutional Guardian",
+  "subheading": "Join thousands of scholars, advocates, workers, and students united in protecting the Constitution of India.",
+  "steps": {
+    "identity": "Identity",
+    "interests": "Interests",
+    "skills": "Skills",
+    "pledge": "Pledge",
+    "credential": "Credential"
+  },
+  "defaults": {
+    "occupation": "Advocate / Legal Professional"
+  },
+  "interestOptions": [
+    "Fundamental Rights & Freedom of Speech",
+    "Judicial Independence & Court Reforms",
+    "Secularism & Pluralism Defense",
+    "Federalism & State Autonomy",
+    "Rural Civic & Constitutional Literacy",
+    "Right to Information (RTI) & Transparency"
+  ],
+  "skillOptions": [
+    "Pro-Bono Legal Representation",
+    "Teaching & Community Facilitation",
+    "Research & Policy Analysis",
+    "Event & Rally Organizing",
+    "Regional Language Translation",
+    "Digital Outreach & Media"
+  ],
+  "occupationOptions": [
+    "Advocate / Legal Professional",
+    "Teacher / Educator / Academic",
+    "University Student / Scholar",
+    "RTI / Civic Activist",
+    "Civil Servant / Retired Officer",
+    "Worker / Farmer / Labor Representative",
+    "Concerned Citizen / Other"
+  ],
+  "step1": {
+    "title": "Step 1: Citizen Identity & Location",
+    "subtitle": "Please provide your details for official movement record keeping.",
+    "fullName": "Full Name (as per ID)",
+    "fullNamePlaceholder": "e.g. Dr. Ananya Sharma",
+    "email": "Email Address",
+    "emailPlaceholder": "e.g. ananya@samvidhan.in",
+    "phone": "Phone / WhatsApp Number",
+    "occupation": "Occupation / Calling",
+    "homeState": "Home State / Chapter",
+    "district": "District / Municipality",
+    "districtPlaceholder": "e.g. South Delhi / Ernakulam / Pune",
+    "next": "Next: Constitutional Interests"
+  },
+  "step2": {
+    "title": "Step 2: Areas of Constitutional Focus",
+    "subtitle": "Select the constitutional domains you feel most passionate about protecting.",
+    "next": "Next: Skills & Contribution"
+  },
+  "step3": {
+    "title": "Step 3: Skills & Civic Contribution",
+    "subtitle": "How would you like to contribute to local chapter activities?",
+    "next": "Next: Constitutional Pledge"
+  },
+  "step4": {
+    "title": "Step 4: Solemn Pledge to Constitutional Values",
+    "subtitle": "By signing below, you affirm your commitment as a citizen guardian of the Constitution of India.",
+    "pledgeText1": "I solemnly pledge to uphold and defend the Constitution of India. I affirm my unwavering allegiance to the principles of Sovereign, Socialist, Secular, Democratic Republic, and to Justice, Liberty, Equality, and Fraternity for all citizens.",
+    "pledgeText2": "I promise to foster common brotherhood, reject discrimination, develop a scientific temper, and stand in solidarity with those whose rights are threatened.",
+    "signatureLabel": "Type Your Signature to Confirm Pledge:",
+    "signaturePlaceholder": "Type full legal name as digital signature...",
+    "submit": "Sign Pledge & Generate Credential"
+  },
+  "back": "Back",
+  "defaultsSubmit": {
+    "fullName": "Citizen Guardian",
+    "email": "guardian@samvidhan.in",
+    "phone": "+91 9876543210",
+    "district": "Central District",
+    "interest": "Fundamental Rights",
+    "skill": "Community Facilitation"
+  },
+  "step5": {
+    "welcome": "Welcome to the Movement",
+    "official": "Your citizen guardian enrollment is official. Membership ID:",
+    "orgName": "CONSTITUTION PROTECTION MOVEMENT",
+    "nationalGuardianId": "NATIONAL GUARDIAN ID",
+    "memberName": "MEMBER NAME",
+    "chapter": "CHAPTER",
+    "calling": "CALLING",
+    "membershipNumber": "MEMBERSHIP NUMBER",
+    "issued": "ISSUED:",
+    "statusActive": "STATUS: ACTIVE",
+    "certificateTitle": "CONSTITUTIONAL PLEDGE CERTIFICATE",
+    "certifyThat": "This is to certify that",
+    "oathText": "has taken the solemn oath to uphold, protect, and defend the {{constitution}} and its founding principles of {{principles}}.",
+    "constitution": "Constitution of India",
+    "principles": "Justice, Liberty, Equality, and Fraternity",
+    "secretariat": "Secretariat, New Delhi",
+    "digitalSignature": "Digital Citizen Signature",
+    "printCertificate": "Print Official Certificate & ID",
+    "enrollAnother": "Enroll Another Member"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "badge": "CIVIC MISSIONS • ACTIVE CAMPAIGNS",
+  "heading": "Nationwide Constitutional Campaigns",
+  "subheading": "Civic missions designed to defend rights, build literacy, and ensure institutional accountability across Indian states.",
+  "missionStatus": "MISSION STATUS",
+  "missionObjective": "Mission Objective:",
+  "target": "Target:",
+  "completed": "Completed",
+  "citizenParticipationRole": "Citizen Participation Role:",
+  "participateInMission": "Participate in Mission",
+  "status": {
+    "active": "active",
+    "expanding": "expanding",
+    "completed": "completed"
+  }
+}

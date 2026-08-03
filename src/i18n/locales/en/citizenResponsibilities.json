@@ -1,0 +1,52 @@
+{
+  "badge": "GUARDIANS OF DEMOCRACY",
+  "heading": "5 Essential Citizen Responsibilities",
+  "subheading": "A constitution is only as strong as the citizens willing to live by its principles and defend its framework in everyday public life.",
+  "dutyLabel": "DUTY 0{{num}}",
+  "pledgedActive": "Pledged Duty Active",
+  "clickToCommit": "Click to Commit",
+  "progressLabel": "YOUR CIVIC COMMITMENT PROGRESS",
+  "progressText": "You have committed to {{count}} of 5 Citizen Duties",
+  "items": [
+    {
+      "id": "learn-preamble",
+      "title": "LEARN",
+      "action": "Read Preamble & Articles",
+      "iconName": "BookOpen",
+      "description": "Understand the Preamble and key articles. Learn how Fundamental Rights (Part III) and Fundamental Duties (Article 51A) empower daily life.",
+      "commitment": "Read the Preamble with my family once a week."
+    },
+    {
+      "id": "participate-sabha",
+      "title": "PARTICIPATE",
+      "action": "Attend Gram Sabhas",
+      "iconName": "Users",
+      "description": "Democracy requires ongoing engagement. Active citizenship involves attending ward committees, Gram Sabhas, and public audits.",
+      "commitment": "Attend at least 2 local ward council meetings this year."
+    },
+    {
+      "id": "volunteer-clinic",
+      "title": "VOLUNTEER",
+      "action": "Support Pathshalas",
+      "iconName": "HeartHandshake",
+      "description": "Offer your time or skills to host weekly constitutional learning sessions for youth, workers, and local communities.",
+      "commitment": "Volunteer 2 hours every month for civic literacy."
+    },
+    {
+      "id": "educate-youth",
+      "title": "EDUCATE",
+      "action": "Teach Constitutional Values",
+      "iconName": "GraduationCap",
+      "description": "Ensure young minds understand scientific temper, gender equality, and religious harmony before division takes root.",
+      "commitment": "Gift Pocket Constitutions to young students."
+    },
+    {
+      "id": "defend-rights",
+      "title": "DEFEND RIGHTS",
+      "action": "Stand Against Injustice",
+      "iconName": "ShieldCheck",
+      "description": "Speak out peacefully when marginalized citizens face rights violations. Provide legal aid, support, or document facts.",
+      "commitment": "Support victims of rights violations through legal aid."
+    }
+  ]
+}

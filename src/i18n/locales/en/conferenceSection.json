@@ -1,0 +1,85 @@
+{
+  "badge": "CONSTITUTION PROTECTION CONFERENCE 2026",
+  "registrationOpen": "FREE CITIZEN REGISTRATION OPEN",
+  "chennaiAssembly": "CHENNAI ASSEMBLY",
+  "statewideRally": "STATEWIDE CONSTITUTION RALLY • TAMIL NADU",
+  "title": "Constitution Protection Conference",
+  "titleTamil": "அரசமைப்புச் சட்டப் பாதுகாப்பு மாநாடு",
+  "description": "A landmark assembly bringing together citizens, jurists, advocates, student leaders, and democratic defenders across all 38 districts to reaffirm our sacred oath to protect liberty, equality, secularism, and federalism guaranteed by the Constitution of India.",
+  "pillars": {
+    "judicialTitle": "Judicial Keynotes",
+    "judicialDesc": "Distinguished retired jurists & constitutional experts",
+    "assemblyTitle": "People's Assembly",
+    "assemblyDesc": "Open entry for citizens, students & workers",
+    "oathTitle": "Constitutional Oath",
+    "oathDesc": "Mass public pledge to defend basic structure"
+  },
+  "countdown": {
+    "label": "Live Event Countdown",
+    "dateLabel": "FRIDAY, AUGUST 21, 2026",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Mins",
+    "seconds": "Secs"
+  },
+  "schedule": {
+    "label": "CONFERENCE SCHEDULE & VENUE DETAILS",
+    "dateCardLabel": "Conference Date",
+    "date": "21 August 2026",
+    "dateSub": "Friday Evening Assembly",
+    "timeCardLabel": "Assembly Time",
+    "time": "Fri 4:00 PM IST",
+    "timeSub": "Gates Open at 3:00 PM",
+    "venueCardLabel": "Venue Address",
+    "venueName": "YMCA Ground Nanthanam",
+    "venueAddress": "Chennai, Tamil Nadu - 600035",
+    "venueMetro": "🚆 1 Min Walk from Nandanam Metro"
+  },
+  "pamphletCard": {
+    "clickToView": "Click to view full 4-page pamphlet booklet",
+    "openReader": "Open Reader",
+    "coverAlt": "Constitution Protection Conference Official Pamphlet Cover Image",
+    "officialPamphlet": "OFFICIAL PAMPHLET • PAGE 1 OF 4",
+    "clickToOpen": "Click to Open Reader"
+  },
+  "shareText": "Constitutional Protection Conference\nDate: 21 August 2026 (Fri 4 PM)\nVenue: YMCA Ground Nanthanam, Chennai - 600035\nMap: {{mapUrl}}",
+  "joinModal": {
+    "badge": "JOIN THE MOVEMENT",
+    "title": "Join the Movement",
+    "description": "Become a member of the Constitution Protection Movement and stand up for equality, justice, and constitutional rights. Enter your details below to join as an official member.",
+    "fullName": "Full Name *",
+    "fullNamePlaceholder": "Enter member's full name",
+    "mobile": "Mobile Number *",
+    "mobilePlaceholder": "+91 98765 43210",
+    "state": "State *",
+    "district": "District *",
+    "districtPlaceholder": "Enter district name",
+    "constituency": "Assembly / Parliamentary Constituency *",
+    "constituencyPlaceholder": "e.g. Saidapet / Thousand Lights / Madurai Central",
+    "submit": "Join the Movement",
+    "close": "Close",
+    "officialMember": "OFFICIAL MOVEMENT MEMBER • 2026",
+    "memberId": "MEMBER ID:",
+    "mobileLabel": "MOBILE:",
+    "stateLabel": "STATE:",
+    "districtLabel": "DISTRICT:",
+    "constituencyLabel": "CONSTITUENCY:",
+    "notAvailable": "N/A",
+    "welcomeMessage": "Welcome to the Movement! You're now an official member of the Constitution Protection Movement.",
+    "addAnother": "+ Add Another Member",
+    "closeWindow": "Close Window"
+  },
+  "tnDistricts": [
+    "Chennai", "Ariyalur", "Chengalpattu", "Coimbatore", "Cuddalore", "Dharmapuri",
+    "Dindigul", "Erode", "Kanchipuram", "Kanyakumari", "Karur", "Krishnagiri",
+    "Madurai", "Mayiladuthurai", "Nagapattinam", "Namakkal", "Nilgiris", "Perambalur",
+    "Pudukkottai", "Ramanathapuram", "Ranipet", "Salem", "Sivaganga", "Tenkasi",
+    "Thanjavur", "Theni", "Thoothukudi", "Tiruchirappalli", "Tirunelveli", "Tirupathur",
+    "Tiruppur", "Tiruvallur", "Tiruvannamalai", "Tiruvarur", "Vellore", "Viluppuram",
+    "Virudhunagar"
+  ],
+  "indianStates": [
+    "Tamil Nadu", "Puducherry", "Kerala", "Karnataka", "Andhra Pradesh",
+    "Telangana", "Maharashtra", "Delhi", "Other State"
+  ]
+}

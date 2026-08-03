@@ -1,0 +1,31 @@
+{
+  "badge": "NATIONAL MEMORIAL WALL • PUBLIC COVENANT",
+  "heading": "The Constitution Pledge Wall",
+  "subheading": "A public memorial wall of Indian citizens who have pledged their lifelong vigilance to defend constitutional democracy, secularism, and human dignity.",
+  "addYourName": "Add Your Name To The National Pledge Wall",
+  "searchPlaceholder": "Search citizen name, city, state or message...",
+  "verified": "Verified",
+  "pledged": "PLEDGED",
+  "defaults": {
+    "city": "New Delhi",
+    "state": "Maharashtra",
+    "occupation": "Citizen Guardian",
+    "message": "I pledge to defend the Constitution of India and its secular democratic ideals."
+  },
+  "modal": {
+    "nationalPublicPledge": "NATIONAL PUBLIC PLEDGE",
+    "title": "Sign The Constitution Pledge Wall",
+    "fullName": "Your Full Name",
+    "fullNamePlaceholder": "e.g. Adv. Rajesh Kumar",
+    "city": "City / Town",
+    "cityPlaceholder": "e.g. Varanasi / Mysuru",
+    "state": "State",
+    "statePlaceholder": "e.g. Uttar Pradesh",
+    "statement": "Personal Constitutional Statement (Optional)",
+    "statementPlaceholder": "Write a message on why defending the Constitution matters to you...",
+    "cancel": "Cancel",
+    "signPledge": "Sign Public Pledge",
+    "recorded": "Pledge Recorded!",
+    "recordedMessage": "Your signature and statement are now recorded on the National Constitution Pledge Wall."
+  }
+}

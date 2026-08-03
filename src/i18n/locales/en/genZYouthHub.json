@@ -1,0 +1,58 @@
+{
+  "badge": "GEN-Z & YOUTH ACTIVISM HUB",
+  "heading": "Youth Power & Constitutional Awareness",
+  "subheading": "Busting constitutional myths in plain English and empowering the next generation to speak up for democracy!",
+  "mythBuster": {
+    "interactiveLabel": "INTERACTIVE BUSTER",
+    "title": "Constitutional Myths vs. Real Facts",
+    "mythTab": "Myth #{{num}}",
+    "commonMyth": "COMMON MYTH",
+    "dontFall": "❌ Don't fall for misinformation!",
+    "constitutionalFact": "CONSTITUTIONAL FACT",
+    "guaranteed": "Guaranteed under the Constitution of India"
+  },
+  "shareSection": {
+    "badge": "DIGITAL ACTIVISM FOR INSTA / WHATSAPP / X",
+    "title": "Share Youth Voice Cards",
+    "copied": "COPIED TO CLIPBOARD!",
+    "copyForStory": "COPY FOR SOCIAL STORY"
+  },
+  "shareTemplate": "✊ \"{{quote}}\"\n\n📌 {{hashtag}}\n📍 Constitution Protection Conference | 21 Aug 2026, Chennai",
+  "myths": [
+    {
+      "myth": "Myth: 'The Constitution is just dry legal text that doesn't affect my daily Gen-Z life.'",
+      "fact": "Fact: Article 21 protects your digital privacy, Article 19 protects your right to speak up online, and Article 14 ensures equal college admissions & jobs! The Constitution is your personal shield every single day.",
+      "badge": "📱 DIGITAL RIGHTS"
+    },
+    {
+      "myth": "Myth: 'Democracy is only about voting once every 5 years.'",
+      "fact": "Fact: Article 51A(h) makes it a Fundamental Duty for every young citizen to develop scientific temper, humanism, and the spirit of reform & questioning daily!",
+      "badge": "⚡ CITIZEN POWER"
+    },
+    {
+      "myth": "Myth: 'Minority reservation rights harm equal opportunity.'",
+      "fact": "Fact: Affirmative action levels the playing field for historically oppressed & backward communities. True equality means uplifting those denied equal access for centuries!",
+      "badge": "⚖️ SOCIAL JUSTICE"
+    }
+  ],
+  "storyQuotes": [
+    {
+      "id": 1,
+      "tag": "INSTA / WHATSAPP STORY",
+      "quote": "No Liberty Without Equality. Protect the Constitution • Protect India's Future.",
+      "hashtag": "#GenZForJustice #ProtectConstitution #CPM2026"
+    },
+    {
+      "id": 2,
+      "tag": "YOUTH ACTION STATEMENT",
+      "quote": "Religious freedom & constitutional equality are non-negotiable for Gen-Z! All citizens are equal before law.",
+      "hashtag": "#Article14 #YouthVoice #ChennaiConference"
+    },
+    {
+      "id": 3,
+      "tag": "CONSTITUTIONAL PLEDGE",
+      "quote": "Standing up for minority rights is standing up for the Constitution of India. Join us in Chennai on Aug 21!",
+      "hashtag": "#EqualRightsForAll #DefendTheConstitution"
+    }
+  ]
+}

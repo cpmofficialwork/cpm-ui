@@ -1,0 +1,51 @@
+{
+  "badge": "NATIONAL ARCHIVES • DIGITAL LIBRARY",
+  "heading": "Constitutional Knowledge Centre",
+  "subheading": "Access original constitutional articles, supreme court landmark judgments, public research handbooks, and test your civic literacy.",
+  "tabs": {
+    "articles": "Constitution Explorer (Articles)",
+    "cases": "Landmark Supreme Court Cases",
+    "handbooks": "Civic Guides & Handbooks",
+    "quiz": "Constitutional Literacy Quiz"
+  },
+  "articlesSearchPlaceholder": "Search Article 14, 19, 21, 32, 51A...",
+  "coreTakeaway": "Core Takeaway:",
+  "bench": "BENCH:",
+  "coreIssue": "Core Issue:",
+  "supremeCourtRuling": "Supreme Court Ruling:",
+  "impactOnDemocracy": "Impact on Democracy:",
+  "readDownload": "Read / Download →",
+  "downloading": "Downloading {{title}}...",
+  "handbooks": [
+    {
+      "title": "Citizen Guide to Filing RTIs",
+      "desc": "Step-by-step handbook on drafting Right to Information requests to audit municipal funds, roads, and government hiring.",
+      "pages": "28 Pages PDF",
+      "tag": "Practical Handbook"
+    },
+    {
+      "title": "Youth Guide to Fundamental Rights",
+      "desc": "Illustrative guide breaking down freedom of speech, personal privacy, police detention procedure, and bail rights.",
+      "pages": "42 Pages PDF",
+      "tag": "Youth Samvidhan Series"
+    },
+    {
+      "title": "How Gram Sabhas Can Protect Federalism",
+      "desc": "A manual for village Panchayat members on exercising constitutional grants and local self-governance under Art. 243.",
+      "pages": "35 Pages PDF",
+      "tag": "Local Governance"
+    }
+  ],
+  "quiz": {
+    "questionOf": "QUESTION {{current}} OF {{total}}",
+    "score": "SCORE: {{score}}",
+    "explanation": "CONSTITUTIONAL EXPLANATION:",
+    "nextQuestion": "Next Question →",
+    "viewFinalScore": "View Final Score",
+    "complete": "Quiz Complete!",
+    "youScoredPrefix": "You scored",
+    "youScoredSuffix": "on the Constitutional Literacy Test.",
+    "scoreOutOf": "{{score}} out of {{total}}",
+    "retake": "Retake Test"
+  }
+}

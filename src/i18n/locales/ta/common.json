@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "conference": "மாநாடு 2026",
+    "whoConducts": "நடத்துவோர் யார்",
+    "whyProtect": "ஏன் பாதுகாக்க வேண்டும்",
+    "demands": "கோரிக்கைகள்",
+    "genzHub": "இளையோர் மையம்",
+    "coreValues": "15 அடிப்படை மதிப்புகள்",
+    "responsibilities": "குடிமக்கள் கடமைகள்",
+    "badgeNew": "புதியது",
+    "badgeDate": "ஆக. 21",
+    "badgePop": "⚡ பிரபலம்"
+  },
+  "actions": {
+    "joinMovement": "இயக்கத்தில் இணையுங்கள்",
+    "learnMore": "மேலும் அறிக",
+    "readMore": "மேலும் படிக்க",
+    "close": "மூடு",
+    "submit": "சமர்ப்பிக்க",
+    "search": "தேடு",
+    "cancel": "ரத்துசெய்",
+    "next": "அடுத்து",
+    "back": "பின்",
+    "download": "பதிவிறக்கு",
+    "share": "பகிர்",
+    "viewAll": "அனைத்தையும் காண்க",
+    "loading": "ஏற்றுகிறது..."
+  },
+  "language": {
+    "english": "English",
+    "tamil": "தமிழ்",
+    "switchTo": "மொழியை மாற்று"
+  }
+}

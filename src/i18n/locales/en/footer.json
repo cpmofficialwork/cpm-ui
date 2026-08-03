@@ -1,0 +1,39 @@
+{
+  "logoAlt": "Constitution Protection Movement Official Logo",
+  "orgName": "CONSTITUTION PROTECTION MOVEMENT",
+  "orgSubtitle": "அரசமைப்புச் சட்டப் பாதுகாப்பு இயக்கம் • SAMVIDHAN RAKSHA ANDOLAN",
+  "orgDescription": "A non-partisan, citizen-led national movement dedicated to preserving the Constitution of India, democratic values, federalism, secularism, and human dignity for all citizens.",
+  "helplineLabel": "EMERGENCY LEGAL HELPLINE",
+  "helplineNumber": "1800-SAMVIDHAN (1800-726-8434)",
+  "helplineDescription": "24/7 Pro-Bono Legal Assistance for Citizens Facing Unlawful Detention or Rights Violations",
+  "columns": {
+    "constitutionalValues": "Constitutional Values",
+    "whyProtect": "Why Protect",
+    "nationalSecretariat": "National Secretariat",
+    "socialHandles": "Movement Social Handles"
+  },
+  "valuesList": [
+    "1. Justice (நீதி)",
+    "2. Liberty (சுதந்திரம்)",
+    "3. Equality (சமத்துவம்)",
+    "4. Fraternity (சகோதரத்துவம்)",
+    "5. Secularism (மதச்சார்பின்மை)"
+  ],
+  "whyProtectList": [
+    "Why Should We Protect the Constitution?",
+    "Foundations of Indian Democracy",
+    "Who Conducts the Movement?",
+    "5 Essential Citizen Responsibilities",
+    "Rule of Law & Fundamental Rights"
+  ],
+  "secretariatAddress": "Constitutional Knowledge Hub, Mandi House, New Delhi - 110001",
+  "viewSecretariatMap": "View Secretariat Map",
+  "assemblyVenue2026": "2026 Assembly Venue:",
+  "assemblyVenueMapLabel": "YMCA Ground Nandanam, Chennai Map",
+  "followUs": "Follow our official movement accounts for live updates & broadcasts:",
+  "preambleQuote": "\"WE, THE PEOPLE OF INDIA, having solemnly resolved to constitute India into a SOVEREIGN SOCIALIST SECULAR DEMOCRATIC REPUBLIC and to secure to all its citizens: JUSTICE, LIBERTY, EQUALITY and FRATERNITY...\"",
+  "preambleCitation": "PREAMBLE TO THE CONSTITUTION OF INDIA • ADOPTED 26TH NOVEMBER 1949",
+  "copyright": "© 2026 CONSTITUTION PROTECTION MOVEMENT. CITIZEN TRUST INITIATIVE.",
+  "nonPartisan": "● Non-Partisan & Open Source",
+  "madeWithVigilance": "Made with Vigilance for India"
+}

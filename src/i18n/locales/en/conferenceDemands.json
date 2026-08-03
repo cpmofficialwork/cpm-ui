@@ -1,0 +1,59 @@
+{
+  "badge": "💥 OFFICIAL RESOLUTIONS & YOUTH CHARTER",
+  "heading": "Conference Demands",
+  "subheadingPre": "4 critical constitutional resolves adopted at the",
+  "subheadingPost": "to defend equality, justice, and minority rights.",
+  "conferenceName": "Constitution Protection Conference",
+  "demandNumber": "DEMAND #{{id}}",
+  "footerLabel": "Constitution Protection 2026",
+  "shareStory": "Share Story",
+  "copied": "Copied!",
+  "shareTooltip": "Copy demand summary to post on Instagram, WhatsApp or X",
+  "shareTemplate": "✊ DEMAND #{{id}}: {{title}}\n\n👉 {{summary}}\n\n📍 Constitution Protection Conference | 21 Aug 2026, Chennai\n#ProtectConstitution #GenZVoice #EqualRights",
+  "cta": {
+    "badge": "✊ YOUTH POWER & CITIZEN ACTION",
+    "title": "Chennai • 21 August 2026",
+    "venue": "📍 YMCA GROUNDS, NANDANAM",
+    "body": "We call upon all young citizens, students, advocates, and defenders of democracy to participate in massive numbers in the <strong>Constitution Protection Conference</strong> on <strong>21 August 2026</strong> in Chennai. Let us unite to safeguard constitutional guarantees for Muslim and Christian minority communities and enforce equal justice under law!",
+  "dateTime": "FRIDAY, 21 AUGUST 2026 • 4:00 PM ONWARDS",
+    "hashtags": "#DefendTheConstitution #YouthForJustice"
+  },
+  "demands": [
+    {
+      "id": 1,
+      "tag": "TAMIL NADU LEGISLATION",
+      "sticker": "💥 TN ACT 2007",
+      "title": "Reservation Rights of Backward Class Muslims",
+      "iconName": "Scale",
+      "tldr": "Ensure backward Muslim converts get fair reservation in college admissions & government jobs under TN 2007 Act. Equal rights & opportunities for all!",
+      "legalText": "The Government of Tamil Nadu should immediately amend the Tamil Nadu Backward Class Muslims (Reservation of Seats in Educational Institutions, including Private Educational Institutions, and of Appointments or Posts in the Services under the State) Act, 2007, to safeguard the reservation rights of socially and educationally backward Muslims who have converted to Islam."
+    },
+    {
+      "id": 2,
+      "tag": "UNION GOVT & FCRA ACT",
+      "sticker": "⚡ REPEAL FCRA BANS",
+      "title": "Withdraw Unconstitutional FCRA Restrictions",
+      "iconName": "Landmark",
+      "tldr": "Stop choking NGOs and charity trusts! Repeal harsh FCRA rules so voluntary orgs can fund free healthcare, schools, and relief for marginalised communities.",
+      "legalText": "The Union Government must withdraw the unconstitutional amendments to the Foreign Contribution (Regulation) Act (FCRA), which adversely affect the lawful utilisation of foreign contributions received by religious institutions, charitable trusts, and voluntary organisations for education, healthcare, social welfare, and humanitarian services benefiting socially and economically marginalised communities."
+    },
+    {
+      "id": 3,
+      "tag": "PARLIAMENT & JUDICIARY",
+      "sticker": "⚖️ JUDICIAL ACCOUNTABILITY",
+      "title": "Expedite Impeachment & Inquiry Proceedings",
+      "iconName": "ShieldAlert",
+      "tldr": "Hold judges accountable to their constitutional oath! Fast-track impeachment & SC in-house inquiry against Justice Swaminathan for violating Article 219.",
+      "legalText": "The pending impeachment proceedings in Parliament against Justice G.R. Swaminathan, who has been accused of repeatedly acting contrary to the Constitution and violating the oath taken under Article 219 of the Constitution upon assuming judicial office, should be expedited. Further, the Supreme Court should initiate an in-house inquiry based on the complaint submitted by Members of Parliament to the Chief Justice of India."
+    },
+    {
+      "id": 4,
+      "tag": "EQUAL RIGHTS FOR ALL",
+      "sticker": "✊ SC/MBC RESERVATION",
+      "title": "Extend SC & MBC Reservations to Christians",
+      "iconName": "Users",
+      "tldr": "Faith shouldn't cost you your affirmative action rights! Amend laws to extend SC & MBC reservation status to eligible Dalit & backward Christians.",
+      "legalText": "The Union Government should undertake the necessary constitutional and statutory amendments to extend Scheduled Caste reservation benefits to Christians (SC-Christians) in accordance with the constitutional guarantees of equality and freedom of religion. In addition, Most Backward Class reservation (MBC-Christian) should be provided to eligible Most Backward Class persons who have embraced Christianity."
+    }
+  ]
+}

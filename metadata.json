@@ -1,0 +1,6 @@
+{
+  "name": "Constitution Protection Movement",
+  "description": "A citizen-led constitutional rights movement dedicated to protecting the Constitution of India, constitutional values, democracy, equality, justice, liberty, and the rule of law.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
