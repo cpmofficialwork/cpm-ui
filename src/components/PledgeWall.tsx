@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocalizedData } from '../data/useLocalizedData';
 import { PledgeSignature } from '../types';
 import { Award, ShieldCheck, Search, PlusCircle, CheckCircle } from 'lucide-react';
+import { useScrollLock } from '../hooks/useScrollLock';
 
 interface PledgeWallProps {
   onOpenPledgeModal?: () => void;
@@ -30,6 +31,8 @@ export const PledgeWall: React.FC<PledgeWallProps> = () => {
   useEffect(() => {
     localStorage.setItem('cpm_pledges', JSON.stringify(pledges));
   }, [pledges]);
+
+  useScrollLock(showSignModal);
 
   const handleAddPledge = (e: React.FormEvent) => {
     e.preventDefault();

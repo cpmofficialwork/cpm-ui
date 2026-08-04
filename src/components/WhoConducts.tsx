@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedData } from '../data/useLocalizedData';
+import { useScrollLock } from '../hooks/useScrollLock';
 import { Shield, Scale, Users, Sparkles, CheckCircle2, ChevronRight, X, BookOpen, Quote } from 'lucide-react';
 
 const ICON_MAP: Record<string, React.FC<{ className?: string }>> = { Scale, Users, Shield };
@@ -12,6 +13,8 @@ export const WhoConducts: React.FC = () => {
   const [selectedOrganizerId, setSelectedOrganizerId] = useState<string | null>(null);
   const selectedOrganizer = ORGANIZERS.find((o) => o.id === selectedOrganizerId) ?? null;
   const organizers = ORGANIZERS;
+
+  useScrollLock(!!selectedOrganizer);
 
   return (
     <section id="who-conducts" className="py-20 bg-[#F8F6F0] text-[#0A1F44] border-b border-[#0A1F44]/10 relative overflow-hidden">
