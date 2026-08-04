@@ -201,7 +201,7 @@ export const CONSTITUTIONAL_VALUES: ConstitutionalValue[] = [
     number: 14,
     articleRef: 'Preamble & Basic Structure',
     name: 'Constitutional Morality',
-    tamilName: 'அரசியலமைப்புச் சட்ட ஒழுக்கநெறி',
+    tamilName: 'அரசமைப்புச் சட்ட ஒழுக்கநெறி',
     englishTitle: 'Adherence to Constitutional Spirit',
     shortDescription: 'Public authorities must act according to the values and spirit of the Constitution—respecting liberty, equality, dignity, and the rule of law—even when public opinion or political pressure points in another direction.',
     detailedRelevance: 'Prevents majoritarian tyranny and ensures officials uphold constitutional values above political expediency.',

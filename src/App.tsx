@@ -11,6 +11,7 @@ import { ConstitutionalValues } from './components/ConstitutionalValues';
 import { CitizenResponsibilities } from './components/CitizenResponsibilities';
 import { Footer } from './components/Footer';
 import { AnimatedSection } from './components/AnimatedSection';
+import { WelcomeVideoModal } from './components/WelcomeVideoModal';
 
 export default function App() {
   const [isPassModalOpen, setIsPassModalOpen] = useState(false);
@@ -32,6 +33,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#F8F6F0] text-[#0A1F44] flex flex-col font-sans-body selection:bg-[#0A1F44] selection:text-white relative">
+      {/* First-visit welcome video */}
+      <WelcomeVideoModal />
+
       {/* Header Bar - disappears when pamphlet or pass modal is open */}
       <AnimatePresence>
         {!isModalOpen && (

@@ -41,6 +41,8 @@ import conferenceSectionEn from './locales/en/conferenceSection.json';
 import conferenceSectionTa from './locales/ta/conferenceSection.json';
 import conferencePamphletEn from './locales/en/conferencePamphlet.json';
 import conferencePamphletTa from './locales/ta/conferencePamphlet.json';
+import welcomeVideoEn from './locales/en/welcomeVideo.json';
+import welcomeVideoTa from './locales/ta/welcomeVideo.json';
 
 export const LANGUAGE_STORAGE_KEY = 'cpm-language';
 export const DEFAULT_LANGUAGE = 'ta';
@@ -80,6 +82,7 @@ i18next.use(initReactI18next).init({
     'genZYouthHub',
     'conferenceSection',
     'conferencePamphlet',
+    'welcomeVideo',
   ],
   resources: {
     en: {
@@ -103,6 +106,7 @@ i18next.use(initReactI18next).init({
       genZYouthHub: genZYouthHubEn,
       conferenceSection: conferenceSectionEn,
       conferencePamphlet: conferencePamphletEn,
+      welcomeVideo: welcomeVideoEn,
     },
     ta: {
       common: commonTa,
@@ -125,6 +129,7 @@ i18next.use(initReactI18next).init({
       genZYouthHub: genZYouthHubTa,
       conferenceSection: conferenceSectionTa,
       conferencePamphlet: conferencePamphletTa,
+      welcomeVideo: welcomeVideoTa,
     },
   },
   interpolation: {
