@@ -18,6 +18,7 @@ import {
   User,
   Check
 } from 'lucide-react';
+import { useScrollLock } from '../hooks/useScrollLock';
 import leaderImg from '../assets/images/leader_portrait_1785579952921.jpg';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
 import pamphletCoverImg from '../assets/images/pamphlet_cover_page1_1785666053368.jpg';
@@ -81,17 +82,7 @@ export const ConferencePamphlet: React.FC<ConferencePamphletProps> = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isModalOpen]);
 
-  // Lock background body scrolling when modal is open
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isModalOpen]);
+  useScrollLock(isModalOpen);
 
   const handleShare = () => {
     if (navigator.share) {

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedData } from '../data/useLocalizedData';
 import { ConstitutionalValue } from '../types';
+import { useScrollLock } from '../hooks/useScrollLock';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Crown, Scale, Feather, Equal, HeartHandshake, Landmark, 
@@ -23,6 +24,8 @@ export const ConstitutionalValues: React.FC = () => {
   const [selectedCardId, setSelectedCardId] = useState<string | null>(null);
   const selectedCard: ConstitutionalValue | null =
     CONSTITUTIONAL_VALUES.find((v) => v.id === selectedCardId) ?? null;
+
+  useScrollLock(!!selectedCard);
 
   const filteredValues = CONSTITUTIONAL_VALUES.filter((val) => {
     const matchesCategory = selectedCategory === 'all' || val.category === selectedCategory;

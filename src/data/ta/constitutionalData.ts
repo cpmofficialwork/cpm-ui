@@ -9,9 +9,9 @@ import {
   LandmarkCase,
   Organizer
 } from '../../types';
-import judgeImg from '../../assets/images/hari_parandhaman_judge_1785580700221.jpg';
-import ministerImg from '../../assets/images/mano_thangaraj_minister_1785580721742.jpg';
-import advocateImg from '../../assets/images/vanchinathan_advocate_1785580739643.jpg';
+import judgeImg from '../../assets/images/hari_parandhaman.jpeg';
+import ministerImg from '../../assets/images/mano_thangaraj.jpeg';
+import advocateImg from '../../assets/images/vanchinadhan.jpeg';
 
 export const CONSTITUTIONAL_VALUES: ConstitutionalValue[] = [
   {

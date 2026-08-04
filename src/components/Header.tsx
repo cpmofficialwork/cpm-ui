@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useLanguage } from '../hooks/useLanguage';
+import { useScrollLock } from '../hooks/useScrollLock';
 
 interface HeaderProps {
   onRegisterMember: () => void;
@@ -14,6 +15,8 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t } = useTranslation(['header', 'common']);
   const { isTamil } = useLanguage();
+
+  useScrollLock(isMobileMenuOpen);
 
   const navLinks = [
     { name: t('common:nav.conference'), href: '#conference', badge: t('common:nav.badgeDate') },

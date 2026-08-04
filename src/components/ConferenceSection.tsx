@@ -7,6 +7,7 @@ import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
 import pamphletCoverImg from '../assets/images/pamphlet_cover_page1_1785666053368.jpg';
 import { ConferencePamphlet } from './ConferencePamphlet';
 import { createUser, ApiError } from '../lib/api';
+import { useScrollLock } from '../hooks/useScrollLock';
 
 interface ConferenceSectionProps {
   isPassModalOpen?: boolean;
@@ -64,17 +65,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
     }
   };
 
-  // Lock background body scroll when any modal is open
-  useEffect(() => {
-    if (isModalOpen || isPamphletOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isModalOpen, isPamphletOpen]);
+  useScrollLock(isModalOpen || isPamphletOpen);
 
   const openModal = () => {
     if (onOpenPassModal) {
@@ -194,9 +185,13 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
           className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 border-b border-white/15 pb-8"
         >
           <div className="flex items-center gap-3">
-            <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-[#FFB800] via-[#FFA000] to-[#FF8F00] text-[#0A1F44] font-mono text-xs font-black uppercase tracking-[0.25em] rounded-full shadow-[0_0_20px_rgba(255,184,0,0.4)] border border-[#FFE082]">
+            <button
+              type="button"
+              onClick={openModal}
+              className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-[#FFB800] via-[#FFA000] to-[#FF8F00] text-[#0A1F44] font-mono text-xs font-black uppercase tracking-[0.25em] rounded-full shadow-[0_0_20px_rgba(255,184,0,0.4)] border border-[#FFE082] cursor-pointer hover:shadow-[0_0_28px_rgba(255,184,0,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all"
+            >
               <span>{t('badge')}</span>
-            </div>
+            </button>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
