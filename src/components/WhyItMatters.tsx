@@ -3,6 +3,7 @@ import { Scale, Feather, Equal, HeartHandshake, BookOpen, Quote } from 'lucide-r
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import constituentHistoryImage from '../assets/images/constituent_assembly_history_1785566166948.jpg';
+import ambedkarPortrait from '../assets/images/ambedkar_portrait.jpg';
 
 const ICON_MAP: Record<string, React.FC<{ className?: string }>> = { Scale, Feather, Equal, HeartHandshake };
 
@@ -56,6 +57,13 @@ export const WhyItMatters: React.FC = () => {
         >
           <Quote className="w-10 h-10 text-[#0A1F44]/20 absolute top-6 left-6" />
           <div className="relative z-10 space-y-4">
+            <div className="flex justify-center">
+              <img
+                src={ambedkarPortrait}
+                alt="Dr. B. R. Ambedkar"
+                className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[#0A1F44]/15 shadow-md"
+              />
+            </div>
             <blockquote className="text-xl sm:text-2xl lg:text-3xl font-serif-quote italic text-[#0A1F44] leading-relaxed">
               "{t('quoteCard.quote1')} <br />
               {t('quoteCard.quote2')}"
