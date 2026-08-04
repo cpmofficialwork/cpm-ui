@@ -1,38 +1,46 @@
 import React, { useState } from 'react';
-import { Shield, Users, Award, Menu, X, Scale, Ticket, UserPlus } from 'lucide-react';
+import { Shield, Users, Award, Menu, X, Scale, Ticket } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useLanguage } from '../hooks/useLanguage';
 import { useScrollLock } from '../hooks/useScrollLock';
 
-interface HeaderProps {
-  onRegisterMember: () => void;
-  isDisabled?: boolean;
-}
-
-export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
+export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { t } = useTranslation(['header', 'common']);
   const { isTamil } = useLanguage();
 
   useScrollLock(isMobileMenuOpen);
 
-  const navLinks = [
+  const navLinks: { name: string; href: string; badge?: string }[] = [
     { name: t('common:nav.conference'), href: '#conference', badge: t('common:nav.badgeDate') },
-    { name: t('common:nav.whoConducts'), href: '#who-conducts' },
-    { name: t('common:nav.whyProtect'), href: '#why-it-matters' },
     { name: t('common:nav.demands'), href: '#conference-demands' },
+    { name: t('common:nav.whyProtect'), href: '#why-it-matters' },
     { name: t('common:nav.genzHub'), href: '#genz-hub' },
     { name: t('common:nav.coreValues'), href: '#constitutional-values' },
     { name: t('common:nav.responsibilities'), href: '#responsibilities' },
+    { name: t('common:nav.whoConducts'), href: '#who-conducts' },
   ];
 
   const handleNavClick = (href: string) => {
+    const wasMobileMenuOpen = isMobileMenuOpen;
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+
+    const scrollToTarget = () => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    if (wasMobileMenuOpen) {
+      // Closing the drawer releases the scroll lock, which resets window
+      // scroll on its cleanup. Wait a tick so that reset runs first, or it
+      // clobbers the scrollIntoView below.
+      setTimeout(scrollToTarget, 50);
+    } else {
+      scrollToTarget();
     }
   };
 
@@ -47,11 +55,11 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
       </a>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between min-h-20 py-2">
-          
+        <div className="flex items-center justify-between min-h-28 sm:min-h-32 md:min-h-32 lg:min-h-36 py-3">
+
           {/* Institution Brand Seal */}
           <a href="#" className="flex items-center gap-3.5 group min-w-0">
-            <div className="w-12 h-12 rounded-full border-2 border-[#0A1F44] p-0.5 bg-white overflow-hidden shadow-md shrink-0 group-hover:scale-105 transition-transform">
+            <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full border-[3px] border-[#0A1F44] p-1 bg-white overflow-hidden shadow-md shrink-0 group-hover:scale-105 transition-transform">
               <img
                 src={cpmLogoImage}
                 alt={t('header:logoAlt')}
@@ -60,25 +68,18 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
               />
             </div>
             <div className="min-w-0">
-              <div className="font-serif-display font-bold text-sm sm:text-base lg:text-lg text-[#0A1F44] uppercase tracking-[0.08em] sm:tracking-[0.12em] leading-tight">
+              <div className="font-serif-display font-bold text-lg sm:text-xl lg:text-2xl text-[#0A1F44] uppercase tracking-[0.08em] sm:tracking-[0.12em] leading-tight">
                 {isTamil ? t('header:orgNameTamil') : t('header:orgNameEnglish')}
               </div>
-              <div className="text-[9px] sm:text-[10px] font-serif text-[#0A1F44]/75 tracking-wider font-semibold">
+              <div className="text-xs sm:text-sm font-serif text-[#0A1F44]/75 tracking-wider font-semibold">
                 {isTamil ? t('header:orgNameEnglish') : t('header:orgNameTamil')}
               </div>
             </div>
           </a>
 
-          {/* Right CTA Button: Join the Movement */}
+          {/* Language Switcher */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <LanguageSwitcher />
-            <button
-              onClick={onRegisterMember}
-              className="px-5 py-2.5 bg-gradient-to-r from-[#FF9933] via-[#FFA000] to-[#E68900] text-[#0A1F44] font-black text-xs uppercase tracking-[0.18em] rounded-xl hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer border border-[#FFE082] shadow-sm hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <UserPlus className="w-4 h-4 text-[#0A1F44]" />
-              <span>{t('common:actions.joinMovement')}</span>
-            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -119,20 +120,8 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-[#F8F6F0] border-b border-[#0A1F44]/20 px-4 pt-4 pb-6 space-y-4 font-sans-body text-xs animate-fadeIn">
-          <div className="flex justify-center pb-3">
+          <div className="flex justify-center pb-3 border-b border-[#0A1F44]/10">
             <LanguageSwitcher />
-          </div>
-          <div className="pb-3 border-b border-[#0A1F44]/10">
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onRegisterMember();
-              }}
-              className="w-full py-3.5 px-4 bg-gradient-to-r from-[#FF9933] to-[#E68900] text-[#0A1F44] font-black text-xs uppercase tracking-widest text-center rounded-xl flex items-center justify-center gap-2 shadow-md cursor-pointer"
-            >
-              <UserPlus className="w-4 h-4" />
-              <span>{t('common:actions.joinMovement')}</span>
-            </button>
           </div>
           <div className="space-y-1">
             {navLinks.map((link) => (

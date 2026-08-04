@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { ShieldAlert, Scale, Users, Landmark, Megaphone, CheckCircle2, Share2, Copy, Check, MessageSquare, Sparkles } from 'lucide-react';
+import { ShieldAlert, Scale, Users, Landmark, Megaphone, Share2, Check, MessageSquare, Sparkles, X, ChevronRight } from 'lucide-react';
+import { useScrollLock } from '../hooks/useScrollLock';
 
 const ICON_MAP: Record<string, React.FC<{ className?: string }>> = { Scale, Landmark, ShieldAlert, Users };
 
@@ -18,8 +19,11 @@ interface Demand {
 export const ConferenceDemands: React.FC = () => {
   const { t } = useTranslation('conferenceDemands');
   const [copiedId, setCopiedId] = useState<number | null>(null);
+  const [selectedDemand, setSelectedDemand] = useState<Demand | null>(null);
   const demands = t('demands', { returnObjects: true }) as Demand[];
   const BADGE_COLORS = ['bg-[#0A1F44] text-[#FFD700]', 'bg-[#D97706] text-white'];
+
+  useScrollLock(selectedDemand !== null);
 
   const handleCopyStory = (id: number, title: string, summary: string) => {
     const textToCopy = t('shareTemplate', { id, title, summary });
@@ -27,6 +31,11 @@ export const ConferenceDemands: React.FC = () => {
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2500);
   };
+
+  const selectedIndex = selectedDemand ? demands.findIndex((d) => d.id === selectedDemand.id) : -1;
+  const SelectedIcon = selectedDemand ? ICON_MAP[selectedDemand.iconName] || Scale : null;
+  const selectedBadgeColor = BADGE_COLORS[selectedIndex % 2];
+  const isSelectedCopied = selectedDemand ? copiedId === selectedDemand.id : false;
 
   return (
     <section id="conference-demands" className="py-16 sm:py-24 bg-[#FFFDF5] text-[#0A1F44] border-t-4 border-[#0A1F44] relative overflow-hidden">
@@ -70,7 +79,6 @@ export const ConferenceDemands: React.FC = () => {
           {demands.map((demand, index) => {
             const Icon = ICON_MAP[demand.iconName] || Scale;
             const badgeColor = BADGE_COLORS[index % 2];
-            const isCopied = copiedId === demand.id;
 
             return (
               <motion.div
@@ -79,7 +87,16 @@ export const ConferenceDemands: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="bg-white border-[3px] border-[#0A1F44] p-6 sm:p-8 shadow-[6px_6px_0px_0px_#0A1F44] hover:shadow-[10px_10px_0px_0px_#FF9933] hover:-translate-y-1 transition-all flex flex-col justify-between space-y-5 relative group"
+                onClick={() => setSelectedDemand(demand)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedDemand(demand);
+                  }
+                }}
+                className="bg-white border-[3px] border-[#0A1F44] p-6 sm:p-8 shadow-[6px_6px_0px_0px_#0A1F44] hover:shadow-[10px_10px_0px_0px_#FF9933] hover:-translate-y-1 transition-all flex flex-col justify-between space-y-5 relative group cursor-pointer"
               >
                 {/* Comic Sticker Banner */}
                 <div className="absolute -top-3.5 left-6 px-3 py-0.5 bg-[#FF9933] text-[#0A1F44] font-mono text-[10px] font-black uppercase tracking-widest border-2 border-[#0A1F44] shadow-[2px_2px_0px_0px_#0A1F44]">
@@ -92,7 +109,7 @@ export const ConferenceDemands: React.FC = () => {
                     <span className={`px-2.5 py-1 font-mono text-[10px] sm:text-[11px] font-black uppercase tracking-wider border border-[#0A1F44] ${badgeColor}`}>
                       {demand.tag}
                     </span>
-                    <span className="font-mono text-xs font-black text-[#D97706] bg-[#FFD700]/30 px-2 py-0.5 border border-[#0A1F44]">
+                    <span className="font-mono text-xl sm:text-2xl font-black text-[#D97706] bg-[#FFD700]/30 px-3 py-1 border border-[#0A1F44]">
                       {t('demandNumber', { id: demand.id })}
                     </span>
                   </div>
@@ -106,13 +123,6 @@ export const ConferenceDemands: React.FC = () => {
                       {demand.title}
                     </h3>
                   </div>
-
-                  {/* Official Resolution Text */}
-                  <div className="pt-1 min-h-[110px] flex items-center">
-                    <div className="text-xs sm:text-sm font-sans-body text-[#0A1F44] leading-relaxed text-justify pt-1 font-medium">
-                      {demand.legalText}
-                    </div>
-                  </div>
                 </div>
 
                 {/* Card Action Footer */}
@@ -122,24 +132,10 @@ export const ConferenceDemands: React.FC = () => {
                     <span>{t('footerLabel')}</span>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={() => handleCopyStory(demand.id, demand.title, demand.tldr)}
-                    className="px-3 py-1.5 bg-[#0A1F44] hover:bg-[#D97706] text-[#FFD700] hover:text-white font-mono text-[11px] font-black uppercase tracking-wider border-2 border-[#0A1F44] shadow-[2px_2px_0px_0px_#FFD700] transition-all flex items-center gap-1.5 cursor-pointer active:translate-x-0.5 active:translate-y-0.5"
-                    title={t('shareTooltip')}
-                  >
-                    {isCopied ? (
-                      <>
-                        <Check className="w-3.5 h-3.5 text-[#FFD700]" />
-                        <span>{t('copied')}</span>
-                      </>
-                    ) : (
-                      <>
-                        <Share2 className="w-3.5 h-3.5" />
-                        <span>{t('shareStory')}</span>
-                      </>
-                    )}
-                  </button>
+                  <span className="text-[11px] font-mono font-black uppercase tracking-wider text-[#D97706] group-hover:text-[#0A1F44] transition-colors flex items-center gap-1">
+                    <span>{t('viewDetails')}</span>
+                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
                 </div>
               </motion.div>
             );
@@ -188,6 +184,100 @@ export const ConferenceDemands: React.FC = () => {
         </motion.div>
 
       </div>
+
+      {/* Demand Details Modal */}
+      <AnimatePresence>
+        {selectedDemand && SelectedIcon && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedDemand(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-[#0A1F44]/75 backdrop-blur-sm"
+          >
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0, y: 25 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.92, opacity: 0, y: 25 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative bg-white border-[3px] border-[#0A1F44] shadow-[8px_8px_0px_0px_#FFD700] max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8"
+            >
+              <button
+                type="button"
+                onClick={() => setSelectedDemand(null)}
+                className="absolute top-4 right-4 p-2 text-[#0A1F44]/60 hover:text-[#0A1F44] hover:bg-[#0A1F44]/10 transition-colors cursor-pointer"
+                aria-label={t('close')}
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="space-y-5 pt-3">
+                {/* Comic Sticker Banner */}
+                <div className="inline-flex items-center px-3 py-0.5 bg-[#FF9933] text-[#0A1F44] font-mono text-[10px] font-black uppercase tracking-widest border-2 border-[#0A1F44] shadow-[2px_2px_0px_0px_#0A1F44]">
+                  {selectedDemand.sticker}
+                </div>
+
+                {/* Top Bar */}
+                <div className="flex items-center justify-between gap-2 border-b-2 border-[#0A1F44]/15 pb-3">
+                  <span className={`px-2.5 py-1 font-mono text-[10px] sm:text-[11px] font-black uppercase tracking-wider border border-[#0A1F44] ${selectedBadgeColor}`}>
+                    {selectedDemand.tag}
+                  </span>
+                  <span className="font-mono text-xl sm:text-2xl font-black text-[#D97706] bg-[#FFD700]/30 px-3 py-1 border border-[#0A1F44]">
+                    {t('demandNumber', { id: selectedDemand.id })}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <div className="flex items-start gap-3">
+                  <div className="p-2.5 bg-[#FFD700] border-2 border-[#0A1F44] text-[#0A1F44] shrink-0 mt-0.5 shadow-[2px_2px_0px_0px_#0A1F44]">
+                    <SelectedIcon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-serif-display font-black text-[#0A1F44] leading-snug">
+                    {selectedDemand.title}
+                  </h3>
+                </div>
+
+                {/* TL;DR Callout */}
+                <div className="px-4 py-3 bg-[#FFD700]/15 border-l-4 border-[#FFD700] text-sm font-sans-body font-semibold text-[#0A1F44] leading-relaxed">
+                  {selectedDemand.tldr}
+                </div>
+
+                {/* Official Resolution Text */}
+                <div className="text-xs sm:text-sm font-sans-body text-[#0A1F44] leading-relaxed text-justify font-medium">
+                  {selectedDemand.legalText}
+                </div>
+
+                {/* Modal Action Footer */}
+                <div className="pt-4 border-t-2 border-[#0A1F44]/15 flex items-center justify-between gap-3">
+                  <div className="text-[11px] font-mono text-[#0A1F44]/70 font-bold flex items-center gap-1">
+                    <MessageSquare className="w-3.5 h-3.5 text-[#0A1F44]" />
+                    <span>{t('footerLabel')}</span>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => handleCopyStory(selectedDemand.id, selectedDemand.title, selectedDemand.tldr)}
+                    className="px-3 py-1.5 bg-[#0A1F44] hover:bg-[#D97706] text-[#FFD700] hover:text-white font-mono text-[11px] font-black uppercase tracking-wider border-2 border-[#0A1F44] shadow-[2px_2px_0px_0px_#FFD700] transition-all flex items-center gap-1.5 cursor-pointer active:translate-x-0.5 active:translate-y-0.5"
+                    title={t('shareTooltip')}
+                  >
+                    {isSelectedCopied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-[#FFD700]" />
+                        <span>{t('copied')}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Share2 className="w-3.5 h-3.5" />
+                        <span>{t('shareStory')}</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

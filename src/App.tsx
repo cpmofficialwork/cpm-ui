@@ -24,11 +24,6 @@ export default function App() {
     }
   };
 
-  const handleRegisterMember = () => {
-    scrollToSection('conference');
-    setIsPassModalOpen(true);
-  };
-
   const isModalOpen = isPamphletModalOpen || isPassModalOpen;
 
   return (
@@ -46,7 +41,7 @@ export default function App() {
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             className="sticky top-0 z-50"
           >
-            <Header onRegisterMember={handleRegisterMember} />
+            <Header />
           </motion.div>
         )}
       </AnimatePresence>
@@ -68,12 +63,7 @@ export default function App() {
         {/* Bottom Sections - Collapsed/Hidden when Pamphlet reader is open */}
         {!isPamphletModalOpen && (
           <>
-            {/* Who Conducts Section */}
-            <AnimatedSection direction="up" delay={0.1}>
-              <WhoConducts />
-            </AnimatedSection>
-
-            {/* 1. Hero */}
+            {/* Hero (intro, no nav link) */}
             <AnimatedSection direction="up">
               <Hero
                 onExploreClick={() => scrollToSection('constitutional-values')}
@@ -81,29 +71,36 @@ export default function App() {
               />
             </AnimatedSection>
 
-            {/* 2. Why the Constitution Matters & Why Must We Protect the Constitution */}
-            <AnimatedSection direction="up">
-              <WhyItMatters />
-            </AnimatedSection>
+            {/* Nav order below matches the navbar link order exactly */}
 
-            {/* Conference Demands Section */}
+            {/* Demands */}
             <AnimatedSection direction="up" delay={0.05}>
               <ConferenceDemands />
             </AnimatedSection>
 
-            {/* Gen-Z & Youth Activism Hub */}
+            {/* Why Protect */}
+            <AnimatedSection direction="up">
+              <WhyItMatters />
+            </AnimatedSection>
+
+            {/* Gen-Z Hub */}
             <AnimatedSection direction="up" delay={0.05}>
               <GenZYouthHub />
             </AnimatedSection>
 
-            {/* 3. 15 Core Constitutional Values */}
+            {/* 15 Core Values */}
             <AnimatedSection direction="up">
               <ConstitutionalValues />
             </AnimatedSection>
 
-            {/* 4. Citizen Responsibilities */}
+            {/* Citizen Responsibilities */}
             <AnimatedSection direction="up">
               <CitizenResponsibilities />
+            </AnimatedSection>
+
+            {/* Who Conducts */}
+            <AnimatedSection direction="up" delay={0.1}>
+              <WhoConducts />
             </AnimatedSection>
           </>
         )}

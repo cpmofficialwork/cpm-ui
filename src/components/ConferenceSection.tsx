@@ -228,9 +228,38 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
 
               {/* Title & Bilingual Sub-Heading */}
               <div className="space-y-3">
-                <h2 className="text-4xl sm:text-6xl lg:text-7xl font-serif-display font-black text-white tracking-tight leading-[1.05] drop-shadow-2xl">
-                  {t('title')}
-                </h2>
+                <div className="flex items-start gap-3 sm:gap-4">
+                  {/* "AUG 21" Animated Date Medallion - sits right next to "Constitution" */}
+                  <div className="relative w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 shrink-0 flex items-center justify-center mt-1 sm:mt-2">
+                    {/* Outer pulsing glow */}
+                    <motion.div
+                      animate={{ scale: [1, 1.3, 1], opacity: [0.45, 0, 0.45] }}
+                      transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                      className="absolute inset-0 rounded-full bg-[#FFB800] blur-lg"
+                    />
+                    {/* Slow-spinning dashed ring */}
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
+                      className="absolute inset-0 rounded-full border-2 border-dashed border-[#FFD700]/80"
+                    />
+                    {/* Medallion body */}
+                    <motion.div
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+                      className="relative w-[80%] h-[80%] rounded-full bg-gradient-to-br from-[#FFE082] via-[#FFB800] to-[#C97F00] border-2 sm:border-[3px] border-[#0A1F44] shadow-[0_8px_18px_rgba(255,184,0,0.55)] flex items-center justify-center"
+                    >
+                      <div className="text-center text-[#0A1F44] leading-none px-1">
+                        <div className="text-lg sm:text-2xl lg:text-3xl font-serif-display font-black">21</div>
+                        <div className="text-[6px] sm:text-[7px] lg:text-[8px] font-mono font-extrabold uppercase tracking-wide -mt-0.5 whitespace-nowrap">Aug 2026</div>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  <h2 className="text-4xl sm:text-6xl lg:text-7xl font-serif-display font-black text-white tracking-tight leading-[1.05] drop-shadow-2xl">
+                    {t('title')}
+                  </h2>
+                </div>
                 <div className="inline-block px-4 py-1.5 bg-gradient-to-r from-[#FFB800]/20 to-transparent border-l-4 border-[#FFB800] text-xl sm:text-2xl font-sans-body font-semibold text-[#FFE082] italic font-serif-quote">
                   {t('titleTamil')}
                 </div>
