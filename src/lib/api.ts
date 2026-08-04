@@ -5,7 +5,8 @@ export interface CreateUserInput {
   mobile: string;
   state: string;
   district: string;
-  constituency: string;
+  subDistrict: string;
+  villageOrTown: string;
   country?: string;
 }
 
@@ -18,7 +19,8 @@ export interface ApiUser {
   country: string;
   state: string;
   district: string;
-  constituency: string;
+  subDistrict: string;
+  villageOrTown: string;
   createdAt: string;
   updatedAt: string;
 }

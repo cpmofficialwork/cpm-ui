@@ -41,7 +41,8 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
   const [visitorPhone, setVisitorPhone] = useState('');
   const [visitorState, setVisitorState] = useState(indianStates[0]);
   const [visitorDistrict, setVisitorDistrict] = useState(tnDistricts[0]);
-  const [visitorConstituency, setVisitorConstituency] = useState('');
+  const [visitorSubDistrict, setVisitorSubDistrict] = useState('');
+  const [visitorVillageOrTown, setVisitorVillageOrTown] = useState('');
   const [passNumber, setPassNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -137,7 +138,8 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
         mobile: digitsOnly,
         state: visitorState,
         district: visitorDistrict,
-        constituency: visitorConstituency.trim(),
+        subDistrict: visitorSubDistrict.trim(),
+        villageOrTown: visitorVillageOrTown.trim(),
       });
       setPassNumber(user.memberID);
       setPassClaimed(true);
@@ -556,19 +558,37 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                       </div>
                     </div>
 
-                    {/* 4. Constituency */}
-                    <div>
-                      <label className="block font-mono text-xs text-[#0A1F44] font-bold uppercase tracking-wider mb-1.5">
-                        {t('joinModal.constituency')}
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder={t('joinModal.constituencyPlaceholder')}
-                        value={visitorConstituency}
-                        onChange={(e) => setVisitorConstituency(e.target.value)}
-                        className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
-                      />
+                    {/* 4. Sub-District & Village/Town Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {/* Sub-District */}
+                      <div>
+                        <label className="block font-mono text-xs text-[#0A1F44] font-bold uppercase tracking-wider mb-1.5">
+                          {t('joinModal.subDistrict')}
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder={t('joinModal.subDistrictPlaceholder')}
+                          value={visitorSubDistrict}
+                          onChange={(e) => setVisitorSubDistrict(e.target.value)}
+                          className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
+                        />
+                      </div>
+
+                      {/* Village / Town */}
+                      <div>
+                        <label className="block font-mono text-xs text-[#0A1F44] font-bold uppercase tracking-wider mb-1.5">
+                          {t('joinModal.villageOrTown')}
+                        </label>
+                        <input
+                          type="text"
+                          required
+                          placeholder={t('joinModal.villageOrTownPlaceholder')}
+                          value={visitorVillageOrTown}
+                          onChange={(e) => setVisitorVillageOrTown(e.target.value)}
+                          className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -655,7 +675,8 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                       <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.mobileLabel')}</span> {visitorPhone || t('joinModal.notAvailable')}</div>
                       <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.stateLabel')}</span> {visitorState}</div>
                       <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.districtLabel')}</span> {visitorDistrict}</div>
-                      <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.constituencyLabel')}</span> {visitorConstituency || t('joinModal.notAvailable')}</div>
+                      <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.subDistrictLabel')}</span> {visitorSubDistrict || t('joinModal.notAvailable')}</div>
+                      <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.villageOrTownLabel')}</span> {visitorVillageOrTown || t('joinModal.notAvailable')}</div>
                     </div>
                   </motion.div>
 
@@ -670,7 +691,8 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         setPassClaimed(false);
                         setVisitorName('');
                         setVisitorPhone('');
-                        setVisitorConstituency('');
+                        setVisitorSubDistrict('');
+                        setVisitorVillageOrTown('');
                       }}
                       className="flex-1 py-3 bg-white hover:bg-[#F8F6F0] text-[#0A1F44] font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border border-[#0A1F44]/30 shadow-sm"
                     >
@@ -683,7 +705,8 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         setPassClaimed(false);
                         setVisitorName('');
                         setVisitorPhone('');
-                        setVisitorConstituency('');
+                        setVisitorSubDistrict('');
+                        setVisitorVillageOrTown('');
                       }}
                       className="flex-1 py-3 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer shadow-md"
                     >

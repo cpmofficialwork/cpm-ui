@@ -800,24 +800,24 @@ export const ORGANIZERS: Organizer[] = [
     extendedBio: 'Justice Hari Parandhaman served as a distinguished judge with an exemplary record of protecting democratic freedoms, labor rights, and equal opportunity. As a primary convener of the Constitution Protection Movement, he ensures all initiatives strictly uphold the spirit of the Preamble and the Rule of Law.',
     keyFocusAreas: ['Judicial Independence', 'Fundamental Rights Protection', 'Constitutional Literacy'],
     socials: [
-      {
-        platform: 'Twitter (X)',
-        handle: '@HariParandhaman',
-        url: 'https://twitter.com/HariParandhaman',
-        color: 'hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]'
-      },
-      {
-        platform: 'Facebook',
-        handle: 'Justice Hari Parandhaman',
-        url: 'https://facebook.com/JusticeHariParandhaman',
-        color: 'hover:bg-[#1877F2]/10 hover:border-[#1877F2] hover:text-[#1877F2]'
-      },
-      {
-        platform: 'Instagram',
-        handle: '@justice_hariparandhaman',
-        url: 'https://instagram.com/justice_hariparandhaman',
-        color: 'hover:bg-pink-500/10 hover:border-pink-500 hover:text-pink-600'
-      }
+    //   {
+    //     platform: 'Twitter (X)',
+    //     handle: '@HariParandhaman',
+    //     url: 'https://twitter.com/HariParandhaman',
+    //     color: 'hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]'
+    //   },
+    //   {
+    //     platform: 'Facebook',
+    //     handle: 'Justice Hari Parandhaman',
+    //     url: 'https://facebook.com/JusticeHariParandhaman',
+    //     color: 'hover:bg-[#1877F2]/10 hover:border-[#1877F2] hover:text-[#1877F2]'
+    //   },
+    //   {
+    //     platform: 'Instagram',
+    //     handle: '@justice_hariparandhaman',
+    //     url: 'https://instagram.com/justice_hariparandhaman',
+    //     color: 'hover:bg-pink-500/10 hover:border-pink-500 hover:text-pink-600'
+    //   }
     ],
     iconName: 'Scale'
   },
@@ -833,21 +833,21 @@ export const ORGANIZERS: Organizer[] = [
     keyFocusAreas: ['Grassroots Mobilization', 'Institutional Reforms', 'Volunteer Coalitions'],
     socials: [
       {
-        platform: 'Twitter (X)',
+        platform: 'X',
         handle: '@ManoThangaraj',
-        url: 'https://twitter.com/ManoThangaraj',
+        url: 'https://x.com/Manothangaraj',
         color: 'hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]'
       },
       {
         platform: 'Facebook',
         handle: 'Mano Thangaraj Official',
-        url: 'https://facebook.com/ManoThangarajOfficial',
+        url: 'https://www.facebook.com/share/19PPegD8uc/',
         color: 'hover:bg-[#1877F2]/10 hover:border-[#1877F2] hover:text-[#1877F2]'
       },
       {
         platform: 'Instagram',
         handle: '@manothangaraj.official',
-        url: 'https://instagram.com/manothangaraj.official',
+        url: 'https://www.instagram.com/manothangaraj_t',
         color: 'hover:bg-pink-500/10 hover:border-pink-500 hover:text-pink-600'
       }
     ],
@@ -864,24 +864,24 @@ export const ORGANIZERS: Organizer[] = [
     extendedBio: 'Advocate Vanchinathan is a relentless legal defender known for representing marginalized communities, human rights activists, and environmental causes. As key organizer, he leads the movement’s legal aid cells, policy research, and public rights workshops.',
     keyFocusAreas: ['Legal Aid & Defense', 'Freedom of Speech Protection', 'Human Rights Advocacy'],
     socials: [
-      {
-        platform: 'Twitter (X)',
-        handle: '@AdvVanchinathan',
-        url: 'https://twitter.com/AdvVanchinathan',
-        color: 'hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]'
-      },
-      {
-        platform: 'Facebook',
-        handle: 'Advocate Vanchinathan',
-        url: 'https://facebook.com/AdvocateVanchinathan',
-        color: 'hover:bg-[#1877F2]/10 hover:border-[#1877F2] hover:text-[#1877F2]'
-      },
-      {
-        platform: 'Instagram',
-        handle: '@adv_vanchinathan',
-        url: 'https://instagram.com/adv_vanchinathan',
-        color: 'hover:bg-pink-500/10 hover:border-pink-500 hover:text-pink-600'
-      }
+    //   {
+    //     platform: 'Twitter (X)',
+    //     handle: '@AdvVanchinathan',
+    //     url: 'https://twitter.com/AdvVanchinathan',
+    //     color: 'hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]'
+    //   },
+    //   {
+    //     platform: 'Facebook',
+    //     handle: 'Advocate Vanchinathan',
+    //     url: 'https://facebook.com/AdvocateVanchinathan',
+    //     color: 'hover:bg-[#1877F2]/10 hover:border-[#1877F2] hover:text-[#1877F2]'
+    //   },
+    //   {
+    //     platform: 'Instagram',
+    //     handle: '@adv_vanchinathan',
+    //     url: 'https://instagram.com/adv_vanchinathan',
+    //     color: 'hover:bg-pink-500/10 hover:border-pink-500 hover:text-pink-600'
+    //   }
     ],
     iconName: 'Shield'
   }

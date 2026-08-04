@@ -126,7 +126,7 @@ export const Footer: React.FC = () => {
             </p>
             <div className="flex flex-col gap-2 pt-1">
               <a
-                href="https://twitter.com/SamvidhanRaksha"
+                href="https://x.com/cpm_Tamilnadu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 px-3 py-2 bg-white/10 hover:bg-[#1DA1F2]/20 border border-white/15 hover:border-[#1DA1F2] rounded-xl transition-all group text-white text-[11px]"
@@ -137,13 +137,13 @@ export const Footer: React.FC = () => {
                   </svg>
                 </span>
                 <div className="flex flex-col">
-                  <span className="font-mono font-bold group-hover:text-[#1DA1F2] transition-colors">Twitter (X)</span>
-                  <span className="text-[10px] text-white/60">@SamvidhanRaksha</span>
+                  <span className="font-mono font-bold group-hover:text-[#1DA1F2] transition-colors">X</span>
+                  <span className="text-[10px] text-white/60">@cpm_Tamilnadu</span>
                 </div>
               </a>
 
               <a
-                href="https://facebook.com/ConstitutionProtectionMovement"
+                href="https://www.facebook.com/people/Cpm-Tamilnadu/61592546047506/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 px-3 py-2 bg-white/10 hover:bg-[#1877F2]/20 border border-white/15 hover:border-[#1877F2] rounded-xl transition-all group text-white text-[11px]"
@@ -155,12 +155,12 @@ export const Footer: React.FC = () => {
                 </span>
                 <div className="flex flex-col">
                   <span className="font-mono font-bold group-hover:text-[#1877F2] transition-colors">Facebook</span>
-                  <span className="text-[10px] text-white/60">@ConstitutionProtection</span>
+                  <span className="text-[10px] text-white/60">@Cpm Tamilnadu </span>
                 </div>
               </a>
 
               <a
-                href="https://instagram.com/constitutionprotection.in"
+                href="https://www.instagram.com/cpm_tamilnadu"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2.5 px-3 py-2 bg-white/10 hover:bg-pink-500/20 border border-white/15 hover:border-pink-500 rounded-xl transition-all group text-white text-[11px]"
@@ -172,7 +172,7 @@ export const Footer: React.FC = () => {
                 </span>
                 <div className="flex flex-col">
                   <span className="font-mono font-bold group-hover:text-pink-400 transition-colors">Instagram</span>
-                  <span className="text-[10px] text-white/60">@constitutionprotection.in</span>
+                  <span className="text-[10px] text-white/60">@cpm_tamilnadu</span>
                 </div>
               </a>
             </div>
