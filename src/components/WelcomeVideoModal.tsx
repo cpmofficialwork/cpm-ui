@@ -28,9 +28,6 @@ export function WelcomeVideoModal() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={(e) => {
-            if (e.target === e.currentTarget) handleClose();
-          }}
           className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-6 bg-[#020A16]/90 backdrop-blur-sm"
         >
           <motion.div

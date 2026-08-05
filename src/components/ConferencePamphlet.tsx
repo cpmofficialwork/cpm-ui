@@ -19,9 +19,11 @@ import {
   Check
 } from 'lucide-react';
 import { useScrollLock } from '../hooks/useScrollLock';
+import { useLanguage } from '../hooks/useLanguage';
 import leaderImg from '../assets/images/leader_portrait_1785579952921.jpg';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
-import pamphletCoverImg from '../assets/images/pamphlet_cover_page1_1785666053368.jpg';
+import pamphletCoverImg from '../assets/images/pamphlet_cover_page1.png';
+import pamphletCoverImgTa from '../assets/images/pamphlet_cover_page1_ta.png';
 
 interface ConferencePamphletProps {
   isOpen?: boolean;
@@ -35,6 +37,7 @@ export const ConferencePamphlet: React.FC<ConferencePamphletProps> = ({
   hideBanner = false
 }) => {
   const { t } = useTranslation('conferencePamphlet');
+  const { isTamil } = useLanguage();
   const [internalIsOpen, setInternalIsOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [hasPledged, setHasPledged] = useState(false);
@@ -329,7 +332,7 @@ export const ConferencePamphlet: React.FC<ConferencePamphletProps> = ({
                       {/* Full-width High Quality Image Container - Full image display without cutoff */}
                       <div className="relative bg-[#8B0000] p-2 sm:p-3 flex items-center justify-center overflow-hidden">
                         <img
-                          src={pamphletCoverImg}
+                          src={isTamil ? pamphletCoverImgTa : pamphletCoverImg}
                           alt={t('page1.coverAlt')}
                           referrerPolicy="no-referrer"
                           className="w-full h-auto max-h-[50vh] sm:max-h-[55vh] block object-contain shadow-2xl border-2 border-[#0A1F44]"
