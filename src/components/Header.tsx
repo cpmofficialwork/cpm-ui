@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Shield, Users, Award, Menu, X, Scale, Ticket, UserPlus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
@@ -13,40 +14,49 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [pendingScrollTarget, setPendingScrollTarget] = useState<string | null>(null);
   const { t } = useTranslation(['header', 'common']);
   const { isTamil } = useLanguage();
 
   useScrollLock(isMobileMenuOpen);
 
+  // Runs after useScrollLock's cleanup has unpinned <body>, so the scroll
+  // isn't immediately overridden by the lock's own scroll-position restore.
+  useEffect(() => {
+    if (isMobileMenuOpen || !pendingScrollTarget) return;
+    const element = document.querySelector(pendingScrollTarget);
+    element?.scrollIntoView({ behavior: 'smooth' });
+    setPendingScrollTarget(null);
+  }, [isMobileMenuOpen, pendingScrollTarget]);
+
   const navLinks = [
     { name: t('common:nav.conference'), href: '#conference', badge: t('common:nav.badgeDate') },
-    { name: t('common:nav.whoConducts'), href: '#who-conducts' },
-    { name: t('common:nav.whyProtect'), href: '#why-it-matters' },
     { name: t('common:nav.demands'), href: '#conference-demands' },
-    { name: t('common:nav.genzHub'), href: '#genz-hub' },
+    { name: t('common:nav.whyProtect'), href: '#why-it-matters' },
     { name: t('common:nav.coreValues'), href: '#constitutional-values' },
     { name: t('common:nav.responsibilities'), href: '#responsibilities' },
+    { name: t('common:nav.genzHub'), href: '#genz-hub' },
+    { name: t('common:nav.whoConducts'), href: '#who-conducts' },
   ];
 
   const handleNavClick = (href: string) => {
+    setPendingScrollTarget(href);
     setIsMobileMenuOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   return (
+    <>
     <header className="w-full bg-[#F8F6F0]/95 backdrop-blur-md border-b border-[#0A1F44]/10 text-[#0A1F44]">
-      {/* Top Banner Notice */}
-      <a href="#conference" className="bg-[#0A1F44] hover:bg-[#06152E] py-2 px-4 text-center text-[11px] font-sans-body border-b border-[#0A1F44]/20 flex items-center justify-center gap-2 text-[#F8F6F0] transition-colors group">
+      {/* Top Banner Notice — relative z-50 so it stays stacked above the fixed (z-40) mobile drawer */}
+      <a href="#conference" className="relative z-50 bg-[#0A1F44] hover:bg-[#06152E] py-2 px-4 text-center text-[11px] font-sans-body border-b border-[#0A1F44]/20 flex items-center justify-center gap-2 text-[#F8F6F0] transition-colors group">
         <span className="inline-block w-2 h-2 rounded-full bg-[#FF9933] animate-ping"></span>
         <span className="uppercase tracking-[0.18em] font-semibold text-[10px] text-[#FF9933]">
          {t('header:topBanner')}
         </span>
       </a>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* relative z-50 so the logo/hamburger row stays stacked above the fixed (z-40) mobile drawer */}
+      <div className="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between min-h-20 py-2">
           
           {/* Institution Brand Seal */}
@@ -60,25 +70,18 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
               />
             </div>
             <div className="min-w-0">
-              <div className="font-serif-display font-bold text-sm sm:text-base lg:text-lg text-[#0A1F44] uppercase tracking-[0.08em] sm:tracking-[0.12em] leading-tight">
+              <div className="font-serif-display font-bold text-base sm:text-lg lg:text-xl text-[#0A1F44] uppercase tracking-[0.08em] sm:tracking-[0.12em] leading-tight">
                 {isTamil ? t('header:orgNameTamil') : t('header:orgNameEnglish')}
               </div>
-              <div className="text-[9px] sm:text-[10px] font-serif text-[#0A1F44]/75 tracking-wider font-semibold">
+              <div className="text-[10px] sm:text-xs font-serif text-[#0A1F44]/75 tracking-wider font-semibold">
                 {isTamil ? t('header:orgNameEnglish') : t('header:orgNameTamil')}
               </div>
             </div>
           </a>
 
-          {/* Right CTA Button: Join the Movement */}
+          {/* Language Switcher */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <LanguageSwitcher />
-            <button
-              onClick={onRegisterMember}
-              className="px-5 py-2.5 bg-gradient-to-r from-[#FF9933] via-[#FFA000] to-[#E68900] text-[#0A1F44] font-black text-xs uppercase tracking-[0.18em] rounded-xl hover:shadow-lg transition-all flex items-center gap-2 cursor-pointer border border-[#FFE082] shadow-sm hover:scale-[1.02] active:scale-[0.98]"
-            >
-              <UserPlus className="w-4 h-4 text-[#0A1F44]" />
-              <span>{t('common:actions.joinMovement')}</span>
-            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -116,49 +119,59 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
         </nav>
       </div>
 
-      {/* Mobile Drawer Menu */}
-      {isMobileMenuOpen && (
-        <div className="lg:hidden bg-[#F8F6F0] border-b border-[#0A1F44]/20 px-4 pt-4 pb-6 space-y-4 font-sans-body text-xs animate-fadeIn">
-          <div className="flex justify-center pb-3">
-            <LanguageSwitcher />
-          </div>
-          <div className="pb-3 border-b border-[#0A1F44]/10">
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                onRegisterMember();
-              }}
-              className="w-full py-3.5 px-4 bg-gradient-to-r from-[#FF9933] to-[#E68900] text-[#0A1F44] font-black text-xs uppercase tracking-widest text-center rounded-xl flex items-center justify-center gap-2 shadow-md cursor-pointer"
-            >
-              <UserPlus className="w-4 h-4" />
-              <span>{t('common:actions.joinMovement')}</span>
-            </button>
-          </div>
-          <div className="space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(link.href);
-                }}
-                className="relative flex items-center justify-between px-3 py-3 border-b border-[#0A1F44]/5 text-[#0A1F44] hover:bg-[#0A1F44] hover:text-[#F8F6F0] transition-colors text-xs uppercase tracking-widest font-medium"
-              >
-                <div className="flex items-center gap-2">
-                  <span>{link.name}</span>
-                </div>
-                {link.badge && (
-                  <span className="px-1.5 py-0.5 bg-[#FF9933] text-[#0A1F44] text-[9px] font-mono font-extrabold uppercase rounded shadow-sm border border-[#0A1F44]/20 animate-pulse">
-                    {link.badge}
-                  </span>
-                )}
-              </a>
-            ))}
-          </div>
-        </div>
-      )}
     </header>
+
+    {/* Mobile Drawer Menu — portaled straight into <body> so its "fixed inset-0"
+        sizes against the real viewport. Left inside the header's own DOM subtree,
+        it would size against the App-level Framer Motion wrapper instead (any
+        ancestor with a `transform` — which motion.div applies — becomes the
+        containing block for fixed descendants), squashing it down to just the
+        header's own height instead of covering the screen. Scrolls internally so
+        the page behind it stays put (locked via useScrollLock) while every link
+        stays reachable regardless of how tall the list is. */}
+    {isMobileMenuOpen && createPortal(
+      <div className="lg:hidden fixed inset-0 z-40 bg-[#F8F6F0] overflow-y-auto overscroll-contain px-4 pt-36 pb-6 space-y-4 font-sans-body text-xs animate-fadeIn">
+        <div className="flex justify-center pb-3">
+          <LanguageSwitcher />
+        </div>
+        <div className="pb-3 border-b border-[#0A1F44]/10">
+          <button
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              onRegisterMember();
+            }}
+            className="w-full py-3.5 px-4 bg-gradient-to-r from-[#FF9933] to-[#E68900] text-[#0A1F44] font-black text-xs uppercase tracking-widest text-center rounded-xl flex items-center justify-center gap-2 shadow-md cursor-pointer"
+          >
+            <UserPlus className="w-4 h-4" />
+            <span>{t('common:actions.joinMovement')}</span>
+          </button>
+        </div>
+        <div className="space-y-1">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(link.href);
+              }}
+              className="relative flex items-center justify-between px-3 py-3 border-b border-[#0A1F44]/5 text-[#0A1F44] hover:bg-[#0A1F44] hover:text-[#F8F6F0] transition-colors text-xs uppercase tracking-widest font-medium"
+            >
+              <div className="flex items-center gap-2">
+                <span>{link.name}</span>
+              </div>
+              {link.badge && (
+                <span className="px-1.5 py-0.5 bg-[#FF9933] text-[#0A1F44] text-[9px] font-mono font-extrabold uppercase rounded shadow-sm border border-[#0A1F44]/20 animate-pulse">
+                  {link.badge}
+                </span>
+              )}
+            </a>
+          ))}
+        </div>
+      </div>,
+      document.body
+    )}
+  </>
   );
 };
 

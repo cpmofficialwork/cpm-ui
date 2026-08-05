@@ -12,6 +12,7 @@ import { CitizenResponsibilities } from './components/CitizenResponsibilities';
 import { Footer } from './components/Footer';
 import { AnimatedSection } from './components/AnimatedSection';
 import { WelcomeVideoModal } from './components/WelcomeVideoModal';
+import { SCROLL_LOCK_TARGET_ID } from './hooks/useScrollLock';
 
 export default function App() {
   const [isPassModalOpen, setIsPassModalOpen] = useState(false);
@@ -51,66 +52,71 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Main Flow */}
-      <main className="flex-1 space-y-0">
-        {/* Top Highlighted Conference Section */}
-        <AnimatedSection direction="none">
-          <ConferenceSection
-            isPassModalOpen={isPassModalOpen}
-            onOpenPassModal={() => setIsPassModalOpen(true)}
-            onClosePassModal={() => setIsPassModalOpen(false)}
-            isPamphletModalOpen={isPamphletModalOpen}
-            onOpenPamphletModal={() => setIsPamphletModalOpen(true)}
-            onClosePamphletModal={() => setIsPamphletModalOpen(false)}
-          />
-        </AnimatedSection>
+      {/* Scrollable content wrapper — the target useScrollLock pins while a
+          modal/mobile-menu is open. Kept separate from <body> so the sticky
+          header (a sibling, above) never gets dragged along with it. */}
+      <div id={SCROLL_LOCK_TARGET_ID} className="flex-1 flex flex-col">
+        {/* Main Flow */}
+        <main className="flex-1 space-y-0">
+          {/* Top Highlighted Conference Section */}
+          <AnimatedSection direction="none">
+            <ConferenceSection
+              isPassModalOpen={isPassModalOpen}
+              onOpenPassModal={() => setIsPassModalOpen(true)}
+              onClosePassModal={() => setIsPassModalOpen(false)}
+              isPamphletModalOpen={isPamphletModalOpen}
+              onOpenPamphletModal={() => setIsPamphletModalOpen(true)}
+              onClosePamphletModal={() => setIsPamphletModalOpen(false)}
+            />
+          </AnimatedSection>
 
-        {/* Bottom Sections - Collapsed/Hidden when Pamphlet reader is open */}
-        {!isPamphletModalOpen && (
-          <>
-            {/* Who Conducts Section */}
-            <AnimatedSection direction="up" delay={0.1}>
-              <WhoConducts />
-            </AnimatedSection>
+          {/* Bottom Sections - Collapsed/Hidden when Pamphlet reader is open */}
+          {!isPamphletModalOpen && (
+            <>
+              {/* 1. Hero */}
+              <AnimatedSection direction="up">
+                <Hero
+                  onExploreClick={() => scrollToSection('constitutional-values')}
+                  onWhyProtectClick={() => scrollToSection('why-it-matters')}
+                />
+              </AnimatedSection>
 
-            {/* 1. Hero */}
-            <AnimatedSection direction="up">
-              <Hero
-                onExploreClick={() => scrollToSection('constitutional-values')}
-                onWhyProtectClick={() => scrollToSection('why-it-matters')}
-              />
-            </AnimatedSection>
+              {/* Why the Constitution Matters & Why Must We Protect the Constitution */}
+              <AnimatedSection direction="up">
+                <WhyItMatters />
+              </AnimatedSection>
 
-            {/* 2. Why the Constitution Matters & Why Must We Protect the Constitution */}
-            <AnimatedSection direction="up">
-              <WhyItMatters />
-            </AnimatedSection>
+              {/* 2. Conference Demands Section */}
+              <AnimatedSection direction="up" delay={0.05}>
+                <ConferenceDemands />
+              </AnimatedSection>
 
-            {/* Conference Demands Section */}
-            <AnimatedSection direction="up" delay={0.05}>
-              <ConferenceDemands />
-            </AnimatedSection>
+              {/* 3. 15 Core Constitutional Values */}
+              <AnimatedSection direction="up">
+                <ConstitutionalValues />
+              </AnimatedSection>
 
-            {/* Gen-Z & Youth Activism Hub */}
-            <AnimatedSection direction="up" delay={0.05}>
-              <GenZYouthHub />
-            </AnimatedSection>
+              {/* 4. Citizen Responsibilities */}
+              <AnimatedSection direction="up">
+                <CitizenResponsibilities />
+              </AnimatedSection>
 
-            {/* 3. 15 Core Constitutional Values */}
-            <AnimatedSection direction="up">
-              <ConstitutionalValues />
-            </AnimatedSection>
+              {/* Gen-Z & Youth Activism Hub */}
+              <AnimatedSection direction="up" delay={0.05}>
+                <GenZYouthHub />
+              </AnimatedSection>
 
-            {/* 4. Citizen Responsibilities */}
-            <AnimatedSection direction="up">
-              <CitizenResponsibilities />
-            </AnimatedSection>
-          </>
-        )}
-      </main>
+              {/* Who Conducts Section */}
+              <AnimatedSection direction="up" delay={0.1}>
+                <WhoConducts />
+              </AnimatedSection>
+            </>
+          )}
+        </main>
 
-      {/* Footer - Hidden when Pamphlet reader is open */}
-      {!isPamphletModalOpen && <Footer />}
+        {/* Footer - Hidden when Pamphlet reader is open */}
+        {!isPamphletModalOpen && <Footer />}
+      </div>
     </div>
   );
 }
