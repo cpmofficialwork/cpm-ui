@@ -221,9 +221,21 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
           >
             <div className="space-y-5">
               
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#FFB800] font-extrabold uppercase tracking-[0.3em]">
-                <Award className="w-4 h-4 text-[#FFB800]" />
-                <span>{t('statewideRally')}</span>
+              <div className="flex items-center justify-between flex-wrap gap-3">
+                <div className="inline-flex items-center gap-2 text-xs font-mono text-[#FFB800] font-extrabold uppercase tracking-[0.3em]">
+                  <Award className="w-4 h-4 text-[#FFB800]" />
+                  <span>{t('statewideRally')}</span>
+                </div>
+
+                {/* Highlighted Event Date Badge */}
+                <motion.div
+                  animate={{ scale: [1, 1.06, 1] }}
+                  transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#FFB800] via-[#FFA000] to-[#FF8F00] text-[#0A1F44] rounded-full shadow-[0_0_20px_rgba(255,184,0,0.5)] border border-[#FFE082]"
+                >
+                  <Calendar className="w-4 h-4" strokeWidth={2.5} />
+                  <span className="font-mono font-black text-sm tracking-wider">{t('dateHighlight')}</span>
+                </motion.div>
               </div>
 
               {/* Title & Bilingual Sub-Heading */}
