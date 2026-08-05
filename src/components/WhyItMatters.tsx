@@ -61,6 +61,8 @@ export const WhyItMatters: React.FC = () => {
               <img
                 src={ambedkarPortrait}
                 alt="Dr. B. R. Ambedkar"
+                loading="lazy"
+                decoding="async"
                 className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[#0A1F44]/15 shadow-md"
               />
             </div>

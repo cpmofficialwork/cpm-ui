@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedData } from '../data/useLocalizedData';
@@ -85,9 +86,11 @@ export const WhoConducts: React.FC = () => {
                   className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-[#0A1F44] shadow-md bg-[#0A1F44] cursor-pointer group/img"
                   title={t('clickToView')}
                 >
-                  <img 
-                    src={organizer.image} 
-                    alt={organizer.name} 
+                  <img
+                    src={organizer.image}
+                    alt={organizer.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-top transition-transform duration-500 group-hover/img:scale-105"
                   />
                 </div>
@@ -100,8 +103,12 @@ export const WhoConducts: React.FC = () => {
               </div>
 
               {/* Testimonial Main Content */}
-              <div className="flex-1 space-y-3 text-center md:text-left w-full md:pr-32">
-                <div className="border-b border-[#0A1F44]/15 pb-3">
+              <div className="flex-1 space-y-3 text-center md:text-left w-full">
+                {/* md:pr-* clears the absolutely-positioned "View Profile" button
+                    (~250px wide for the longer Tamil label) — reserved only on
+                    this header row, not the whole content block, so the quote
+                    box below can still use the full card width. */}
+                <div className="border-b border-[#0A1F44]/15 pb-3 md:pr-64">
                   <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
                     <h3 className="text-xl sm:text-2xl font-serif-display font-bold text-[#0A1F44]">
                       {organizer.name}
@@ -129,7 +136,13 @@ export const WhoConducts: React.FC = () => {
 
       </div>
 
-      {/* Organizer Detail Biography Modal */}
+      {/* Organizer Detail Biography Modal — portaled straight into <body> so its
+          "fixed inset-0" sizes against the real viewport. Left inside this
+          section's own DOM subtree, it would size against the AnimatedSection
+          wrapper instead (any ancestor with a `transform` — which its scroll-in
+          animation applies — becomes the containing block for fixed
+          descendants), squashing it down below the sticky header. */}
+      {createPortal(
       <AnimatePresence>
         {selectedOrganizer && (
           <motion.div 
@@ -197,6 +210,7 @@ export const WhoConducts: React.FC = () => {
                   </div>
 
                   {/* Social Handles in Modal */}
+                  {selectedOrganizer.socials.length > 0 && (
                   <div className="pt-2 space-y-1.5 text-left">
                     <div className="text-[10px] font-mono text-[#0A1F44]/80 uppercase font-bold">
                       {t('socialHandles')}
@@ -230,6 +244,7 @@ export const WhoConducts: React.FC = () => {
                       ))}
                     </div>
                   </div>
+                  )}
 
                   <div className="pt-3">
                     <button
@@ -244,7 +259,9 @@ export const WhoConducts: React.FC = () => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
 
     </section>
   );

@@ -800,24 +800,24 @@ export const ORGANIZERS: Organizer[] = [
     extendedBio: 'நீதிபதி அரி பரந்தாமன் ஜனநாயக சுதந்திரங்கள், தொழிலாளர் உரிமைகள், சம வாய்ப்பு ஆகியவற்றைப் பாதுகாப்பதில் சிறந்த சாதனை படைத்த ஒரு புகழ்பெற்ற நீதிபதியாக பணியாற்றினார். அரசமைப்புச் சட்டப் பாதுகாப்பு இயக்கத்தின் முதன்மை ஒருங்கிணைப்பாளராக, அனைத்து முயற்சிகளும் முகவுரையின் உணர்வையும் சட்டத்தின் ஆட்சியையும் கண்டிப்பாகக் கடைப்பிடிப்பதை அவர் உறுதி செய்கிறார்.',
     keyFocusAreas: ['நீதித்துறையின் சுதந்திரம்', 'அடிப்படை உரிமைகள் பாதுகாப்பு', 'அரசமைப்புக் கல்வியறிவு'],
     socials: [
-      {
-        platform: 'Twitter (X)',
-        handle: '@HariParandhaman',
-        url: 'https://twitter.com/HariParandhaman',
-        color: 'hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]'
-      },
-      {
-        platform: 'Facebook',
-        handle: 'Justice Hari Parandhaman',
-        url: 'https://facebook.com/JusticeHariParandhaman',
-        color: 'hover:bg-[#1877F2]/10 hover:border-[#1877F2] hover:text-[#1877F2]'
-      },
-      {
-        platform: 'Instagram',
-        handle: '@justice_hariparandhaman',
-        url: 'https://instagram.com/justice_hariparandhaman',
-        color: 'hover:bg-pink-500/10 hover:border-pink-500 hover:text-pink-600'
-      }
+    //   {
+    //     platform: 'Twitter (X)',
+    //     handle: '@HariParandhaman',
+    //     url: 'https://twitter.com/HariParandhaman',
+    //     color: 'hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]'
+    //   },
+    //   {
+    //     platform: 'Facebook',
+    //     handle: 'Justice Hari Parandhaman',
+    //     url: 'https://facebook.com/JusticeHariParandhaman',
+    //     color: 'hover:bg-[#1877F2]/10 hover:border-[#1877F2] hover:text-[#1877F2]'
+    //   },
+    //   {
+    //     platform: 'Instagram',
+    //     handle: '@justice_hariparandhaman',
+    //     url: 'https://instagram.com/justice_hariparandhaman',
+    //     color: 'hover:bg-pink-500/10 hover:border-pink-500 hover:text-pink-600'
+    //   }
     ],
     iconName: 'Scale'
   },
@@ -864,24 +864,24 @@ export const ORGANIZERS: Organizer[] = [
     extendedBio: 'வழக்கறிஞர் வஞ்சிநாதன் ஒடுக்கப்பட்ட சமூகங்கள், மனித உரிமை ஆர்வலர்கள், சுற்றுச்சூழல் காரணங்களுக்காக பிரதிநிதித்துவம் வகிப்பதில் அறியப்பட்ட ஒரு அயராத சட்டப் பாதுகாவலர். முக்கிய ஒருங்கிணைப்பாளராக, அவர் இயக்கத்தின் சட்ட உதவி பிரிவுகள், கொள்கை ஆராய்ச்சி, பொது உரிமைகள் பட்டறைகளை வழிநடத்துகிறார்.',
     keyFocusAreas: ['சட்ட உதவி & பாதுகாப்பு', 'கருத்துச் சுதந்திரப் பாதுகாப்பு', 'மனித உரிமைகள் ஆதரவு'],
     socials: [
-      {
-        platform: 'Twitter (X)',
-        handle: '@AdvVanchinathan',
-        url: 'https://twitter.com/AdvVanchinathan',
-        color: 'hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]'
-      },
-      {
-        platform: 'Facebook',
-        handle: 'Advocate Vanchinathan',
-        url: 'https://facebook.com/AdvocateVanchinathan',
-        color: 'hover:bg-[#1877F2]/10 hover:border-[#1877F2] hover:text-[#1877F2]'
-      },
-      {
-        platform: 'Instagram',
-        handle: '@adv_vanchinathan',
-        url: 'https://instagram.com/adv_vanchinathan',
-        color: 'hover:bg-pink-500/10 hover:border-pink-500 hover:text-pink-600'
-      }
+    //   {
+    //     platform: 'Twitter (X)',
+    //     handle: '@AdvVanchinathan',
+    //     url: 'https://twitter.com/AdvVanchinathan',
+    //     color: 'hover:bg-[#1DA1F2]/10 hover:border-[#1DA1F2] hover:text-[#1DA1F2]'
+    //   },
+    //   {
+    //     platform: 'Facebook',
+    //     handle: 'Advocate Vanchinathan',
+    //     url: 'https://facebook.com/AdvocateVanchinathan',
+    //     color: 'hover:bg-[#1877F2]/10 hover:border-[#1877F2] hover:text-[#1877F2]'
+    //   },
+    //   {
+    //     platform: 'Instagram',
+    //     handle: '@adv_vanchinathan',
+    //     url: 'https://instagram.com/adv_vanchinathan',
+    //     color: 'hover:bg-pink-500/10 hover:border-pink-500 hover:text-pink-600'
+    //   }
     ],
     iconName: 'Shield'
   }
