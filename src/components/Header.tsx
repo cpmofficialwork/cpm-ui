@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Shield, Users, Award, Menu, X, Scale, Ticket, UserPlus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -17,8 +17,23 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
   const [pendingScrollTarget, setPendingScrollTarget] = useState<string | null>(null);
   const { t } = useTranslation(['header', 'common']);
   const { isTamil } = useLanguage();
+  const headerRef = useRef<HTMLElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
 
   useScrollLock(isMobileMenuOpen);
+
+  // Header height varies with viewport width, language (Tamil script wraps
+  // differently), and text reflow, so it's measured live rather than
+  // hardcoded — a fixed offset would clip or gap the drawer beneath it.
+  useEffect(() => {
+    const headerEl = headerRef.current;
+    if (!headerEl) return;
+    const updateHeight = () => setHeaderHeight(headerEl.getBoundingClientRect().height);
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(headerEl);
+    return () => observer.disconnect();
+  }, [isTamil]);
 
   // Runs after useScrollLock's cleanup has unpinned <body>, so the scroll
   // isn't immediately overridden by the lock's own scroll-position restore.
@@ -46,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
 
   return (
     <>
-    <header className="w-full bg-[#F8F6F0]/95 backdrop-blur-md border-b border-[#0A1F44]/10 text-[#0A1F44]">
+    <header ref={headerRef} className="w-full bg-[#F8F6F0]/95 backdrop-blur-md border-b border-[#0A1F44]/10 text-[#0A1F44]">
       {/* Top Banner Notice — relative z-50 so it stays stacked above the fixed (z-40) mobile drawer */}
       <a href="#conference" className="relative z-50 bg-[#0A1F44] hover:bg-[#06152E] py-2 px-4 text-center text-[11px] font-sans-body border-b border-[#0A1F44]/20 flex items-center justify-center gap-2 text-[#F8F6F0] transition-colors group">
         <span className="inline-block w-2 h-2 rounded-full bg-[#FF9933] animate-ping"></span>
@@ -130,7 +145,10 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
         the page behind it stays put (locked via useScrollLock) while every link
         stays reachable regardless of how tall the list is. */}
     {isMobileMenuOpen && createPortal(
-      <div className="lg:hidden fixed inset-0 z-40 bg-[#F8F6F0] overflow-y-auto overscroll-contain px-4 pt-36 pb-6 space-y-4 font-sans-body text-xs animate-fadeIn">
+      <div
+        style={{ top: headerHeight || undefined }}
+        className="lg:hidden fixed inset-x-0 bottom-0 top-36 z-40 bg-[#F8F6F0] overflow-y-auto overscroll-contain px-4 pt-6 pb-6 space-y-4 font-sans-body text-xs animate-fadeIn"
+      >
         <div className="flex justify-center pb-3">
           <LanguageSwitcher />
         </div>

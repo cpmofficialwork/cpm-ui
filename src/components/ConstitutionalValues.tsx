@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedData } from '../data/useLocalizedData';
 import { ConstitutionalValue } from '../types';
@@ -204,7 +205,14 @@ export const ConstitutionalValues: React.FC = () => {
 
       </div>
 
-      {/* Detailed Modal Drawer for Selected Constitutional Article */}
+      {/* Detailed Modal Drawer for Selected Constitutional Article — portaled
+          straight into <body> so its "fixed inset-0" sizes against the real
+          viewport. Left inside this section's own DOM subtree, it would size
+          against the AnimatedSection wrapper instead (any ancestor with a
+          `transform` — which its scroll-in animation applies — becomes the
+          containing block for fixed descendants), squashing it down below
+          the sticky header. */}
+      {createPortal(
       <AnimatePresence>
         {selectedCard && (
           <motion.div 
@@ -308,7 +316,9 @@ export const ConstitutionalValues: React.FC = () => {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
 
     </section>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Clock, MapPin, ExternalLink, Sparkles, Navigation, Award, Users, Share2, CheckCircle2, Shield, Ticket, X, UserPlus, Crown, UserCheck, BookOpen, ChevronRight } from 'lucide-react';
+import { Calendar, Clock, MapPin, ExternalLink, Sparkles, Navigation, Award, Users, Share2, CheckCircle2, Shield, Ticket, X, UserPlus, Crown, UserCheck, BookOpen, ChevronRight, TrainFront } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import leaderImg from '../assets/images/leader_portrait_1785579952921.jpg';
@@ -356,21 +356,30 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                 </div>
 
                 {/* Venue Address Card */}
-                <div className="p-4 bg-gradient-to-br from-black/40 to-[#0A1F44] rounded-2xl border border-white/15 hover:border-sky-400/60 transition-all shadow-md space-y-2">
-                  <div className="flex items-center gap-2 text-sky-300">
-                    <MapPin className="w-4 h-4 shrink-0" />
-                    <span className="text-[10px] font-mono font-bold uppercase tracking-wider">{t('schedule.venueCardLabel')}</span>
+                <a
+                  href={mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/venue p-4 bg-gradient-to-br from-black/40 to-[#0A1F44] rounded-2xl border border-white/15 hover:border-sky-400/60 transition-all shadow-md space-y-2 block cursor-pointer"
+                >
+                  <div className="flex items-center justify-between gap-2 text-sky-300">
+                    <div className="flex items-center gap-2">
+                      <MapPin className="w-4 h-4 shrink-0" />
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider">{t('schedule.venueCardLabel')}</span>
+                    </div>
+                    <ExternalLink className="w-3.5 h-3.5 text-sky-300/70 group-hover/venue:text-sky-300 transition-colors shrink-0" />
                   </div>
-                  <div className="text-base font-bold text-white leading-snug font-serif-display">
+                  <div className="text-base font-bold text-white leading-snug font-serif-display group-hover/venue:underline">
                     {t('schedule.venueName')}
                   </div>
                   <div className="text-[11px] text-white/80 font-sans-body">
                     {t('schedule.venueAddress')}
                   </div>
-                  <div className="text-[10px] text-[#FFB800] font-mono font-semibold">
-                    {t('schedule.venueMetro')}
+                  <div className="inline-flex items-center gap-1.5 px-2 py-1 -ml-0.5 bg-[#FFB800]/10 border border-[#FFB800]/30 rounded-full text-[10px] text-[#FFB800] font-mono font-semibold w-fit">
+                    <TrainFront className="w-3.5 h-3.5 shrink-0" strokeWidth={2.25} />
+                    <span>{t('schedule.venueMetro')}</span>
                   </div>
-                </div>
+                </a>
               </div>
             </div>
 

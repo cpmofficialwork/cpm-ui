@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, BookOpen } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import pamphletCoverImg from '../assets/images/pamphlet_cover_page1_1785666053368.jpg';
+import pamphletCoverImg from '../assets/images/pamphlet_cover_page1.png';
 import { useScrollLock } from '../hooks/useScrollLock';
 
 const SEEN_STORAGE_KEY = 'cpm-welcome-video-seen';

@@ -18,6 +18,8 @@ export const Footer: React.FC = () => {
             <img
               src={cpmLogoImage}
               alt={t('logoAlt')}
+              loading="lazy"
+              decoding="async"
               className="w-16 h-16 rounded-full border-2 border-[#FF9933] p-0.5 bg-white shrink-0 shadow-lg object-cover"
               referrerPolicy="no-referrer"
             />
