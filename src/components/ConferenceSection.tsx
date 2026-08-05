@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Calendar, Clock, MapPin, ExternalLink, Sparkles, Navigation, Award, Users, Share2, CheckCircle2, Shield, Ticket, X, UserPlus, Crown, UserCheck, BookOpen, ChevronRight, TrainFront } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import leaderImg from '../assets/images/leader_portrait_1785579952921.jpg';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
-import pamphletCoverImg from '../assets/images/pamphlet_cover_page1_1785666053368.jpg';
+import pamphletCoverImg from '../assets/images/pamphlet_cover_page1.png';
+import pamphletCoverImgTa from '../assets/images/pamphlet_cover_page1_ta.png';
 import { ConferencePamphlet } from './ConferencePamphlet';
 import { createUser, ApiError } from '../lib/api';
 import { useScrollLock } from '../hooks/useScrollLock';
+import { useLanguage } from '../hooks/useLanguage';
 
 interface ConferenceSectionProps {
   isPassModalOpen?: boolean;
@@ -27,6 +29,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
   onClosePamphletModal,
 }) => {
   const { t } = useTranslation('conferenceSection');
+  const { isTamil } = useLanguage();
   const mapUrl = "https://maps.app.goo.gl/fAhXKpBMDZ7FF6KL7";
   const eventDate = new Date("2026-08-21T16:00:00+05:30");
 
@@ -39,13 +42,38 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
   const [passClaimed, setPassClaimed] = useState(false);
   const [visitorName, setVisitorName] = useState('');
   const [visitorPhone, setVisitorPhone] = useState('');
-  const [visitorState, setVisitorState] = useState(indianStates[0]);
-  const [visitorDistrict, setVisitorDistrict] = useState(tnDistricts[0]);
+  const [stateIndex, setStateIndex] = useState(0);
+  const [districtIndex, setDistrictIndex] = useState(0);
+  const [otherDistrictText, setOtherDistrictText] = useState('');
   const [visitorSubDistrict, setVisitorSubDistrict] = useState('');
   const [visitorVillageOrTown, setVisitorVillageOrTown] = useState('');
   const [passNumber, setPassNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
+  const [isDistrictOpen, setIsDistrictOpen] = useState(false);
+  const [districtSearch, setDistrictSearch] = useState('');
+  const districtFieldRef = useRef<HTMLDivElement>(null);
+
+  const filteredTnDistricts = useMemo(() => {
+    const query = districtSearch.trim().toLowerCase();
+    if (!query) return tnDistricts;
+    return tnDistricts.filter((d) => d.toLowerCase().includes(query));
+  }, [tnDistricts, districtSearch]);
+
+  const isTamilNaduSelected = stateIndex === 0;
+  const visitorState = indianStates[stateIndex] ?? indianStates[0];
+  const visitorDistrict = isTamilNaduSelected ? (tnDistricts[districtIndex] ?? tnDistricts[0]) : otherDistrictText;
+
+  useEffect(() => {
+    if (!isDistrictOpen) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (districtFieldRef.current && !districtFieldRef.current.contains(e.target as Node)) {
+        setIsDistrictOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isDistrictOpen]);
 
   const isModalOpen = externalPassModalOpen !== undefined ? externalPassModalOpen : internalPassModal;
   const isPamphletOpen = externalPamphletModalOpen !== undefined ? externalPamphletModalOpen : internalPamphletModal;
@@ -421,12 +449,12 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                 </button>
 
                 {/* Cover Image Container */}
-                <div className="relative bg-[#8B0000] p-2 sm:p-3 flex-1 flex items-center justify-center overflow-hidden">
+                <div className="relative bg-[#8B0000] p-2 sm:p-3 lg:p-1 flex-1 flex items-center justify-center overflow-hidden">
                   <img
-                    src={pamphletCoverImg}
+                    src={isTamil ? pamphletCoverImgTa : pamphletCoverImg}
                     alt={t('pamphletCard.coverAlt')}
                     referrerPolicy="no-referrer"
-                    className="w-full h-auto max-h-[580px] object-contain border-2 border-[#0A1F44] shadow-lg group-hover:scale-[1.01] transition-transform duration-300 block"
+                    className="w-full h-auto max-h-[580px] lg:h-full lg:max-h-none lg:scale-110 object-contain border-2 border-[#0A1F44] shadow-lg group-hover:scale-[1.14] transition-transform duration-300 block"
                   />
                 </div>
 
@@ -541,12 +569,12 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                           {t('joinModal.state')}
                         </label>
                         <select
-                          value={visitorState}
-                          onChange={(e) => setVisitorState(e.target.value)}
+                          value={stateIndex}
+                          onChange={(e) => setStateIndex(Number(e.target.value))}
                           className="w-full px-3.5 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm cursor-pointer"
                         >
-                          {indianStates.map((st) => (
-                            <option key={st} value={st}>{st}</option>
+                          {indianStates.map((st, idx) => (
+                            <option key={st} value={idx}>{st}</option>
                           ))}
                         </select>
                       </div>
@@ -556,23 +584,53 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         <label className="block font-mono text-xs text-[#0A1F44] font-bold uppercase tracking-wider mb-1.5">
                           {t('joinModal.district')}
                         </label>
-                        {visitorState === indianStates[0] ? (
-                          <select
-                            value={visitorDistrict}
-                            onChange={(e) => setVisitorDistrict(e.target.value)}
-                            className="w-full px-3.5 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm cursor-pointer"
-                          >
-                            {tnDistricts.map((d) => (
-                              <option key={d} value={d}>{d}</option>
-                            ))}
-                          </select>
+                        {isTamilNaduSelected ? (
+                          <div className="relative" ref={districtFieldRef}>
+                            <input
+                              type="text"
+                              required
+                              autoComplete="off"
+                              placeholder={t('joinModal.districtSearchPlaceholder')}
+                              value={isDistrictOpen ? districtSearch : visitorDistrict}
+                              onFocus={() => {
+                                setDistrictSearch('');
+                                setIsDistrictOpen(true);
+                              }}
+                              onChange={(e) => setDistrictSearch(e.target.value)}
+                              className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
+                            />
+                            {isDistrictOpen && (
+                              <div className="absolute z-30 mt-1 w-full max-h-48 overflow-y-auto bg-white border border-[#0A1F44]/25 shadow-lg">
+                                {filteredTnDistricts.length > 0 ? (
+                                  filteredTnDistricts.map((d) => (
+                                    <button
+                                      key={d}
+                                      type="button"
+                                      onClick={() => {
+                                        setDistrictIndex(tnDistricts.indexOf(d));
+                                        setDistrictSearch('');
+                                        setIsDistrictOpen(false);
+                                      }}
+                                      className="w-full text-left px-4 py-2.5 text-sm text-[#0A1F44] font-sans-body hover:bg-[#0A1F44]/10 cursor-pointer"
+                                    >
+                                      {d}
+                                    </button>
+                                  ))
+                                ) : (
+                                  <div className="px-4 py-2.5 text-sm text-[#0A1F44]/50 font-sans-body">
+                                    {t('joinModal.districtNoResults')}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                          </div>
                         ) : (
                           <input
                             type="text"
                             required
                             placeholder={t('joinModal.districtPlaceholder')}
-                            value={visitorDistrict}
-                            onChange={(e) => setVisitorDistrict(e.target.value)}
+                            value={otherDistrictText}
+                            onChange={(e) => setOtherDistrictText(e.target.value)}
                             className="w-full px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none text-[#0A1F44] placeholder-[#0A1F44]/40 font-sans-body text-sm focus:outline-none focus:border-[#0A1F44] focus:ring-2 focus:ring-[#0A1F44]/15 shadow-sm"
                           />
                         )}

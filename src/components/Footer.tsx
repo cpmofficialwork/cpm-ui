@@ -113,6 +113,11 @@ export const Footer: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-2 pt-1 border-t border-white/10">
+                <Phone className="w-4 h-4 text-[#FF9933] shrink-0" />
+                <span>{t('helplineNumber')}</span>
+              </div>
+
+              <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-[#FF9933] shrink-0" />
                 <span>secretariat@constitutionprotection.in</span>
               </div>
