@@ -31,8 +31,8 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
 
   const navLinks = [
     { name: t('common:nav.conference'), href: '#conference', badge: t('common:nav.badgeDate') },
-    { name: t('common:nav.demands'), href: '#conference-demands' },
     { name: t('common:nav.whyProtect'), href: '#why-it-matters' },
+    { name: t('common:nav.demands'), href: '#conference-demands' },
     { name: t('common:nav.coreValues'), href: '#constitutional-values' },
     { name: t('common:nav.responsibilities'), href: '#responsibilities' },
     { name: t('common:nav.genzHub'), href: '#genz-hub' },
