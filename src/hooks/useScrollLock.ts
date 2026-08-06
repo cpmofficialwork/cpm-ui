@@ -1,71 +1,96 @@
 import { useEffect } from 'react';
 
 let lockCount = 0;
-let savedScrollY = 0;
+let touchStartY = 0;
 
 /**
- * The App-level wrapper around the scrollable page content (everything
- * except the `position: sticky` header). Locking is applied to this
- * element instead of <body> so the sticky header — which sits outside
- * it as a sibling — never gets dragged along with the pinned offset.
+ * Walks up from a touch target to find the nearest ancestor that can
+ * actually scroll vertically. Used to tell "this touch is panning the
+ * drawer/modal's own content" apart from "this touch is trying to drag
+ * the page behind it."
  */
-export const SCROLL_LOCK_TARGET_ID = 'app-scroll-content';
+function findScrollableAncestor(node: Element | null): Element | null {
+  while (node && node !== document.body) {
+    const style = getComputedStyle(node);
+    const canScrollY =
+      (style.overflowY === 'auto' || style.overflowY === 'scroll') &&
+      node.scrollHeight > node.clientHeight;
+    if (canScrollY) return node;
+    node = node.parentElement;
+  }
+  return null;
+}
+
+function handleTouchStart(e: TouchEvent) {
+  touchStartY = e.touches[0]?.clientY ?? 0;
+}
+
+function handleTouchMove(e: TouchEvent) {
+  const scrollable = findScrollableAncestor(e.target as Element | null);
+
+  if (!scrollable) {
+    e.preventDefault();
+    return;
+  }
+
+  // Inside a scrollable region: block the rubber-band overscroll that would
+  // otherwise chain into the page behind once the region hits its own edge.
+  const touchY = e.touches[0]?.clientY ?? touchStartY;
+  const movingDown = touchY > touchStartY;
+  const atTop = scrollable.scrollTop <= 0;
+  const atBottom = scrollable.scrollTop + scrollable.clientHeight >= scrollable.scrollHeight;
+  if ((atTop && movingDown) || (atBottom && !movingDown)) {
+    e.preventDefault();
+  }
+}
 
 /**
- * Locks the page's background scroll while `locked` is true.
+ * Locks page scroll while `locked` is true, without moving, resizing, or
+ * repositioning anything on the page.
  *
- * Plain `overflow: hidden` on <body> doesn't reliably stop touch-scroll
- * on mobile Safari/Chrome (the page behind a fixed overlay still pans).
- * Pinning the content wrapper with `position: fixed` at the current
- * scroll offset is the technique that actually blocks touch-scroll on
- * those browsers.
+ * Only `<html>` gets `overflow: hidden` — `<body>` is deliberately left
+ * alone. Setting `overflow: hidden` on `<body>` makes body itself a CSS
+ * scroll container (per spec, any `overflow` other than `visible`
+ * qualifies, even `hidden`), and a scroll container that sits between a
+ * `position: sticky` element and the real viewport becomes THAT element's
+ * reference frame for its sticky offset. Since `<body>`'s own `scrollTop`
+ * never moves — the page has always scrolled via `<html>`, not `<body>` —
+ * the sticky header ends up pinned to the top of `<body>`'s box instead of
+ * the visual viewport. Once the page has been scrolled down before the
+ * lock engages (e.g. after navigating to a lower section), body's top edge
+ * sits well above the visible viewport, so the "pinned" header renders
+ * off-screen above the fold: collapsed, clipped, or simply gone. `<html>`
+ * doesn't have this problem — it IS the root scroller, so locking it
+ * doesn't interpose a new reference frame between the header and the
+ * viewport.
  *
- * Pinning <body> itself (the previous approach) dragged the sticky
- * header off-screen along with it whenever the page was scrolled down
- * before the lock engaged, since a sticky element with no scrolling
- * ancestor just renders at its shifted static position. Targeting the
- * content wrapper — a sibling of the header, not an ancestor — avoids
- * that entirely.
+ * `overflow: hidden` on `<html>` blocks wheel/keyboard/scrollbar scrolling
+ * everywhere, but iOS Safari still allows touch-driven dragging of the
+ * background, so a `touchmove` listener blocks that directly — while still
+ * permitting genuinely scrollable regions (the drawer, a modal body) to
+ * scroll normally.
  *
- * A module-level counter lets multiple locks (e.g. a modal opened while
- * the mobile menu is open) stack without one closing early unlocking
- * the page out from under the other.
+ * A module-level counter lets nested locks (e.g. a modal opened while the
+ * mobile menu is open) stack without one closing early unlocking the page
+ * out from under the other.
  */
 export function useScrollLock(locked: boolean): void {
   useEffect(() => {
     if (!locked) return;
 
-    const target = document.getElementById(SCROLL_LOCK_TARGET_ID);
-
     if (lockCount === 0) {
-      savedScrollY = window.scrollY;
-      const { body, documentElement: html } = document;
-      if (target) {
-        target.style.position = 'fixed';
-        target.style.top = `-${savedScrollY}px`;
-        target.style.left = '0';
-        target.style.right = '0';
-        target.style.width = '100%';
-      }
-      body.style.overflow = 'hidden';
-      html.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      document.addEventListener('touchstart', handleTouchStart, { passive: true });
+      document.addEventListener('touchmove', handleTouchMove, { passive: false });
     }
     lockCount += 1;
 
     return () => {
       lockCount -= 1;
       if (lockCount === 0) {
-        const { body, documentElement: html } = document;
-        if (target) {
-          target.style.position = '';
-          target.style.top = '';
-          target.style.left = '';
-          target.style.right = '';
-          target.style.width = '';
-        }
-        body.style.overflow = '';
-        html.style.overflow = '';
-        window.scrollTo(0, savedScrollY);
+        document.documentElement.style.overflow = '';
+        document.removeEventListener('touchstart', handleTouchStart);
+        document.removeEventListener('touchmove', handleTouchMove);
       }
     };
   }, [locked]);
