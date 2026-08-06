@@ -12,7 +12,7 @@ interface HeaderProps {
   isDisabled?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
+export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [pendingScrollTarget, setPendingScrollTarget] = useState<string | null>(null);
   const { t } = useTranslation(['header', 'common']);
@@ -21,6 +21,14 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
   const [headerHeight, setHeaderHeight] = useState(0);
 
   useScrollLock(isMobileMenuOpen);
+
+  // A pass/pamphlet modal now covers the header instead of unmounting it
+  // (see App.tsx), so force the drawer closed whenever that happens —
+  // otherwise it could stay open underneath, covered but still locking
+  // scroll, once the modal closes.
+  useEffect(() => {
+    if (isDisabled) setIsMobileMenuOpen(false);
+  }, [isDisabled]);
 
   // Header height varies with viewport width, language (Tamil script wraps
   // differently), and text reflow, so it's measured live rather than
@@ -62,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
   return (
     <>
     <header ref={headerRef} className="w-full bg-[#F8F6F0]/95 backdrop-blur-md border-b border-[#0A1F44]/10 text-[#0A1F44]">
-      {/* Top Banner Notice — relative z-50 so it stays stacked above the fixed (z-40) mobile drawer */}
+      {/* Top Banner Notice — relative z-50 so it stays above page content scrolling underneath the sticky header */}
       <a href="#conference" className="relative z-50 bg-[#0A1F44] hover:bg-[#06152E] py-2 px-4 text-center text-[11px] font-sans-body border-b border-[#0A1F44]/20 flex items-center justify-center gap-2 text-[#F8F6F0] transition-colors group">
         <span className="inline-block w-2 h-2 rounded-full bg-[#FF9933] animate-ping"></span>
         <span className="uppercase tracking-[0.18em] font-semibold text-[10px] text-[#FF9933]">
@@ -70,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
         </span>
       </a>
 
-      {/* relative z-50 so the logo/hamburger row stays stacked above the fixed (z-40) mobile drawer */}
+      {/* relative z-50 so the logo/hamburger row stays above page content scrolling underneath the sticky header */}
       <div className="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between min-h-20 py-2">
           
@@ -143,11 +151,18 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
         containing block for fixed descendants), squashing it down to just the
         header's own height instead of covering the screen. Scrolls internally so
         the page behind it stays put (locked via useScrollLock) while every link
-        stays reachable regardless of how tall the list is. */}
+        stays reachable regardless of how tall the list is.
+        z-[55] — above every card-detail modal's z-50 (ConstitutionalValues,
+        WhoConducts, the join-movement modal, etc. all portal to <body> too and
+        take ~300ms to actually unmount after closing, via their exit animation)
+        so a still-fading modal can never render on top of the drawer if the
+        menu is opened during that window. This doesn't fight the header bar's
+        own z-50, which sits above it spatially (the drawer's `top` starts
+        right where the header ends) rather than stacked on it. */}
     {isMobileMenuOpen && createPortal(
       <div
         style={{ top: headerHeight || undefined }}
-        className="lg:hidden fixed inset-x-0 bottom-0 top-36 z-40 bg-[#F8F6F0] overflow-y-auto overscroll-contain px-4 pt-6 pb-6 space-y-4 font-sans-body text-xs animate-fadeIn"
+        className="lg:hidden fixed inset-x-0 bottom-0 top-36 z-[55] bg-[#F8F6F0] overflow-y-auto overscroll-contain px-4 pt-6 pb-6 space-y-4 font-sans-body text-xs animate-fadeIn"
       >
         <div className="flex justify-center pb-3">
           <LanguageSwitcher />
