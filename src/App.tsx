@@ -36,29 +36,6 @@ export default function App() {
       {/* First-visit welcome video */}
       <WelcomeVideoModal />
 
-      {/* Header Bar - disappears when pamphlet or pass modal is open.
-          `sticky` lives on this plain, transform-free wrapper rather than on
-          the motion.div itself: Framer Motion keeps a live `transform` style
-          on any element it manages a `y` value for (even at rest), and a
-          `position: sticky` element that also carries its own `transform`
-          is a well-known source of stale/incorrect sticky positioning after
-          layout churn on Chromium/Android. Keeping the transform on an
-          inner, non-sticky child sidesteps that entirely. */}
-      <div className="sticky top-0 z-50">
-        <AnimatePresence>
-          {!isModalOpen && (
-            <motion.div
-              initial={{ opacity: 1, y: 0 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -25 }}
-              transition={{ duration: 0.25, ease: 'easeInOut' }}
-            >
-              <Header onRegisterMember={handleRegisterMember} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
       {/* Scrollable content wrapper */}
       <div className="flex-1 flex flex-col">
       {/* Header Bar - stays mounted so its internal state (mobile drawer,
@@ -80,7 +57,7 @@ export default function App() {
       {/* Scrollable content wrapper — the target useScrollLock pins while a
           modal/mobile-menu is open. Kept separate from <body> so the sticky
           header (a sibling, above) never gets dragged along with it. */}
-      <div id={SCROLL_LOCK_TARGET_ID} className="flex-1 flex flex-col">
+      <div id="scroll-lock-target" className="flex-1 flex flex-col">
         {/* Main Flow */}
         <main className="flex-1 space-y-0">
           {/* Top Highlighted Conference Section */}
@@ -141,6 +118,7 @@ export default function App() {
 
         {/* Footer - Hidden when Pamphlet reader is open */}
         {!isPamphletModalOpen && <Footer />}
+      </div>
       </div>
     </div>
   );
