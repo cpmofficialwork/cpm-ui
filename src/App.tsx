@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { Header } from './components/Header';
 import { ConferenceSection } from './components/ConferenceSection';
 import { ConferenceDemands } from './components/ConferenceDemands';
@@ -37,20 +37,21 @@ export default function App() {
       {/* First-visit welcome video */}
       <WelcomeVideoModal />
 
-      {/* Header Bar - disappears when pamphlet or pass modal is open */}
-      <AnimatePresence>
-        {!isModalOpen && (
-          <motion.div
-            initial={{ opacity: 1, y: 0 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -25 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="sticky top-0 z-50"
-          >
-            <Header onRegisterMember={handleRegisterMember} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Header Bar - stays mounted so its internal state (mobile drawer,
+          measured height, scroll-lock) survives modal open/close cycles;
+          only visually hidden while a pamphlet or pass modal is open.
+          Previously this unmounted/remounted via AnimatePresence, which on
+          real mobile devices raced with layout and could leave the drawer
+          stuck closed or a stale section visible behind it. */}
+      <motion.div
+        animate={{ opacity: isModalOpen ? 0 : 1, y: isModalOpen ? -25 : 0 }}
+        transition={{ duration: 0.25, ease: 'easeInOut' }}
+        className="sticky top-0 z-50"
+        style={{ pointerEvents: isModalOpen ? 'none' : 'auto' }}
+        aria-hidden={isModalOpen}
+      >
+        <Header onRegisterMember={handleRegisterMember} isDisabled={isModalOpen} />
+      </motion.div>
 
       {/* Scrollable content wrapper — the target useScrollLock pins while a
           modal/mobile-menu is open. Kept separate from <body> so the sticky

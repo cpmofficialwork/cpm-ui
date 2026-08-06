@@ -12,7 +12,7 @@ interface HeaderProps {
   isDisabled?: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
+export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [pendingScrollTarget, setPendingScrollTarget] = useState<string | null>(null);
   const { t } = useTranslation(['header', 'common']);
@@ -21,6 +21,14 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember }) => {
   const [headerHeight, setHeaderHeight] = useState(0);
 
   useScrollLock(isMobileMenuOpen);
+
+  // A pass/pamphlet modal now covers the header instead of unmounting it
+  // (see App.tsx), so force the drawer closed whenever that happens —
+  // otherwise it could stay open underneath, covered but still locking
+  // scroll, once the modal closes.
+  useEffect(() => {
+    if (isDisabled) setIsMobileMenuOpen(false);
+  }, [isDisabled]);
 
   // Header height varies with viewport width, language (Tamil script wraps
   // differently), and text reflow, so it's measured live rather than
