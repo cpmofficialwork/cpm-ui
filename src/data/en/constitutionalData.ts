@@ -78,7 +78,7 @@ export const CONSTITUTIONAL_VALUES: ConstitutionalValue[] = [
     tamilName: 'மதச்சார்பின்மை',
     englishTitle: 'State Neutrality & Freedom of Religion',
     shortDescription: 'The State has no official religion and must treat all religions equally. Every citizen has the freedom to profess, practise, and propagate their religion without discrimination.',
-    detailedRelevance: 'Crucial for maintaining peace and harmony in a multi-religious nation. Prevents majority religion dominance over public institutions.',
+    detailedRelevance: "Crucial for maintaining peace and harmony in a multi-religious nation. Ensures the state doesn't take sides, so people of every faith have equal standing before the law",
     historicalContext: 'Adopted to assure all minority communities that India belongs equally to every citizen regardless of faith.',
     landmarkJudgment: 'S.R. Bommai v. Union of India (1994)',
     iconName: 'Sun',
