@@ -43,8 +43,10 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
     return () => observer.disconnect();
   }, [isTamil]);
 
-  // Runs after useScrollLock's cleanup has unpinned <body>, so the scroll
-  // isn't immediately overridden by the lock's own scroll-position restore.
+  // Runs after useScrollLock's cleanup has cleared `overflow: hidden` from
+  // <html>/<body> — scrollIntoView on a still-locked document can't move
+  // the page, so this has to wait until the lock from closing the drawer
+  // has actually lifted.
   useEffect(() => {
     if (isMobileMenuOpen || !pendingScrollTarget) return;
     const element = document.querySelector(pendingScrollTarget);

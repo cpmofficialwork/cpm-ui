@@ -12,7 +12,6 @@ import { CitizenResponsibilities } from './components/CitizenResponsibilities';
 import { Footer } from './components/Footer';
 import { AnimatedSection } from './components/AnimatedSection';
 import { WelcomeVideoModal } from './components/WelcomeVideoModal';
-import { SCROLL_LOCK_TARGET_ID } from './hooks/useScrollLock';
 
 export default function App() {
   const [isPassModalOpen, setIsPassModalOpen] = useState(false);
@@ -37,6 +36,31 @@ export default function App() {
       {/* First-visit welcome video */}
       <WelcomeVideoModal />
 
+      {/* Header Bar - disappears when pamphlet or pass modal is open.
+          `sticky` lives on this plain, transform-free wrapper rather than on
+          the motion.div itself: Framer Motion keeps a live `transform` style
+          on any element it manages a `y` value for (even at rest), and a
+          `position: sticky` element that also carries its own `transform`
+          is a well-known source of stale/incorrect sticky positioning after
+          layout churn on Chromium/Android. Keeping the transform on an
+          inner, non-sticky child sidesteps that entirely. */}
+      <div className="sticky top-0 z-50">
+        <AnimatePresence>
+          {!isModalOpen && (
+            <motion.div
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -25 }}
+              transition={{ duration: 0.25, ease: 'easeInOut' }}
+            >
+              <Header onRegisterMember={handleRegisterMember} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Scrollable content wrapper */}
+      <div className="flex-1 flex flex-col">
       {/* Header Bar - stays mounted so its internal state (mobile drawer,
           measured height, scroll-lock) survives modal open/close cycles;
           only visually hidden while a pamphlet or pass modal is open.
