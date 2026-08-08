@@ -19,7 +19,6 @@
     },
     "openButton": "Open Interactive 4-Page Pamphlet",
     "previewClickToView": "Click to view full 4-page pamphlet",
-    "officialPamphlet": "OFFICIAL PAMPHLET",
     "fourPages": "4 PAGES",
     "coverTitle": "Constitution Protection Conference",
     "coverDateTime": "Friday, 21 August 2026 • 4:00 p.m.",
@@ -39,14 +38,14 @@
     "close": "Cancel / Close"
   },
   "page1": {
-    "badge": "OFFICIAL PAMPHLET • PAGE 1 COVER",
+    "badge": "PAGE 1 COVER",
     "cpmTamilnadu": "CPM TAMILNADU",
     "coverAlt": "Constitution Protection Conference Official Pamphlet Cover",
     "footerDateTime": "Friday, 21 August 2026 • 4:00 p.m. • YMCA Grounds, Nandanam, Chennai - 600035",
     "footerOrg": "CONSTITUTION PROTECTION MOVEMENT (CPM) TAMILNADU"
   },
   "page2": {
-    "sectionLabel": "OFFICIAL PAMPHLET • SECTION II",
+    "sectionLabel": "SECTION II",
     "pageOf": "PAGE 2 OF 4",
     "headline1": "“Protect the Constitution!”",
     "headline2": "“Uphold the Rule of Law!”",
@@ -62,7 +61,7 @@
     "footerNext": "TURN PAGE FOR COIMBATORE CASE & CONVENING DETAILS →"
   },
   "page3": {
-    "sectionLabel": "OFFICIAL PAMPHLET • SECTION III",
+    "sectionLabel": "SECTION III",
     "pageOf": "PAGE 3 OF 4",
     "para1": "Similarly, in the case concerning the construction of a Christian church at Kalapatti in Coimbatore district, the court’s order contained several political and religious observations that had no direct relevance to the legal questions requiring adjudication. Among them were the following:",
     "quotes": [
@@ -81,7 +80,7 @@
     "footerNext": "NEXT: 4 CONFERENCE DEMANDS →"
   },
   "page4": {
-    "sectionLabel": "OFFICIAL PAMPHLET • SECTION IV",
+    "sectionLabel": "SECTION IV",
     "pageOf": "PAGE 4 OF 4",
     "title": "Conference Demands",
     "demand1": "<strong>The Government of Tamil Nadu</strong> should immediately amend the <em>Tamil Nadu Backward Class Muslims (Reservation of Seats in Educational Institutions, including Private Educational Institutions, and of Appointments or Posts in the Services under the State) Act, 2007</em>, to safeguard the reservation rights of socially and educationally backward Muslims who have converted to Islam.",

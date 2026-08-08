@@ -86,7 +86,7 @@ export const Footer: React.FC = () => {
                 <div>
                   <span>{t('secretariatAddress')}</span>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=Mandi+House+New+Delhi"
+                    href="https://www.google.com/maps/search/?api=1&query=No.25%2C+First+Floor%2C+Chitrakulam+North+Street%2C+Mylapore%2C+Chennai"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-1 text-[10px] font-mono text-sky-300 hover:text-[#FF9933] underline mt-1"
