@@ -188,8 +188,7 @@ export const ConferencePamphlet: React.FC<ConferencePamphletProps> = ({
                 
                 {/* Red Top Curve Area */}
                 <div className="bg-[#C41E3A] text-white p-5 text-center relative overflow-hidden space-y-3">
-                  <div className="flex items-center justify-between border-b border-white/30 pb-2 text-[10px] font-mono font-bold uppercase tracking-wider">
-                    <span>{t('banner.officialPamphlet')}</span>
+                  <div className="flex items-center justify-end border-b border-white/30 pb-2 text-[10px] font-mono font-bold uppercase tracking-wider">
                     <span className="px-1.5 py-0.5 bg-white text-[#C41E3A] font-bold">{t('banner.fourPages')}</span>
                   </div>
 
@@ -246,8 +245,35 @@ export const ConferencePamphlet: React.FC<ConferencePamphletProps> = ({
               className="bg-[#FAF7F0] text-[#0A1F44] border-4 border-[#0A1F44] max-w-4xl w-full h-full max-h-[92vh] sm:max-h-[90vh] my-auto rounded-none shadow-[12px_12px_0px_0px_rgba(10,31,68,0.5)] relative flex flex-col overflow-hidden print:max-h-none print:shadow-none print:border-none"
             >
               
-              {/* MODAL TOP TOOLBAR (Navigation, Page Jumps, Controls) */}
-              <div className="bg-[#8B0000] text-white p-3 sm:p-4 flex flex-wrap items-center justify-between gap-2 sm:gap-3 border-b-4 border-[#FFD700] shrink-0 print:hidden z-20">
+              {/* MOBILE SIMPLE TOOLBAR (Previous / Next / Cancel only, clean layout) */}
+              <div className="flex sm:hidden items-center gap-2 bg-[#8B0000] text-white p-2.5 border-b-4 border-[#FFD700] shrink-0 print:hidden z-20">
+                <button
+                  disabled={currentPage === 1}
+                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  className="flex-1 px-2 py-2 bg-white/10 hover:bg-[#FFD700] hover:text-[#8B0000] disabled:opacity-30 text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border border-white/30"
+                >
+                  {t('modal.previous')}
+                </button>
+
+                <button
+                  disabled={currentPage === 4}
+                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, 4))}
+                  className="flex-1 px-2 py-2 bg-white/10 hover:bg-[#FFD700] hover:text-[#8B0000] disabled:opacity-30 text-white font-mono text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer border border-white/30"
+                >
+                  {t('modal.next')}
+                </button>
+
+                <button
+                  onClick={handleClose}
+                  className="flex-1 px-2 py-2 bg-[#C41E3A] hover:bg-[#0A1F44] text-white font-mono text-xs font-black uppercase tracking-wider transition-colors cursor-pointer border border-white/30"
+                  title={t('modal.closeTooltip')}
+                >
+                  {t('modal.close')}
+                </button>
+              </div>
+
+              {/* MODAL TOP TOOLBAR (Navigation, Page Jumps, Controls) - Desktop/Tablet only */}
+              <div className="hidden sm:flex bg-[#8B0000] text-white p-3 sm:p-4 flex-wrap items-center justify-between gap-2 sm:gap-3 border-b-4 border-[#FFD700] shrink-0 print:hidden z-20">
                 
                 {/* Left: Document Name */}
                 <div className="flex items-center gap-2">
@@ -568,8 +594,8 @@ export const ConferencePamphlet: React.FC<ConferencePamphletProps> = ({
               </div>
 
 
-              {/* MODAL FOOTER CONTROLS */}
-              <div className="bg-[#FAF7F0] p-3 border-t-2 border-[#0A1F44] flex items-center justify-end gap-2 text-xs font-mono font-bold text-[#0A1F44] print:hidden">
+              {/* MODAL FOOTER CONTROLS - Desktop/Tablet only (mobile uses the top bar instead) */}
+              <div className="hidden sm:flex bg-[#FAF7F0] p-3 border-t-2 border-[#0A1F44] items-center justify-end gap-2 text-xs font-mono font-bold text-[#0A1F44] print:hidden">
                 <div className="flex items-center gap-2">
                   <button
                     disabled={currentPage === 1}
