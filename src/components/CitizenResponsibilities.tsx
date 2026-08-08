@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BookOpen, Users, HeartHandshake, GraduationCap, ShieldCheck, CheckSquare, Square, Sparkles } from 'lucide-react';
+import { BookOpen, Users, HeartHandshake, GraduationCap, ShieldCheck, CheckSquare, Square, MousePointerClick } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 
@@ -99,7 +99,11 @@ export const CitizenResponsibilities: React.FC = () => {
                 </div>
 
                 <div className={`mt-4 pt-3 border-t text-[11px] font-sans-body flex items-center gap-1.5 ${isCompleted ? 'border-white/15 text-[#FF9933]' : 'border-[#0A1F44]/10 text-[#0A1F44] font-semibold'}`}>
-                  <Sparkles className="w-3 h-3" />
+                  {isCompleted ? (
+                    <CheckSquare className="w-3 h-3" />
+                  ) : (
+                    <MousePointerClick className="w-3 h-3" />
+                  )}
                   <span>{isCompleted ? t('pledgedActive') : t('clickToCommit')}</span>
                 </div>
               </motion.div>

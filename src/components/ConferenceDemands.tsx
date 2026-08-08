@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { ShieldAlert, Scale, Users, Landmark, Megaphone, CheckCircle2, Share2, Copy, Check, MessageSquare, Sparkles } from 'lucide-react';
+import { ShieldAlert, Scale, Users, Landmark, Megaphone, CheckCircle2, Share2, Copy, Check, MessageSquare } from 'lucide-react';
 
 const ICON_MAP: Record<string, React.FC<{ className?: string }>> = { Scale, Landmark, ShieldAlert, Users };
 
@@ -156,7 +156,7 @@ export const ConferenceDemands: React.FC = () => {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-b-2 border-white/20 pb-5">
             <div className="flex items-center gap-3">
               <div className="p-3 bg-[#FFD700] text-[#0A1F44] border-2 border-[#0A1F44] font-black shadow-[3px_3px_0px_0px_#0A1F44] rotate-3 shrink-0">
-                <Sparkles className="w-6 h-6 text-[#0A1F44]" />
+                <Megaphone className="w-6 h-6 text-[#0A1F44]" />
               </div>
               <div>
                 <div className="text-xs font-mono font-black text-[#FFD700] uppercase tracking-widest flex items-center gap-2">
