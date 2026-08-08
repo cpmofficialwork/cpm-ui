@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Calendar, Clock, MapPin, ExternalLink, Sparkles, Navigation, Award, Users, Share2, CheckCircle2, Shield, Ticket, X, UserPlus, Crown, UserCheck, BookOpen, ChevronRight, TrainFront } from 'lucide-react';
+import { Calendar, Clock, MapPin, ExternalLink, Navigation, Award, Users, Share2, CheckCircle2, Shield, Ticket, X, UserPlus, Crown, UserCheck, BookOpen, ChevronRight, TrainFront } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import leaderImg from '../assets/images/leader_portrait_1785579952921.jpg';
@@ -461,7 +461,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                 {/* Card Bottom Footer Callout */}
                 <div className="p-3 bg-[#0A1F44] text-white border-t-2 border-[#0A1F44] flex items-center justify-between text-[11px] font-mono font-bold">
                   <span className="flex items-center gap-1 text-[#FFD700]">
-                    <Sparkles className="w-3.5 h-3.5" />
+                    <BookOpen className="w-3.5 h-3.5" />
                     <span>{t('pamphletCard.officialPamphlet')}</span>
                   </span>
                   <span className="underline group-hover:text-[#FFD700] transition-colors flex items-center gap-1 text-white">

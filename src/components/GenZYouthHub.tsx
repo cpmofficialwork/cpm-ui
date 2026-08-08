@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { Zap, Sparkles, Share2, Check, RefreshCw, HelpCircle, AlertCircle, CheckCircle, Shield, MessageCircle, Heart } from 'lucide-react';
+import { Zap, Share2, Check, RefreshCw, HelpCircle, AlertCircle, CheckCircle, Shield, MessageCircle, Heart } from 'lucide-react';
 
 interface Myth {
   myth: string;
@@ -144,7 +144,7 @@ export const GenZYouthHub: React.FC = () => {
         <div className="space-y-6">
           <div className="text-center space-y-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FFD700] text-[#0A1F44] font-mono text-xs font-black uppercase tracking-wider border-2 border-[#0A1F44] shadow-[3px_3px_0px_0px_#0A1F44]">
-              <Sparkles className="w-3.5 h-3.5" />
+              <Share2 className="w-3.5 h-3.5" />
               <span>{t('shareSection.badge')}</span>
             </span>
             <h3 className="text-2xl sm:text-3xl font-serif-display font-black text-[#0A1F44]">

@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { useLocalizedData } from '../data/useLocalizedData';
 import { useScrollLock } from '../hooks/useScrollLock';
-import { Shield, Scale, Users, Sparkles, CheckCircle2, ChevronRight, X, BookOpen, Quote } from 'lucide-react';
+import { Shield, Scale, Users, CheckCircle2, ChevronRight, X, BookOpen, Quote } from 'lucide-react';
 
 const ICON_MAP: Record<string, React.FC<{ className?: string }>> = { Scale, Users, Shield };
 
@@ -35,7 +35,7 @@ export const WhoConducts: React.FC = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-1.5 bg-white border border-[#0A1F44]/20 rounded-full text-[#0A1F44] text-xs font-mono font-bold uppercase tracking-[0.2em] shadow-sm"
           >
-            <Sparkles className="w-3.5 h-3.5 text-[#FF9933]" />
+            <Users className="w-3.5 h-3.5 text-[#FF9933]" />
             <span>{t('badge')}</span>
           </motion.div>
 
