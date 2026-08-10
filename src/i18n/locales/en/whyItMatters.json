@@ -1,68 +1,18 @@
 {
-  "badge": "HISTORICAL ARCHIVES • HALL OF VALUES",
+  "badge": "FOR WE THE PEOPLE OF INDIA",
   "heading": "Why The Constitution Matters",
-  "subheading": "Adopted on 26th November 1949 by the Constituent Assembly, the Constitution of India is a sacred social covenant protecting 1.4 billion citizens from arbitrary power.",
+  "subheading": "Adopted on 26th November 1949 by the Constituent Assembly, the Constitution of India is a sacred social covenant protecting 1.47 billion citizens from arbitrary power.",
   "intro": {
     "para1": "The Constitution is more than a legal document. It is a solemn promise that no person, institution or government is above the law; that power must remain accountable and that the dignity and rights of every individual must be respected.",
-    "para2": "It protects citizens from arbitrary exercise of power and provides peaceful, constitutional means to question authority, seek justice and defend our freedoms. The Constitution belongs to \"We, the People of India.\""
+    "para2": "It protects citizens from arbitrary exercise of power and provides peaceful, constitutional means to question authority, seek justice and defend our freedom. The Constitution belongs to \"We, the People of India.\""
   },
   "essay": {
     "label": "NATIONAL IMPERATIVE",
     "title": "Why Should We Protect the Constitution?",
-    "para1": "Freedom is rarely lost in a single day. It is weakened gradually. When constitutional values are compromised, institutions lose their independence and rights cease to receive equal protection. The Constitution of India is the foundation of our democratic Republic. It guarantees justice, liberty, equality and dignity, protects fundamental rights and establishes the rule of law. It also provides the constitutional framework for secularism, federalism and democratic governance.",
+    "para1": "Freedom is never lost in a single day. It is weakened gradually. When constitutional values are compromised, institutions lose their independence and rights cease to receive equal protection. The Constitution of India is the foundation of our democratic Republic. It guarantees justice, liberty, equality and dignity, protects fundamental rights and establishes the rule of law. It also provides the constitutional framework for secularism, federalism and democratic governance.",
     "para2": "Today, concerns are being raised about the weakening of these safeguards, including institutional independence, freedom of expression, equality before the law, cooperative federalism and the rights of minorities.",
     "para3": "When constitutional protections are weakened, the impact goes beyond any one community or political group. The erosion of a particular person's rights ultimately weakens the security of everyone's rights. Public trust declines, institutions lose credibility and the constitutional limits on power are becoming increasingly fragile.",
     "para4": "India's greatest strength is its diversity. The Constitution provides the common ground on which people of different faiths, languages, castes, genders and regions can live as equals.",
     "para5": "Protecting the Constitution is therefore not merely the duty of courts, legislatures or governments. It is a shared responsibility of every citizen."
-  },
-  "pillarsSection": {
-    "title": "The Four Pillars of Constitutional Democracy",
-    "tagline": "Justice. Liberty. Equality. Fraternity.",
-    "intro": "These four values form the heart of India's constitutional vision. They remind us that democracy is not merely about elections or institutions. It is about ensuring that every person, regardless of caste, religion, language, gender, gender identity, region or social and economic status should live with freedom, dignity and equal constitutional protection.",
-    "subtitle": "Select any pillar to examine its constitutional architecture",
-    "pillarLabel": "PILLAR 0{{num}}",
-    "explore": "Explore →",
-    "analysisLabel": "CONSTITUTIONAL ANALYSIS • PILLAR 0{{num}}",
-    "articlesLabel": "Articles: {{articles}}",
-    "citizenDuty": "Citizen Duty Under This Pillar",
-    "duties": [
-      "Resist any law or executive measure that attempts to undermine equal protection.",
-      "Educate family and local community members about their constitutional rights.",
-      "Support legal aid initiatives for citizens facing rights violations."
-    ]
-  },
-  "pillars": [
-    {
-      "title": "Justice",
-      "slogan": "Social, Economic and Political",
-      "iconName": "Scale",
-      "description": "Justice means creating a society where every person is treated fairly, protected from discrimination and given a genuine opportunity to live with dignity. It seeks to address social exclusion, reduce unjust inequalities and ensure equal participation in public life.",
-      "articles": "Preamble | Articles 14, 15, 16, 17, 38 & 39",
-      "quote": ""
-    },
-    {
-      "title": "Liberty",
-      "slogan": "Thought, Expression, Belief, Faith & Worship",
-      "iconName": "Feather",
-      "description": "Liberty protects our freedom to think, speak, express, believe and practise faith, along with personal liberty and dignity, subject to constitutional limitations. It gives citizens the freedom to question, disagree and dissent.",
-      "articles": "Preamble | Articles 19, 21, 25 & 26",
-      "quote": ""
-    },
-    {
-      "title": "Equality",
-      "slogan": "Status and Opportunity",
-      "iconName": "Equal",
-      "description": "Equality means equality before the law and equal protection of the laws. It prohibits discrimination and permits constitutional measures to address historical and social disadvantage. It affirms the equal dignity of all—including women, transgender persons and gender-diverse persons.",
-      "articles": "Preamble | Articles 14, 15, 16, 17 & 18",
-      "quote": ""
-    },
-    {
-      "title": "Fraternity",
-      "slogan": "Dignity, Unity and Social Harmony",
-      "iconName": "HeartHandshake",
-      "description": "Fraternity means living together with mutual respect and a shared sense of belonging, embracing our diversity while upholding the dignity, rights and freedom of every person. The Constitution calls upon citizens to promote harmony and the spirit of common brotherhood among all the people of India, transcending religious, linguistic, regional and sectional differences. It also calls upon us to renounce practices derogatory to the dignity of women. Fraternity is the bond that allows liberty and equality to flourish in a diverse society. It asks us to respect one another's dignity, reject hatred and exclusion, and recognise that the freedom and dignity of one person are connected to the freedom and dignity of others.",
-      "articles": "Preamble | Article 51A(e)",
-      "quote": "Without fraternity, liberty and equality could not become a natural course of things."
-    }
-  ]
+  }
 }

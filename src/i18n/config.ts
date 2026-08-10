@@ -29,6 +29,10 @@ import heroEn from './locales/en/hero.json';
 import heroTa from './locales/ta/hero.json';
 import whyItMattersEn from './locales/en/whyItMatters.json';
 import whyItMattersTa from './locales/ta/whyItMatters.json';
+import fourPillarsEn from './locales/en/fourPillars.json';
+import fourPillarsTa from './locales/ta/fourPillars.json';
+import constitutionalPrinciplesEn from './locales/en/constitutionalPrinciples.json';
+import constitutionalPrinciplesTa from './locales/ta/constitutionalPrinciples.json';
 import objectivesEn from './locales/en/objectives.json';
 import objectivesTa from './locales/ta/objectives.json';
 import citizenResponsibilitiesEn from './locales/en/citizenResponsibilities.json';
@@ -77,6 +81,8 @@ i18next.use(initReactI18next).init({
     'footer',
     'hero',
     'whyItMatters',
+    'fourPillars',
+    'constitutionalPrinciples',
     'objectives',
     'citizenResponsibilities',
     'conferenceDemands',
@@ -101,6 +107,8 @@ i18next.use(initReactI18next).init({
       footer: footerEn,
       hero: heroEn,
       whyItMatters: whyItMattersEn,
+      fourPillars: fourPillarsEn,
+      constitutionalPrinciples: constitutionalPrinciplesEn,
       objectives: objectivesEn,
       citizenResponsibilities: citizenResponsibilitiesEn,
       conferenceDemands: conferenceDemandsEn,
@@ -124,6 +132,8 @@ i18next.use(initReactI18next).init({
       footer: footerTa,
       hero: heroTa,
       whyItMatters: whyItMattersTa,
+      fourPillars: fourPillarsTa,
+      constitutionalPrinciples: constitutionalPrinciplesTa,
       objectives: objectivesTa,
       citizenResponsibilities: citizenResponsibilitiesTa,
       conferenceDemands: conferenceDemandsTa,

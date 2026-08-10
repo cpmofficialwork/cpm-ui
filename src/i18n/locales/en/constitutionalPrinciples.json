@@ -1,0 +1,38 @@
+{
+  "badge": "FOUNDATIONS OF THE REPUBLIC",
+  "title": "Constitutional Principles",
+  "subtitle": "Discover the constitutional foundations of these core principles.",
+  "principleLabel": "PRINCIPLE 0{{num}}",
+  "principles": [
+    {
+      "title": "Democracy",
+      "tagline": "Government, By the People, Of the People, For the People",
+      "iconName": "Vote",
+      "description": "In any Democracy, sovereignty ultimately belongs to the people. Citizens have the right to choose their representatives through free and fair elections and to hold those in power accountable. But democracy is more than elections. It also requires freedom of speech, peaceful dissent, public participation, an independent media, and institutions that respect the will and rights of the people. A constitutional democracy ensures that even the elected majority remains bound by the Constitution and the rights of every citizen."
+    },
+    {
+      "title": "Secularism",
+      "tagline": "Equal Citizenship, Freedom of Conscience",
+      "iconName": "Sun",
+      "description": "In a secular country, the State has no religion of its own and should not discriminate against anyone on the basis of religion. Every person has the freedom to profess, practise and propagate their faith, subject to constitutional limitations. The State must protect the freedom of believers, non-believers and those of every faith equally. Indian secularism is therefore not hostility towards religion, but equal citizenship, freedom of conscience and equal protection of the law."
+    },
+    {
+      "title": "Cooperative Federalism",
+      "tagline": "Union and States in Partnership",
+      "iconName": "Landmark",
+      "description": "Federalism means that constitutional powers are distributed between the Union and the States. Cooperative federalism goes further: it requires the Union and the States to work together, while respecting each other's constitutional space. India's diversity of languages, cultures, economies and regional aspirations makes such cooperation essential. National unity is strengthened not by excessive centralisation, but by mutual respect, consultation, partnership and constitutional balance between the Union and the States."
+    },
+    {
+      "title": "Rule of Law",
+      "tagline": "Government Bound by the Constitution",
+      "iconName": "Gavel",
+      "description": "The Rule of Law ensures that government itself is subject to the Constitution and the law. Public power cannot be exercised according to personal will, political convenience or arbitrary discretion. Every person is entitled to equal protection of the law and to due process. The Rule of Law therefore protects citizens against arbitrary arrest, discrimination, unlawful State action and abuse of power. In a constitutional democracy, power is legitimate only when it is exercised within the limits of the Constitution and the law."
+    },
+    {
+      "title": "Social Justice",
+      "tagline": "Dignity and Opportunity for Every Citizen",
+      "iconName": "HeartHandshake",
+      "description": "Social justice means creating a society in which every person can live with dignity and has a fair opportunity to participate and progress, regardless of caste, religion, gender, economic position or social background. The Constitution recognises that formal equality alone cannot overcome deeply rooted historical and social inequalities. It therefore permits affirmative action and special measures to protect disadvantaged and marginalised communities. Social justice is the constitutional commitment to remove barriers, reduce inequality and ensure that freedom and opportunity are meaningful for everyone."
+    }
+  ]
+}

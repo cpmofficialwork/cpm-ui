@@ -3,6 +3,8 @@ import { motion } from 'motion/react';
 import { Header } from './components/Header';
 import { ConferenceSection } from './components/ConferenceSection';
 import { ConferenceDemands } from './components/ConferenceDemands';
+import { FourPillars } from './components/FourPillars';
+import { ConstitutionalPrinciples } from './components/ConstitutionalPrinciples';
 import { GenZYouthHub } from './components/GenZYouthHub';
 import { WhoConducts } from './components/WhoConducts';
 import { Hero } from './components/Hero';
@@ -91,6 +93,16 @@ export default function App() {
               {/* 2. Conference Demands Section */}
               <AnimatedSection direction="up" delay={0.05}>
                 <ConferenceDemands />
+              </AnimatedSection>
+
+              {/* The Four Pillars of Constitutional Democracy */}
+              <AnimatedSection direction="up">
+                <FourPillars />
+              </AnimatedSection>
+
+              {/* Constitutional Principles */}
+              <AnimatedSection direction="up">
+                <ConstitutionalPrinciples />
               </AnimatedSection>
 
               {/* 3. 15 Core Constitutional Values */}

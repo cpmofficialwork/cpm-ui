@@ -1,0 +1,51 @@
+{
+  "badge": "CONSTITUTIONAL ARCHITECTURE",
+  "title": "The Four Pillars of Constitutional Democracy",
+  "tagline": "Justice. Liberty. Equality. Fraternity.",
+  "intro": "These four values form the heart of India's constitutional vision. They remind us that democracy is not merely about elections or institutions, It is about ensuring that every person, regardless of caste, religion, language, gender, gender identity, region or social and economic status should live with freedom, dignity and equal constitutional protection.",
+  "subtitle": "Select any pillar to examine its constitutional architecture",
+  "pillarLabel": "PILLAR 0{{num}}",
+  "explore": "Explore →",
+  "analysisLabel": "CONSTITUTIONAL ANALYSIS • PILLAR 0{{num}}",
+  "articlesLabel": "Articles: {{articles}}",
+  "citizenDuty": "Citizen Duty Under This Pillar",
+  "duties": [
+    "Resist any law or executive measure that attempts to undermine equal protection.",
+    "Educate family and local community members about their constitutional rights.",
+    "Support legal aid initiatives for citizens facing rights violations."
+  ],
+  "pillars": [
+    {
+      "title": "Justice",
+      "slogan": "Social, Economic and Political",
+      "iconName": "Scale",
+      "description": "Justice means creating a society where every person is treated fairly, protected from discrimination and given a genuine opportunity to live with dignity. It seeks to address social exclusion, reduce unjust inequalities and ensure equal participation in social and  public life.",
+      "articles": "Preamble | Articles 14, 15, 16, 17, 38 & 39",
+      "quote": ""
+    },
+    {
+      "title": "Liberty",
+      "slogan": "Thought, Expression, Belief, Faith & Worship",
+      "iconName": "Feather",
+      "description": "Liberty protects our freedom to think, speak, express, believe and practise any faith of our choice along with personal liberty and dignity, subject to constitutional limitations. It gives citizens the freedom to question, disagree and dissent.",
+      "articles": "Preamble | Articles 19, 21, 25 & 26",
+      "quote": ""
+    },
+    {
+      "title": "Equality",
+      "slogan": "Status and Opportunity",
+      "iconName": "Equal",
+      "description": "Equality means equality before the law and equal protection from the laws. It prohibits discrimination and permits constitutional measures to address historical and social disadvantage. It affirms the equal dignity of all including women, transgender and gender diverse persons.",
+      "articles": "Preamble | Articles 14, 15, 16, 17 & 18",
+      "quote": ""
+    },
+    {
+      "title": "Fraternity",
+      "slogan": "Dignity, Unity and Social Harmony",
+      "iconName": "HeartHandshake",
+      "description": "Fraternity means living together with mutual respect and a shared sense of belonging, embracing our diversity while upholding the dignity, rights and freedom of every person. The Constitution calls upon citizens to promote harmony and the spirit of common brotherhood among all the people of India, transcending religious, linguistic, regional and sectional differences. It also calls upon us to renounce practices derogatory to the dignity of women. Fraternity is the bond that allows liberty and equality to flourish in a diverse society. It asks us to respect one another's dignity, reject hatred and exclusion, and recognise that the freedom and dignity of one person are connected to the freedom and dignity of others.",
+      "articles": "Preamble | Article 51A(e)",
+      "quote": "Without fraternity, liberty and equality could not become a natural course of things."
+    }
+  ]
+}

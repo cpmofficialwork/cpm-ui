@@ -1,9 +1,9 @@
 {
   "badge": "💥 OFFICIAL RESOLUTIONS",
   "heading": "Conference Demands",
-  "subheadingPre": "4 critical constitutional resolves adopted at the",
-  "subheadingPost": "to defend equality, justice, and minority rights.",
-  "conferenceName": "Constitution Protection Conference",
+  "subheadingPre": "The Conference calls upon the respective Governments to take urgent and necessary action on the following demands.",
+  "subheadingPost": "",
+  "conferenceName": "",
   "demandNumber": "DEMAND #{{id}}",
   "footerLabel": "Constitution Protection 2026",
   "shareStory": "Share Story",
@@ -22,7 +22,7 @@
     {
       "id": 1,
       "tag": "TAMIL NADU LEGISLATION",
-      "sticker": "💥 TN ACT 2007",
+      "sticker": "💥 AMEND TN ACT 2007",
       "title": "Reservation Rights of Backward Class Muslims",
       "iconName": "Scale",
       "tldr": "Ensure backward Muslim converts get fair reservation in college admissions & government jobs under TN 2007 Act. Equal rights & opportunities for all!",
@@ -31,7 +31,7 @@
     {
       "id": 2,
       "tag": "UNION GOVT & FCRA ACT",
-      "sticker": "⚡ REPEAL FCRA BANS",
+      "sticker": "⚡ REPEAL FCRA CANCELLATIONS",
       "title": "Withdraw Unconstitutional FCRA Restrictions",
       "iconName": "Landmark",
       "tldr": "Stop choking NGOs and charity trusts! Repeal harsh FCRA rules so voluntary orgs can fund free healthcare, schools, and relief for marginalised communities.",
