@@ -812,7 +812,7 @@ export const ORGANIZERS: Organizer[] = [
     iconName: 'Users'
   },
   {
-    id: 'vanjinathan',
+    id: 'vanchinathan',
     name: 'வஞ்சிநாதன்',
     designation: 'வழக்கறிஞர் & சமூக உரிமைச் செயல்பாட்டாளர்',
     badge: 'சட்ட உரிமைகள் ஆதரவாளர்',
