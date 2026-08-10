@@ -1,71 +1,18 @@
 {
-  "badge": "HISTORICAL ARCHIVES • HALL OF VALUES",
+  "badge": "FOR WE THE PEOPLE OF INDIA",
   "heading": "Why The Constitution Matters",
-  "subheading": "Adopted on 26th November 1949 by the Constituent Assembly, the Constitution of India is a sacred social covenant protecting 1.4 billion citizens from arbitrary power.",
-  "quoteCard": {
-    "quote1": "The Constitution is not merely a legal document.",
-    "quote2": "It is the safeguard of our freedom.",
-    "author": "— Dr. B. R. Ambedkar",
-    "authorTitle": "Chairman, Drafting Committee, Constituent Assembly of India"
+  "subheading": "Adopted on 26th November 1949 by the Constituent Assembly, the Constitution of India is a sacred social covenant protecting 1.47 billion citizens from arbitrary power.",
+  "intro": {
+    "para1": "The Constitution is more than a legal document. It is a solemn promise that no person, institution or government is above the law; that power must remain accountable and that the dignity and rights of every individual must be respected.",
+    "para2": "It protects citizens from arbitrary exercise of power and provides peaceful, constitutional means to question authority, seek justice and defend our freedom. The Constitution belongs to \"We, the People of India.\""
   },
   "essay": {
     "label": "NATIONAL IMPERATIVE",
     "title": "Why Should We Protect the Constitution?",
-    "para1": "A nation’s freedom is rarely taken away overnight. It is gradually eroded when the values of its Constitution are weakened one by one. As constitutional values decline, the rights of the people begin to disappear with them.",
-    "para2": "The Constitution of India is not merely a legal document. It is the nation’s solemn promise to guarantee justice, liberty, equality, human dignity, freedom of religion, the rule of law, and equal protection to every citizen. It is the foundation upon which India’s democracy stands.",
-    "para3": "Today, however, serious questions and concerns are being raised across the country regarding the protection of the Constitution’s core values, including secularism, equality, judicial independence, the rule of law, federalism, freedom of expression, and the rights of minorities.",
-    "para4": "When these constitutional principles are weakened, the consequences do not remain confined to any one community, region, or political group. Public confidence in equal justice begins to erode, trust in democratic institutions declines, and constitutional limits on the exercise of power become less effective. A society that remains silent when the rights of one group are undermined may eventually find that its own rights are no longer secure.",
-    "para5": "When constitutional governance is weakened, peace becomes fragile, social harmony suffers, and long-term prosperity is placed at risk. A nation cannot achieve lasting progress if justice is perceived as unequal, if institutions lose public trust, or if citizens begin to fear that their constitutional protections may not be applied fairly.",
-    "para6": "India’s greatest strength lies in its diversity, and the Constitution is the common bond that protects the rights and dignity of every citizen, regardless of religion, language, caste, gender, or region. Protecting that constitutional foundation is not the responsibility of the judiciary, the legislature, and the executive alone—it is the shared responsibility of every citizen who believes in democracy and the rule of law.",
-    "pullQuote": "\"To protect the Constitution is not merely to preserve a legal text. It is to safeguard our rights, our freedoms, our democracy, our social harmony, and the future of India.\"",
-    "closingLine": "As long as the Constitution remains strong, the rights of the people remain secure. If the Constitution is weakened, it is ultimately the freedoms and rights of every citizen that stand to be diminished."
-  },
-  "pillarsSection": {
-    "title": "The Four Pillars of Constitutional Democracy",
-    "subtitle": "Select any pillar to examine its constitutional architecture",
-    "pillarLabel": "PILLAR 0{{num}}",
-    "explore": "Explore →",
-    "analysisLabel": "CONSTITUTIONAL ANALYSIS • PILLAR 0{{num}}",
-    "articlesLabel": "Articles: {{articles}}",
-    "citizenDuty": "Citizen Duty Under This Pillar",
-    "duties": [
-      "Resist any law or executive measure that attempts to undermine equal protection.",
-      "Educate family and local community members about their constitutional rights.",
-      "Support legal aid initiatives for citizens facing rights violations."
-    ]
-  },
-  "pillars": [
-    {
-      "title": "JUSTICE",
-      "slogan": "Social, Economic and Political",
-      "iconName": "Scale",
-      "description": "Justice ensures that no citizen is oppressed due to caste, creed, gender, or wealth. Social justice abolishes untouchability and discrimination; Economic justice narrows wealth disparities; Political justice grants every citizen equal voice in public governance.",
-      "articles": "Articles 14, 15, 38, 39",
-      "quote": "Justice is the first virtue of social institutions, as truth is of systems of thought."
-    },
-    {
-      "title": "LIBERTY",
-      "slogan": "Thought, Expression, Belief, Faith & Worship",
-      "iconName": "Feather",
-      "description": "Liberty empowers every citizen to speak truth to power, express creative thought, hold independent beliefs, practice religious faith without state interference, and live with individual autonomy.",
-      "articles": "Articles 19, 21, 25, 26",
-      "quote": "Freedom of mind is the real freedom. A person whose mind is not free though he may not be in chains is a slave."
-    },
-    {
-      "title": "EQUALITY",
-      "slogan": "Of Status and Of Opportunity",
-      "iconName": "Equal",
-      "description": "Equality establishes that before the law, all citizens are equal. It mandates affirmative action to level centuries of historical oppression and guarantees equal access to public institutions and employment.",
-      "articles": "Articles 14, 15, 16, 17, 18",
-      "quote": "Political democracy cannot last unless there lies at the base of it social democracy."
-    },
-    {
-      "title": "FRATERNITY",
-      "slogan": "Assuring Dignity & National Unity",
-      "iconName": "HeartHandshake",
-      "description": "Fraternity fosters a spirit of common brotherhood among all citizens of India, transcending linguistic, regional, or religious divisions to protect human dignity and the sacred unity of the republic.",
-      "articles": "Preamble, Article 51A(e)",
-      "quote": "Without fraternity, liberty and equality could not be a natural state of things."
-    }
-  ]
+    "para1": "Freedom is never lost in a single day. It is weakened gradually. When constitutional values are compromised, institutions lose their independence and rights cease to receive equal protection. The Constitution of India is the foundation of our democratic Republic. It guarantees justice, liberty, equality and dignity, protects fundamental rights and establishes the rule of law. It also provides the constitutional framework for secularism, federalism and democratic governance.",
+    "para2": "Today, concerns are being raised about the weakening of these safeguards, including institutional independence, freedom of expression, equality before the law, cooperative federalism and the rights of minorities.",
+    "para3": "When constitutional protections are weakened, the impact goes beyond any one community or political group. The erosion of a particular person's rights ultimately weakens the security of everyone's rights. Public trust declines, institutions lose credibility and the constitutional limits on power are becoming increasingly fragile.",
+    "para4": "India's greatest strength is its diversity. The Constitution provides the common ground on which people of different faiths, languages, castes, genders and regions can live as equals.",
+    "para5": "Protecting the Constitution is therefore not merely the duty of courts, legislatures or governments. It is a shared responsibility of every citizen."
+  }
 }

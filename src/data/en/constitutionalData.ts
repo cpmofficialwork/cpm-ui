@@ -49,7 +49,7 @@ export const CONSTITUTIONAL_VALUES: ConstitutionalValue[] = [
     name: 'Equality',
     tamilName: 'சமத்துவம்',
     englishTitle: 'Equality Before Law & Equal Opportunity',
-    shortDescription: 'All persons are equal before the law and entitled to equal protection of the laws. The Constitution prohibits discrimination and promotes equal opportunities.',
+    shortDescription: 'All persons are equal before the law and entitled to equal protection from the laws. The Constitution prohibits discrimination and promotes equal opportunities.',
     detailedRelevance: 'Ensures the state treats all citizens equally. Provides affirmative action (reservations) to level the playing field for historically disadvantaged communities.',
     historicalContext: 'Article 17 explicitly abolished Untouchability, making its practice a punishable criminal offence under constitutional mandate.',
     landmarkJudgment: 'Indra Sawhney v. Union of India (1992)',
@@ -671,8 +671,8 @@ export const CONSTITUTION_ARTICLES: ConstitutionArticle[] = [
     articleNumber: 'Article 14',
     title: 'Equality before law',
     part: 'Part III - Fundamental Rights',
-    summary: 'The State shall not deny to any person equality before the law or the equal protection of the laws within the territory of India.',
-    fullText: 'The State shall not deny to any person equality before the law or the equal protection of the laws within the territory of India, prohibiting arbitrary executive classification.',
+    summary: 'The State shall not deny to any person equality before the law or the equal protection from the laws within the territory of India.',
+    fullText: 'The State shall not deny to any person equality before the law or the equal protection from the laws within the territory of India, prohibiting arbitrary executive classification.',
     keyTakeaway: 'No government law or executive order can discriminate arbitrarily between citizens.'
   },
   {
