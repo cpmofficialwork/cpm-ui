@@ -754,8 +754,8 @@ export const ORGANIZERS: Organizer[] = [
     badge: 'CONSTITUTIONAL JURIST',
     badgeColor: 'bg-[#0A1F44] text-[#FFE082]',
     image: judgeImg,
-    roleDescription: 'First-generation lawyer turned distinguished former judge, providing supreme judicial oversight, constitutional jurisprudence, and guidance on safeguarding fundamental rights.',
-    extendedBio: 'Born on 17 March 1954 in Kondanchery village, Justice D. Hariparanthaman was the first in his family to attend school and the first graduate in his village. Enrolling as an advocate in 1980, he built a four-decade practice across the Madras High Court, Madurai Bench, labour courts, and tribunals, specializing in labour law, service law, human rights, and the rights of persons with disabilities and Scheduled Castes. As a primary convener of the Constitution Protection Movement, he views his judicial role as a continuation of a lifelong commitment to social, economic, and political justice enshrined in the Preamble.',
+    roleDescription: 'First-generation lawyer turned distinguished judge of madras high court, providing supreme judicial oversight, constitutional jurisprudence, and guidance on safeguarding fundamental rights.',
+    extendedBio: 'Born on 17 March 1954 in Kondanchery village, Justice D. Hariparanthaman was the first in his family to attend school and the first graduate in his village. Enrolling as an advocate in 1980, he built a four-decade practice across the Madras High Court, Madurai Bench, labour courts, and tribunals, specializing in labour law, service law, human rights, and the rights of persons with disabilities and Scheduled Castes. As a primary convenor of the Constitution Protection Movement, he views his judicial role as a continuation of a lifelong commitment to social, economic, and political justice enshrined in the Preamble.',
     keyFocusAreas: ['Judicial Independence', 'Labour & Disability Rights', 'Constitutional Literacy'],
     socials: [
     //   {
@@ -812,14 +812,14 @@ export const ORGANIZERS: Organizer[] = [
     iconName: 'Users'
   },
   {
-    id: 'vanjinathan',
-    name: 'Vanjinathan',
+    id: 'vanchinathan',
+    name: 'Vanchinathan',
     designation: 'Advocate & Social Rights Activist',
     badge: 'LEGAL RIGHTS ADVOCATE',
     badgeColor: 'bg-[#138808] text-white',
     image: advocateImg,
     roleDescription: 'Advocate practising in Madurai since 2004, and a social activist engaged in human rights, environmental protection, and people\'s movements since 1998.',
-    extendedBio: 'Advocate Vanjinathan has been active in student, human rights, and political movements since 1998, drawing inspiration from the ideologies of Marx, Periyar, and Ambedkar. Enrolled as an advocate in 2004, he has opposed the exploitation of natural resources such as granite, minerals, and sand, and has stood with major people\'s movements including Parambikulam, Kudankulam, Jallikattu, and Sterlite. He has faced arrest and imprisonment several times for his participation in these struggles, worked on election monitoring and democratic rights, and was recognised by Ananda Vikatan among its "Top Ten People" for his contribution to environmental protection.',
+    extendedBio: 'Advocate Vanchinathan has been active in student, human rights, and political movements. Enrolled as an advocate in 2004, he has opposed the exploitation of natural resources such as granite, minerals, and sand, and has stood with major people\'s movements including Paramakudi firing, Kudankulam, Jallikattu, Sterlite and Thiruparakundram. He has faced arrest and imprisonment several times for his participation in these struggles, worked on election monitoring and democratic rights, and was recognised by Ananda Vikatan among its "Top Ten People" for his contribution to environmental protection. He is the author of two books about Wafk amendment act and Thiruparakundam issue',
     keyFocusAreas: ['Human Rights & Social Justice', 'Environmental Protection', 'Democratic Rights & Legal Aid'],
     socials: [
     //   {
