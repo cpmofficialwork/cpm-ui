@@ -1,52 +1,60 @@
 {
   "badge": "GUARDIANS OF DEMOCRACY",
-  "heading": "5 Essential Responsibilities the Movement Expects from Citizens",
+  "heading": "6 Essential Responsibilities the Movement Expects from Citizens",
   "subheading": "A constitution is only as strong as the citizens willingness to live by its principles and defend its safeguards in everyday public life.",
   "dutyLabel": "DUTY 0{{num}}",
   "pledgedActive": "Pledged Duty Active",
   "clickToCommit": "Click to Commit",
   "progressLabel": "YOUR CIVIC COMMITMENT PROGRESS",
-  "progressText": "You have committed to {{count}} of 5 Citizen Duties",
+  "progressText": "You have committed to {{count}} of 6 Citizen Duties",
   "items": [
     {
       "id": "learn-preamble",
       "title": "LEARN",
-      "action": "Read Preamble & Articles",
+      "action": "Know Your Constitution",
       "iconName": "BookOpen",
-      "description": "Understand the Preamble and key articles. Learn how Fundamental Rights and Fundamental Duties empower daily life and be aware of the challenges.",
-      "commitment": "Read the Preamble with my family once a week."
+      "description": "Read the Constitution and understand the Fundamental Rights, Directive Principles and Fundamental Duties. Know what the Constitution guarantees and what it expects from each of us. Be aware of the threats to constitutional values, democratic institutions, fundamental rights and the rule of law, and recognise when and where they are being undermined.",
+      "commitment": "I will read, discuss and deepen my understanding of the Constitution, and remain alert to threats to its values and safeguards."
     },
     {
       "id": "participate-sabha",
       "title": "PARTICIPATE",
-      "action": "Attend Gram Sabhas",
+      "action": "Be an Active & Responsible Citizen",
       "iconName": "Users",
-      "description": "Democracy requires ongoing engagement. Active citizenship involves attending ward committees, Gram Sabhas, and public audits.",
-      "commitment": "Attend at least 2 local ward council meetings this year."
+      "description": "Democracy is not limited to voting once in five years. It is a continuous relationship between citizens and public institutions. Stay informed about public affairs, vote thoughtfully, engage with elected representatives and public authorities, participate in Gram Sabhas, ward meetings and public consultations, and raise issues affecting your community.",
+      "commitment": "I will not be a passive spectator of democracy. I will stay informed, vote responsibly, participate in public life, question those in power respectfully, raise issues that affect my community, and contribute peacefully to finding solutions."
     },
     {
       "id": "volunteer-clinic",
       "title": "VOLUNTEER",
-      "action": "Support Pathshalas",
+      "action": "Stand With the Vulnerable",
       "iconName": "HeartHandshake",
-      "description": "Offer your time or skills to host weekly constitutional learning sessions for youth, workers, and local communities.",
-      "commitment": "Volunteer 2 hours every month for civic literacy."
+      "description": "Treat every person with equality, dignity and compassion, regardless of religion, caste, gender, language, disability, social background or any other difference. Do not ignore when individuals or communities face discrimination, violence, exclusion or injustice. Stand in solidarity with those who are vulnerable or victimised, and help them access justice and protection.",
+      "commitment": "I will stand with those who face injustice, discrimination or vulnerability. I will not remain a silent bystander; I will offer support, speak up peacefully, and help those in need seek justice and dignity."
     },
     {
-      "id": "educate-youth",
-      "title": "EDUCATE",
-      "action": "Teach Constitutional Values",
-      "iconName": "GraduationCap",
-      "description": "Ensure young minds understand scientific temper, gender equality, and religious harmony before division takes root.",
-      "commitment": "Gift Pocket Constitutions to young students."
+      "id": "discern-truth",
+      "title": "DISCERN",
+      "action": "Seek Truth, Reject Misinformation",
+      "iconName": "Eye",
+      "description": "In an age of misinformation, manipulation and polarising social media, responsible citizenship requires us to think critically and seek reliable information before forming or spreading opinions. Reject rumours, hatred and unverified allegations. Encourage reason, scientific temper, open-mindedness and respectful disagreement.",
+      "commitment": "I will think before I share, question before I believe, and disagree without spreading hatred or dehumanising others."
     },
     {
       "id": "defend-rights",
-      "title": "DEFEND RIGHTS",
-      "action": "Stand Against Injustice",
+      "title": "DEFEND",
+      "action": "Defend Rights & Institutions",
       "iconName": "ShieldCheck",
-      "description": "Speak out peacefully when marginalized citizens face rights violations. Provide legal aid, support, or document facts.",
-      "commitment": "Support victims of rights violations through legal aid."
+      "description": "When constitutional rights, democratic freedoms, the rule of law or the independence of public institutions are threatened, every one of us has the responsibility to respond. Question the misuse of public power, demand transparency and accountability, document violations responsibly, and use peaceful, lawful and constitutional means to seek remedies.",
+      "commitment": "I will speak up when constitutional values and democratic freedoms are threatened, hold power accountable through lawful means, and stand up for the Constitution and the rule of law."
+    },
+    {
+      "id": "unite-movement",
+      "title": "UNITE",
+      "action": "Build a People's Movement",
+      "iconName": "Handshake",
+      "description": "Constitutional democracy is a shared responsibility. Let us come together across our differences and build a broad, peaceful and inclusive movement rooted in constitutional values. Build bridges, not walls. Reach out to others, listen to different voices, and bring more people into this democratic effort.",
+      "commitment": "I will reach out to others, bring more people into this movement and work together peacefully to strengthen constitutional democracy."
     }
   ]
 }
