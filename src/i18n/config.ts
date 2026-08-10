@@ -45,7 +45,8 @@ import welcomeVideoEn from './locales/en/welcomeVideo.json';
 import welcomeVideoTa from './locales/ta/welcomeVideo.json';
 
 export const LANGUAGE_STORAGE_KEY = 'cpm-language';
-export const DEFAULT_LANGUAGE = 'ta';
+// Tamil temporarily disabled — English is the primary site language for now.
+export const DEFAULT_LANGUAGE = 'en';
 export const SUPPORTED_LANGUAGES = ['ta', 'en'] as const;
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 

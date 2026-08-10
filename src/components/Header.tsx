@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { Shield, Users, Award, Menu, X, Scale, Ticket, UserPlus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
-import { LanguageSwitcher } from './LanguageSwitcher';
+// import { LanguageSwitcher } from './LanguageSwitcher'; // Tamil temporarily disabled — English is primary
 import { useLanguage } from '../hooks/useLanguage';
 import { useScrollLock } from '../hooks/useScrollLock';
 
@@ -104,10 +104,10 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
             </div>
           </a>
 
-          {/* Language Switcher */}
-          <div className="hidden lg:flex items-center gap-3 shrink-0">
+          {/* Language Switcher — Tamil temporarily disabled, English is primary for now */}
+          {/* <div className="hidden lg:flex items-center gap-3 shrink-0">
             <LanguageSwitcher />
-          </div>
+          </div> */}
 
           {/* Mobile menu button */}
           <div className="flex lg:hidden items-center gap-2">
@@ -166,9 +166,9 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
         style={{ top: headerHeight || undefined }}
         className="lg:hidden fixed inset-x-0 bottom-0 top-36 z-[55] bg-[#F8F6F0] overflow-y-auto overscroll-contain px-4 pt-6 pb-6 space-y-4 font-sans-body text-xs animate-fadeIn"
       >
-        <div className="flex justify-center pb-3">
+        {/* <div className="flex justify-center pb-3">
           <LanguageSwitcher />
-        </div>
+        </div> */}
         <div className="pb-3 border-b border-[#0A1F44]/10">
           <button
             onClick={() => {

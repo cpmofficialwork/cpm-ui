@@ -6,14 +6,14 @@
   "dateHighlight": "AUG 21",
   "title": "Constitution Protection Conference",
   "titleTamil": "அரசமைப்புச் சட்டப் பாதுகாப்பு மாநாடு",
-  "description": "A landmark assembly bringing together citizens, jurists, advocates, student leaders, and democratic defenders across all 38 districts to reaffirm our sacred oath to protect liberty, equality, secularism, and federalism guaranteed by the Constitution of India.",
+  "description": "A landmark gathering bringing together citizens, jurists, advocates, student leaders, civil society representatives, and Citizens Committed to Democracy and Constitutional Values from all 38 districts of Tamil Nadu, united by a shared commitment to the Constitution of India; at a time when constitutional institutions and democratic values face growing challenges. The Constitution belongs to the people and its protection is the collective responsibility of every citizen.",
   "pillars": {
-    "judicialTitle": "Judicial Keynotes",
+    "judicialTitle": "Keynote Address",
     "judicialDesc": "Distinguished retired jurists & constitutional experts",
-    "assemblyTitle": "People's Assembly",
-    "assemblyDesc": "Open entry for citizens, students & workers",
-    "oathTitle": "Constitutional Oath",
-    "oathDesc": "Mass public pledge to defend basic structure"
+    "assemblyTitle": "Gathering",
+    "assemblyDesc": "Open entry for all citizens who respect constitutional values",
+    "oathTitle": "Oath Taking",
+    "oathDesc": "Mass public pledge to protect Constitution"
   },
   "countdown": {
     "label": "Live Event Countdown",
@@ -29,7 +29,7 @@
     "date": "21 August 2026",
     "dateSub": "Friday Evening Assembly",
     "timeCardLabel": "Assembly Time",
-    "time": "Fri 4:00 PM IST",
+    "time": "4:00 PM IST",
     "timeSub": "Gates Open at 3:00 PM",
     "venueCardLabel": "Venue Address",
     "venueName": "YMCA Ground Nanthanam",

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Scale, Feather, Equal, HeartHandshake, BookOpen, Quote } from 'lucide-react';
+import { Scale, Feather, Equal, HeartHandshake, BookOpen } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import constituentHistoryImage from '../assets/images/constituent_assembly_history_1785566166948.jpg';
-import ambedkarPortrait from '../assets/images/ambedkar_portrait.jpg';
 
 const ICON_MAP: Record<string, React.FC<{ className?: string }>> = { Scale, Feather, Equal, HeartHandshake };
 
@@ -47,36 +46,20 @@ export const WhyItMatters: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Quote Card */}
-        <motion.div 
+        {/* Intro Statement */}
+        <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mt-12 max-w-4xl mx-auto bg-[#EAE8E0] p-8 sm:p-12 border border-[#0A1F44]/15 shadow-sm relative text-center space-y-4"
+          className="mt-12 max-w-4xl mx-auto bg-[#EAE8E0] p-8 sm:p-12 border border-[#0A1F44]/15 shadow-sm relative space-y-4"
         >
-          <Quote className="w-10 h-10 text-[#0A1F44]/20 absolute top-6 left-6" />
-          <div className="relative z-10 space-y-4">
-            <div className="flex justify-center">
-              <img
-                src={ambedkarPortrait}
-                alt="Dr. B. R. Ambedkar"
-                loading="lazy"
-                decoding="async"
-                className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[#0A1F44]/15 shadow-md"
-              />
-            </div>
-            <blockquote className="text-xl sm:text-2xl lg:text-3xl font-serif-quote italic text-[#0A1F44] leading-relaxed">
-              "{t('quoteCard.quote1')} <br />
-              {t('quoteCard.quote2')}"
-            </blockquote>
-            <div className="pt-2 font-serif-display font-bold text-[#0A1F44] text-sm sm:text-base tracking-wider uppercase">
-              {t('quoteCard.author')}
-            </div>
-            <div className="text-[10px] font-sans-body text-[#0A1F44]/60 uppercase tracking-[0.2em]">
-              {t('quoteCard.authorTitle')}
-            </div>
-          </div>
+          <p className="text-base sm:text-lg font-serif-quote text-[#0A1F44] leading-relaxed">
+            {t('intro.para1')}
+          </p>
+          <p className="text-base sm:text-lg font-serif-quote text-[#0A1F44] leading-relaxed">
+            {t('intro.para2')}
+          </p>
         </motion.div>
 
         {/* Why Must We Protect the Constitution? - Full Essay Section */}
@@ -116,27 +99,21 @@ export const WhyItMatters: React.FC = () => {
             <p>
               {t('essay.para5')}
             </p>
-
-            <p>
-              {t('essay.para6')}
-            </p>
-
-            <div className="p-4 bg-[#0A1F44] text-[#F8F6F0] border border-[#0A1F44] font-serif-display text-base sm:text-lg italic leading-relaxed my-4">
-              {t('essay.pullQuote')}
-            </div>
-
-            <p className="font-semibold text-[#138808]">
-              {t('essay.closingLine')}
-            </p>
           </div>
         </motion.div>
 
         {/* Four Monumental Pillars of the Preamble */}
         <div className="mt-16 space-y-6">
-          <div className="text-center">
+          <div className="text-center max-w-3xl mx-auto space-y-2">
             <h3 className="text-2xl sm:text-3xl font-serif-display font-bold text-[#0A1F44]">
               {t('pillarsSection.title')}
             </h3>
+            <p className="text-sm sm:text-base font-serif-display text-[#0A1F44]/80">
+              {t('pillarsSection.tagline')}
+            </p>
+            <p className="text-sm font-sans-body text-[#0A1F44]/80 leading-relaxed">
+              {t('pillarsSection.intro')}
+            </p>
             <p className="text-xs font-sans-body text-[#0A1F44]/70 mt-1 uppercase tracking-wider">
               {t('pillarsSection.subtitle')}
             </p>
@@ -204,9 +181,11 @@ export const WhyItMatters: React.FC = () => {
                 <p className="opacity-90 leading-relaxed text-xs sm:text-sm">
                   {pillars[activePillar].description}
                 </p>
-                <div className="p-4 bg-white/5 border-l-2 border-[#FF9933] text-xs font-serif-quote italic text-[#F8F6F0]">
-                  "{pillars[activePillar].quote}"
-                </div>
+                {pillars[activePillar].quote && (
+                  <div className="p-4 bg-white/5 border-l-2 border-[#FF9933] text-xs font-serif-quote italic text-[#F8F6F0]">
+                    "{pillars[activePillar].quote}"
+                  </div>
+                )}
               </div>
 
               <div className="bg-[#06152E] p-4 border border-white/10 space-y-3">

@@ -5,7 +5,7 @@ export function useLanguage() {
   const { i18n } = useTranslation();
   const language = (SUPPORTED_LANGUAGES as readonly string[]).includes(i18n.language)
     ? (i18n.language as SupportedLanguage)
-    : 'ta';
+    : 'en';
 
   const setLanguage = (lang: SupportedLanguage) => {
     i18n.changeLanguage(lang);
