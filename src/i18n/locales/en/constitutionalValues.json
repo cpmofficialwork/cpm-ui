@@ -1,27 +1,27 @@
 {
-  "badge": "CONSTITUTIONAL ARCHIVE • 15 SACRED VALUES",
-  "heading": "The 15 Pillars of India's Constitution",
-  "subheading": "Each article in our archive represents an inviolable principle designed by the founders to defend freedom, dignity, and equality for every citizen.",
+  "badge": "CONSTITUTIONAL ARCHIVE • 12 SAFEGUARDS",
+  "heading": "12 Safeguards of the Constitution",
+  "subheading": "Constitutional safeguards ensure that constitutional democracy is not reduced to majority rule alone. They protect individual rights, restrain the exercise of power, preserve institutional independence and ensure that every government remains accountable to the Constitution and the people.",
   "categories": {
-    "all": "All 15 Values",
+    "all": "All 12 Safeguards",
     "core": "Core Republic",
     "rights": "Fundamental Rights",
     "governance": "Governance & Federalism",
     "pluralism": "Pluralism & Fraternity"
   },
-  "searchPlaceholder": "Search by article, value, keyword...",
-  "valueOf15": "VALUE {{number}} OF 15",
+  "searchPlaceholder": "Search by article, safeguard, keyword...",
+  "valueOfTotal": "SAFEGUARD {{number}} OF 12",
   "landmarkRulings": "Landmark Rulings",
   "coreDoctrine": "Core Doctrine",
   "inspectArticle": "Inspect Article →",
-  "noResults": "No constitutional values match your query \"{{query}}\".",
+  "noResults": "No constitutional safeguards match your query \"{{query}}\".",
   "resetFilters": "Reset Filters",
   "modal": {
-    "valueOf15": "CONSTITUTIONAL VALUE #{{number}} OF 15",
+    "valueOfTotal": "CONSTITUTIONAL SAFEGUARD #{{number}} OF 12",
     "constitutionalLocation": "CONSTITUTIONAL LOCATION:",
     "scopeTitle": "Fundamental Scope & Definition",
     "relevanceTitle": "Relevance in 21st Century India",
-    "originsTitle": "Historical Assembly Origins",
+    "originsTitle": "Historical & Constitutional Origins",
     "landmarkTitle": "Supreme Court Landmark Precedent",
     "close": "Close Article File"
   }

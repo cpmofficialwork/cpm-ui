@@ -5,16 +5,15 @@ import { useLocalizedData } from '../data/useLocalizedData';
 import { ConstitutionalValue } from '../types';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Crown, Scale, Feather, Equal, HeartHandshake, Landmark, 
-  ShieldCheck, BookOpenCheck, Compass, Sun, GraduationCap, 
-  FileText, Vote, Users, Shield, Search, X, BookOpen 
+import {
+  Landmark, ShieldCheck, BookOpenCheck, GraduationCap,
+  Vote, Shield, Scale, Gavel, Newspaper, Building2, Eye, Megaphone,
+  Search, X, BookOpen
 } from 'lucide-react';
 
 const ICON_MAP: Record<string, React.FC<{ className?: string }>> = {
-  Crown, Scale, Feather, Equal, HeartHandshake, Landmark,
-  ShieldCheck, BookOpenCheck, Compass, Sun, GraduationCap,
-  FileText, Vote, Users, Shield
+  Landmark, ShieldCheck, BookOpenCheck, GraduationCap,
+  Vote, Shield, Scale, Gavel, Newspaper, Building2, Eye, Megaphone
 };
 
 export const ConstitutionalValues: React.FC = () => {
@@ -111,7 +110,7 @@ export const ConstitutionalValues: React.FC = () => {
 
         </div>
 
-        {/* 15 Archive Cards Grid */}
+        {/* 12 Safeguards Archive Cards Grid */}
         <motion.div 
           layout
           className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
@@ -150,7 +149,7 @@ export const ConstitutionalValues: React.FC = () => {
                     {/* Title & Subtitle */}
                     <div className="space-y-1">
                       <div className="text-[10px] font-mono text-[#138808] uppercase tracking-widest font-semibold">
-                        {t('valueOf15', { number: val.number })}
+                        {t('valueOfTotal', { number: val.number })}
                       </div>
                       <h3 className="text-xl font-serif-display font-bold text-[#0A1F44] group-hover:text-[#000080] transition-colors flex items-center flex-wrap gap-2">
                         <span>{val.number}. {val.name}</span>
@@ -233,7 +232,7 @@ export const ConstitutionalValues: React.FC = () => {
               <div className="flex items-start justify-between border-b border-[#0A1F44]/15 pb-4">
                 <div>
                   <span className="text-xs font-mono text-[#138808] uppercase tracking-wider font-semibold">
-                    {t('modal.valueOf15', { number: selectedCard.number })}
+                    {t('modal.valueOfTotal', { number: selectedCard.number })}
                   </span>
                   <h3 className="text-2xl font-serif-display font-bold text-[#0A1F44] mt-1 flex items-center flex-wrap gap-2">
                     <span>{selectedCard.number}. {selectedCard.name}</span>

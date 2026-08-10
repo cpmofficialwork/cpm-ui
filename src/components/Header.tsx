@@ -111,6 +111,18 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
             <LanguageSwitcher />
           </div> */}
 
+          {/* Desktop Join Movement button */}
+          <div className="hidden lg:flex items-center shrink-0">
+            <button
+              onClick={onRegisterMember}
+              disabled={isDisabled}
+              className="py-2.5 px-5 bg-gradient-to-r from-[#FF9933] to-[#E68900] text-[#0A1F44] font-black text-[11px] uppercase tracking-widest text-center rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:scale-[1.03] transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            >
+              <UserPlus className="w-4 h-4" />
+              <span>{t('common:actions.joinMovement')}</span>
+            </button>
+          </div>
+
           {/* Mobile menu button */}
           <div className="flex lg:hidden items-center gap-2">
             <button

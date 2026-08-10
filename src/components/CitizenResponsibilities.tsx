@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { BookOpen, Users, HeartHandshake, GraduationCap, ShieldCheck, CheckSquare, Square, MousePointerClick } from 'lucide-react';
+import { BookOpen, Users, HeartHandshake, Eye, Handshake, ShieldCheck, CheckSquare, Square, MousePointerClick } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 
-const ICON_MAP: Record<string, React.FC<{ className?: string }>> = { BookOpen, Users, HeartHandshake, GraduationCap, ShieldCheck };
+const ICON_MAP: Record<string, React.FC<{ className?: string }>> = { BookOpen, Users, HeartHandshake, Eye, Handshake, ShieldCheck };
 
 interface ResponsibilityItem {
   id: string;
@@ -49,8 +49,8 @@ export const CitizenResponsibilities: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* 5 Pillars Grid */}
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-5 gap-4">
+        {/* 6 Pillars Grid */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {responsibilities.map((resp, idx) => {
             const IconComp = ICON_MAP[resp.iconName] || ShieldCheck;
             const isCompleted = completedActions.includes(resp.id);
@@ -130,11 +130,11 @@ export const CitizenResponsibilities: React.FC = () => {
             <div className="w-48 bg-[#F8F6F0] h-3 border border-[#0A1F44]/15 overflow-hidden">
               <div
                 className="bg-[#0A1F44] h-full transition-all duration-500"
-                style={{ width: `${(completedActions.length / 5) * 100}%` }}
+                style={{ width: `${(completedActions.length / 6) * 100}%` }}
               ></div>
             </div>
             <span className="text-xs font-mono text-[#0A1F44] font-bold">
-              {Math.round((completedActions.length / 5) * 100)}%
+              {Math.round((completedActions.length / 6) * 100)}%
             </span>
           </div>
         </motion.div>
