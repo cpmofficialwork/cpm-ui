@@ -775,8 +775,6 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    animate={isSubmitting ? undefined : { scale: [1, 1.06, 1] }}
-                    transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
                     className="w-full py-3.5 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-black text-xs uppercase tracking-[0.2em] rounded-none shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 border border-[#FFD700]/30 active:scale-[0.99] mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <CheckCircle2 className="w-4 h-4 text-[#FFD700]" />
