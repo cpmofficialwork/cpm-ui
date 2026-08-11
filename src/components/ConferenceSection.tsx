@@ -741,7 +741,6 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         </label>
                         <input
                           type="text"
-                          required
                           placeholder={t('joinModal.subDistrictPlaceholder')}
                           value={visitorSubDistrict}
                           onChange={(e) => setVisitorSubDistrict(e.target.value)}
@@ -756,7 +755,6 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         </label>
                         <input
                           type="text"
-                          required
                           placeholder={t('joinModal.villageOrTownPlaceholder')}
                           value={visitorVillageOrTown}
                           onChange={(e) => setVisitorVillageOrTown(e.target.value)}
