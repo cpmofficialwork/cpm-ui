@@ -782,10 +782,10 @@ extendedBio: 'Born on 17 March 1954 in Kondanchery village, Justice D. Hariparan
     id: 'mano-thangaraj',
     name: 'Mano Thangaraj',
     designation: 'Former Minister, Tamilnadu',
-    badge: 'COMMUNITY CONVENER',
+    badge: 'POLITICAL ACTIVIST',
     badgeColor: 'bg-[#FF9933] text-white',
     image: ministerImg,
-    roleDescription: 'From student union leader to two-term MLA and Minister, a lifelong grassroots organizer and environmental campaigner now spearheading statewide citizen mobilization for protection of constitution values, principles and safeguards.',
+    roleDescription: 'From student union leader to two-term MLA and Minister, a lifelong political activist and environmental campaigner now spearheading nationwide campain for protection of constitutional values, principles and safeguards.',
     extendedBio: "T. Mano Thangaraj began his journey in public life as a student leader. During 1986–87, he served as Chairman of the Students’ Union at NMCC, Marthandam, and Chairman of the Inter-Collegiate Students’ Association. \nA founding member of the Pechiparai Dam Water Conservation Movement and the Koodankulam Anuvulai Ethirppu Iyakkam, he has been associated with people’s movements and environmental struggles since 1989. Later the movement became part of the People’s Movement Against Nuclear Energy (PMANE).\nHe served as Chairman of Kanyakumari District Panchayat for two terms (1996–2006) and was elected as MLA from Padmanabhapuram twice (2016–2026). He also served as Minister for Information Technology and Milk & Dairy Development in the Tamil Nadu government headed by DMK Leader honourable CM, MK Stalin.\nThrough Good Vision Charitable Trust which he founded in the year 2000, he has worked extensively in disaster relief during the Tsunami, Cyclone Ockhi and Chennai floods etc, women and child development, livelihood support, healthcare, environment and sanitation.\nBeyond elected office, he continues to engage with people’s movements and civil society initiatives at the state and national levels.\nHis journey from student leadership to public service has remained rooted in standing with people, protecting their rights and strengthening democratic values.",
     keyFocusAreas: ['Grassroots Mobilization', 'Institutional Reforms', 'Volunteer Coalitions', 'Disaster Relief & Environmental Advocacy'],
     socials: [
