@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useLocalizedData } from '../data/useLocalizedData';
 import { MemberData } from '../types';
 import { Users, CheckCircle2, Award, Printer, ArrowRight, ArrowLeft } from 'lucide-react';
-import emblemImage from '../assets/images/ashoka_chakra_emblem_1785566153679.jpg';
+import emblemImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
 
 interface MembershipJourneyProps {
   onComplete?: (member: MemberData) => void;

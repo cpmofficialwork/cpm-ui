@@ -13,6 +13,10 @@
     "badgeDate": "ஆக. 21",
     "badgePop": "⚡ பிரபலம்"
   },
+  "notFound": {
+    "message": "நீங்கள் தேடும் பக்கம் இல்லை.",
+    "backHome": "முகப்புக்குச் செல்க"
+  },
   "actions": {
     "joinMovement": "இயக்கத்தில் இணையுங்கள்",
     "learnMore": "மேலும் அறிக",

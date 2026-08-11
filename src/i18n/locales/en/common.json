@@ -13,6 +13,10 @@
     "badgeDate": "AUG 21",
     "badgePop": "⚡ POP"
   },
+  "notFound": {
+    "message": "The page you're looking for doesn't exist.",
+    "backHome": "Back to Home"
+  },
   "actions": {
     "joinMovement": "Join the Movement",
     "learnMore": "Learn More",
