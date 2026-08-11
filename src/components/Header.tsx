@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Shield, Users, Award, Menu, X, Scale, Ticket, UserPlus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
 // import { LanguageSwitcher } from './LanguageSwitcher'; // Tamil temporarily disabled — English is primary
 import { useLanguage } from '../hooks/useLanguage';
 import { useScrollLock } from '../hooks/useScrollLock';
+import { ROUTES } from '../routes';
 
 interface HeaderProps {
   onRegisterMember: () => void;
@@ -19,6 +21,11 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
   const { isTamil } = useLanguage();
   const headerRef = useRef<HTMLElement>(null);
   const [headerHeight, setHeaderHeight] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
+  // /join renders the same page as Home (with the pass modal on top), so
+  // the in-page anchor links below work there too.
+  const isHome = location.pathname === ROUTES.HOME || location.pathname === ROUTES.JOIN;
 
   useScrollLock(isMobileMenuOpen);
 
@@ -67,15 +74,28 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
   ];
 
   const handleNavClick = (href: string) => {
-    setPendingScrollTarget(href);
     setIsMobileMenuOpen(false);
+    // The anchor targets only exist on Home/JOIN — from elsewhere (the 404
+    // page), just navigate home rather than trying to deep-link a scroll.
+    if (!isHome) {
+      navigate(ROUTES.HOME);
+      return;
+    }
+    setPendingScrollTarget(href);
   };
 
   return (
     <>
     <header ref={headerRef} className="w-full bg-[#F8F6F0]/95 backdrop-blur-md border-b border-[#0A1F44]/10 text-[#0A1F44]">
       {/* Top Banner Notice — relative z-50 so it stays above page content scrolling underneath the sticky header */}
-      <a href="#conference" className="relative z-50 bg-[#0A1F44] hover:bg-[#06152E] py-2 px-4 text-center text-[11px] font-sans-body border-b border-[#0A1F44]/20 flex items-center justify-center gap-2 text-[#F8F6F0] transition-colors group">
+      <a
+        href="#conference"
+        onClick={(e) => {
+          e.preventDefault();
+          handleNavClick('#conference');
+        }}
+        className="relative z-50 bg-[#0A1F44] hover:bg-[#06152E] py-2 px-4 text-center text-[11px] font-sans-body border-b border-[#0A1F44]/20 flex items-center justify-center gap-2 text-[#F8F6F0] transition-colors group"
+      >
         <span className="inline-block w-2 h-2 rounded-full bg-[#FF9933] animate-ping"></span>
         <span className="uppercase tracking-[0.18em] font-semibold text-[10px] text-[#FF9933]">
          {t('header:topBanner')}
@@ -87,7 +107,7 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
         <div className="flex items-center justify-between min-h-20 py-2">
           
           {/* Institution Brand Seal */}
-          <a href="#" className="flex items-center gap-3.5 group min-w-0">
+          <Link to={ROUTES.HOME} className="flex items-center gap-3.5 group min-w-0">
             <div className="w-12 h-12 rounded-full border-2 border-[#0A1F44] p-0.5 bg-white overflow-hidden shadow-md shrink-0 group-hover:scale-105 transition-transform">
               <img
                 src={cpmLogoImage}
@@ -104,7 +124,7 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
                 {isTamil ? t('header:orgNameEnglish') : t('header:orgNameTamil')}
               </div>
             </div>
-          </a>
+          </Link>
 
           {/* Language Switcher — Tamil temporarily disabled, English is primary for now */}
           {/* <div className="hidden lg:flex items-center gap-3 shrink-0">
