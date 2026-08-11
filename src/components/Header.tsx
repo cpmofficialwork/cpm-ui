@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion } from 'motion/react';
 import { Shield, Users, Award, Menu, X, Scale, Ticket, UserPlus } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
@@ -133,14 +134,16 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
 
           {/* Desktop Join Movement button */}
           <div className="hidden lg:flex items-center shrink-0">
-            <button
+            <motion.button
               onClick={onRegisterMember}
               disabled={isDisabled}
+              animate={isDisabled ? undefined : { scale: [1, 1.06, 1] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
               className="py-2.5 px-5 bg-gradient-to-r from-[#FF9933] to-[#E68900] text-[#0A1F44] font-black text-[11px] uppercase tracking-widest text-center rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:scale-[1.03] transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
               <UserPlus className="w-4 h-4" />
               <span>{t('common:actions.joinMovement')}</span>
-            </button>
+            </motion.button>
           </div>
 
           {/* Mobile menu button */}
@@ -204,16 +207,18 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
           <LanguageSwitcher />
         </div> */}
         <div className="pb-3 border-b border-[#0A1F44]/10">
-          <button
+          <motion.button
             onClick={() => {
               setIsMobileMenuOpen(false);
               onRegisterMember();
             }}
+            animate={{ scale: [1, 1.06, 1] }}
+            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
             className="w-full py-3.5 px-4 bg-gradient-to-r from-[#FF9933] to-[#E68900] text-[#0A1F44] font-black text-xs uppercase tracking-widest text-center rounded-xl flex items-center justify-center gap-2 shadow-md cursor-pointer"
           >
             <UserPlus className="w-4 h-4" />
             <span>{t('common:actions.joinMovement')}</span>
-          </button>
+          </motion.button>
         </div>
         <div className="space-y-1">
           {navLinks.map((link) => (
