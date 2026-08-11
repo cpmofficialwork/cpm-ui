@@ -1,58 +1,114 @@
 {
-  "badge": "GEN-Z & YOUTH ACTIVISM HUB",
-  "heading": "Youth Power & Constitutional Awareness",
-  "subheading": "Busting constitutional myths in plain English and empowering the next generation to speak up for democracy!",
-  "mythBuster": {
-    "interactiveLabel": "INTERACTIVE BUSTER",
-    "title": "Constitutional Myths vs. Real Facts",
-    "mythTab": "Myth #{{num}}",
-    "commonMyth": "COMMON MYTH",
-    "dontFall": "❌ Don't fall for misinformation!",
-    "constitutionalFact": "CONSTITUTIONAL FACT",
-    "guaranteed": "Guaranteed under the Constitution of India"
-  },
-  "shareSection": {
-    "badge": "DIGITAL ACTIVISM FOR INSTA / WHATSAPP / X",
-    "title": "Share Youth Voice Cards",
-    "copied": "COPIED TO CLIPBOARD!",
-    "copyForStory": "COPY FOR SOCIAL STORY"
-  },
-  "shareTemplate": "✊ \"{{quote}}\"\n\n📌 {{hashtag}}\n📍 Constitution Protection Conference | 21 Aug 2026, Chennai",
-  "myths": [
+  "badge": "GEN-Z KNOW YOUR RIGHTS",
+  "heading": "GenZ's Know Your Constitutional Rights",
+  "intro": "The Constitution is not just a book of laws. It is your shield against injustice and your guarantee of freedom, equality and dignity.",
+  "subheading": "",
+  "expand": "Tap to explore",
+  "knowThis": "KNOW THIS",
+  "underPressure": "UNDER PRESSURE",
+  "rights": [
     {
-      "myth": "Myth: 'The Constitution is just dry legal text that doesn't affect my daily Gen-Z life.'",
-      "fact": "Fact: Article 21 protects your digital privacy, Article 19 protects your freedom of speech and expression online (subject to reasonable restrictions), and Article 14 guarantees equality before the law, helping ensure equal access to education without arbitrary discrimination. The Constitution is your shield in everyday life.",
-      "badge": "📱 DIGITAL RIGHTS"
+      "number": "01",
+      "article": "Article 21",
+      "title": "Right to Life and Dignity",
+      "description": "Your life means more than simply being alive. It includes the right to live with dignity, personal liberty and conditions necessary for a meaningful life.",
+      "knowThisText": "Your dignity is a constitutional right. It's not a privilege.",
+      "underPressureText": "Custodial violence, unlawful detention, unsafe living conditions, caste discrimination and religious persecution and failures to protect people from serious threats to life raise serious Article 21 concerns."
     },
     {
-      "myth": "Myth: 'Democracy is only about voting once every 5 years.'",
-      "fact": "Fact: Article 51A(h) makes it a Fundamental Duty for every young citizen to develop scientific temper, humanism, and the spirit of reform & questioning daily!",
-      "badge": "⚡ CITIZEN POWER"
+      "number": "02",
+      "article": "Article 21A",
+      "title": "Right to Education",
+      "description": "Every child between 6 and 14 years has the right to free and compulsory education.",
+      "knowThisText": "Education is not charity. For children in this age group, it is a constitutional guarantee.",
+      "underPressureText": "Exam paper leaks, recruitment and entrance-exam irregularities, unequal access to quality education and the stress placed on students can undermine the promise of equal educational opportunity. Recent youth protests over examination irregularities show how deeply this issue affects young Indians."
     },
     {
-      "myth": "Myth: 'Minority reservation rights harm equal opportunity.'",
-      "fact": "Fact: Affirmative action levels the playing field for historically oppressed & backward communities. True equality means uplifting those denied equal access for centuries!",
-      "badge": "⚖️ SOCIAL JUSTICE"
+      "number": "03",
+      "article": "Article 19(1)(a)",
+      "title": "Right to Speak and Express Freely",
+      "description": "You have the right to speak, write, question, criticise, create, protest and express your views. This includes political speech and criticism of those in power, subject to the reasonable restrictions permitted by the Constitution.",
+      "knowThisText": "Disagreeing with power is not anti-national. Dissent is part of democracy.",
+      "underPressureText": "Journalists, activists, students and social media users have faced criminal cases, arrests, content takedown orders and other restrictions over expression."
+    },
+    {
+      "number": "04",
+      "article": "Article 19(1)(b)",
+      "title": "Right to Peaceful Protest",
+      "description": "You have the right to assemble peacefully and without arms.",
+      "knowThisText": "You don't lose your constitutional rights because you question the government. Peaceful protest is a democratic right.",
+      "underPressureText": "The July 2026 student protests in Delhi and other parts of the country saw allegations of excessive use of police force, including tear gas and batons."
+    },
+    {
+      "number": "05",
+      "article": "Article 19(1)(c)",
+      "title": "Right to Organise and Associate",
+      "description": "You have the right to form associations, unions and organisations even in schools and colleges, subject to constitutional restrictions.",
+      "knowThisText": "Join together. Organise. Build movements. Democracy becomes stronger when youth participate.",
+      "underPressureText": "Restrictions on civil-society organisations, activists and collective movements. Labelling citizens who organise and mobilise others as 'Urban Naxals' to stigmatise dissent and shrink the space for democratic participation."
+    },
+    {
+      "number": "06",
+      "article": "Article 14",
+      "title": "Right to Equality",
+      "description": "Everyone is equal before the law and entitled to equal protection of the laws.",
+      "knowThisText": "Your identity, background or social, economic status cannot make you less equal to others.",
+      "underPressureText": "India's entrenched caste hierarchy and inequalities based on identity, gender, religion, social and economic status continue to perpetuate discrimination and exclusion, challenging the constitutional promise of equality, dignity and equal treatment for all."
+    },
+    {
+      "number": "07",
+      "article": "Articles 14, 19 & 21",
+      "title": "Right Against Arbitrary State Action",
+      "description": "Government has power, but constitutional power has limits. State action must be lawful, fair, non-arbitrary and consistent with fundamental rights.",
+      "knowThisText": "Government authority is not above the Constitution.",
+      "underPressureText": "Arbitrary arrests, disproportionate restrictions, selective enforcement and excessive use of state power raise serious constitutional concerns."
+    },
+    {
+      "number": "08",
+      "article": "Articles 21, 39(a) & 41",
+      "title": "Right to Livelihood and Work",
+      "description": "The Constitution recognises the importance of livelihood and directs the State to work towards securing adequate means of livelihood and the right to work, within its economic capacity. There is no general Fundamental Right to a government job, but the Supreme Court has recognised livelihood as closely connected with the right to life under Article 21.",
+      "knowThisText": "A life of dignity requires the opportunity to earn a livelihood.",
+      "underPressureText": "Youth unemployment, insecure work, recruitment delays and examination/recruitment irregularities make the promise of meaningful opportunity feel increasingly distant. Official data recorded an overall unemployment rate of 6.6% in urban India in April 2026, with urban female unemployment at 8.5%."
+    },
+    {
+      "number": "09",
+      "article": "Article 21 with Articles 47 & 48A",
+      "title": "Right to a Clean and Healthy Environment",
+      "description": "The Constitution does not literally say 'right to clean air and water,' but the Supreme Court has recognised a clean and healthy environment, including protection from serious pollution, as part of the right to life under Article 21. Article 48A directs the State to protect and improve the environment.",
+      "knowThisText": "Clean air, safe water and a healthy environment are not luxuries. They are connected to your right to live.",
+      "underPressureText": "Air pollution, contaminated water, environmental degradation and ecological destruction threaten the conditions necessary for a healthy life."
+    },
+    {
+      "number": "10",
+      "article": "Article 21 with Articles 39(e), 42 & 47",
+      "title": "Right to Health and Human Well-being",
+      "description": "The Constitution places protection of health and human well-being among its constitutional commitments, and Article 21 has been interpreted to protect important aspects of health and dignified living.",
+      "knowThisText": "Your right to life cannot be separated from the conditions in which you live.",
+      "underPressureText": "Unsafe working conditions, inadequate public health infrastructure, environmental pollution and unequal access to healthcare affect the ability to live a dignified life."
+    },
+    {
+      "number": "11",
+      "article": "Article 32",
+      "title": "Right to Constitutional Remedies",
+      "description": "If your Fundamental Rights are violated, you have the right to approach the Supreme Court for their enforcement. High Courts also have broad powers under Article 226.",
+      "knowThisText": "Rights mean little without a remedy. The Constitution gives you a way to fight violations.",
+      "underPressureText": "When people are denied timely access to justice, legal representation or effective remedies, rights become harder to enforce."
     }
   ],
-  "storyQuotes": [
-    {
-      "id": 1,
-      "tag": "INSTA / WHATSAPP STORY",
-      "quote": "No Liberty Without Equality. Protect the Constitution • Protect India's Future.",
-      "hashtag": "#GenZForJustice #ProtectConstitution #CPM2026"
-    },
-    {
-      "id": 2,
-      "tag": "YOUTH ACTION STATEMENT",
-      "quote": "Religious freedom & constitutional equality are non-negotiable for Gen-Z! All citizens are equal before law.",
-      "hashtag": "#Article14 #YouthVoice #ChennaiConference"
-    },
-    {
-      "id": 3,
-      "tag": "CONSTITUTIONAL PLEDGE",
-      "quote": "Standing up for minority rights is standing up for the Constitution of India. Join us in Chennai on Aug 21!",
-      "hashtag": "#EqualRightsForAll #DefendTheConstitution"
-    }
-  ]
+  "closing": {
+    "eyebrow": "YOUR CONSTITUTION. YOUR RIGHTS. YOUR VOICE.",
+    "title": "Don't just know your rights. Use them.",
+    "actions": [
+      "Read the Constitution.",
+      "Question authority.",
+      "Speak up.",
+      "Stand against discrimination.",
+      "Defend the rights of others.",
+      "Participate in democracy.",
+      "Protect constitutional values."
+    ],
+    "footerLine1": "Democracy doesn't work when citizens are silent.",
+    "footerLine2": "Know your Constitution. Know your rights. Know your power."
+  }
 }

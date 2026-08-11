@@ -67,7 +67,8 @@ export const WhoConducts: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.12, duration: 0.5 }}
-              className="bg-white border-2 border-[#0A1F44] rounded-none p-6 sm:p-7 shadow-[5px_5px_0px_0px_rgba(10,31,68,0.12)] hover:shadow-[7px_7px_0px_0px_rgba(255,153,51,0.85)] transition-all duration-300 relative flex flex-col md:flex-row items-center md:items-start gap-6 group"
+              onClick={() => setSelectedOrganizerId(organizer.id)}
+              className="bg-white border-2 border-[#0A1F44] rounded-none p-6 sm:p-7 shadow-[5px_5px_0px_0px_rgba(10,31,68,0.12)] hover:shadow-[7px_7px_0px_0px_rgba(255,153,51,0.85)] transition-all duration-300 relative flex flex-col md:flex-row items-center md:items-start gap-6 group cursor-pointer"
             >
               {/* Top Right Floating View Profile Button */}
               <button
@@ -81,8 +82,7 @@ export const WhoConducts: React.FC = () => {
 
               {/* Circular Profile Image */}
               <div className="relative shrink-0 pt-6 md:pt-0">
-                <div 
-                  onClick={() => setSelectedOrganizerId(organizer.id)}
+                <div
                   className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-[#0A1F44] shadow-md bg-[#0A1F44] cursor-pointer group/img"
                   title={t('clickToView')}
                 >
@@ -150,7 +150,6 @@ export const WhoConducts: React.FC = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 bg-black/70 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
-            onClick={() => setSelectedOrganizerId(null)}
           >
             <motion.div 
               initial={{ scale: 0.95, opacity: 0 }}

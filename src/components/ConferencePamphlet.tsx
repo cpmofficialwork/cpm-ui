@@ -232,9 +232,6 @@ export const ConferencePamphlet: React.FC<ConferencePamphletProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={(e) => {
-              if (e.target === e.currentTarget) handleClose();
-            }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 bg-[#020A16] overflow-hidden print:p-0 print:bg-white"
           >
             <motion.div 
