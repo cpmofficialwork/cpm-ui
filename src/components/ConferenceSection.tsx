@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Calendar, Clock, MapPin, ExternalLink, Navigation, Award, Users, Share2, CheckCircle2, Shield, Ticket, X, UserPlus, Crown, UserCheck, BookOpen, ChevronRight, TrainFront } from 'lucide-react';
+import { Calendar, Clock, MapPin, ExternalLink, Navigation, Award, Users, Share2, CheckCircle2, Shield, Ticket, X, UserPlus, Crown, UserCheck, BookOpen, ChevronRight, TrainFront, Download, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import leaderImg from '../assets/images/leader_portrait_1785579952921.jpg';
@@ -53,6 +53,9 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
   const [isDistrictOpen, setIsDistrictOpen] = useState(false);
   const [districtSearch, setDistrictSearch] = useState('');
   const districtFieldRef = useRef<HTMLDivElement>(null);
+  const memberCardRef = useRef<HTMLDivElement>(null);
+  const [isGeneratingCard, setIsGeneratingCard] = useState(false);
+  const [cardDownloaded, setCardDownloaded] = useState(false);
 
   const filteredTnDistricts = useMemo(() => {
     const query = districtSearch.trim().toLowerCase();
@@ -185,6 +188,98 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
       setIsSubmitting(false);
     }
   };
+
+  const maskMobile = (phone: string) => {
+    const digits = phone.replace(/\D/g, '');
+    if (digits.length <= 3) return digits;
+    return 'X'.repeat(digits.length - 3) + digits.slice(-3);
+  };
+
+  const captureMemberCardBlob = async (): Promise<Blob | null> => {
+    if (!memberCardRef.current) return null;
+    const { toBlob } = await import('html-to-image');
+    return toBlob(memberCardRef.current, {
+      backgroundColor: '#ffffff',
+      pixelRatio: 2,
+      cacheBust: true,
+      skipFonts: true,
+    });
+  };
+
+  const downloadMemberCard = async () => {
+    if (isGeneratingCard) return;
+    setIsGeneratingCard(true);
+    try {
+      if (!memberCardRef.current) return;
+      const { toPng } = await import('html-to-image');
+      const dataUrl = await toPng(memberCardRef.current, {
+        backgroundColor: '#ffffff',
+        pixelRatio: 2,
+        cacheBust: true,
+        skipFonts: true,
+      });
+      const { width, height } = memberCardRef.current.getBoundingClientRect();
+      const { jsPDF } = await import('jspdf');
+      const pdf = new jsPDF({
+        orientation: width >= height ? 'landscape' : 'portrait',
+        unit: 'pt',
+        format: [width, height],
+      });
+      pdf.addImage(dataUrl, 'PNG', 0, 0, width, height);
+      pdf.save(`CPM-Member-Card-${passNumber || 'member'}.pdf`);
+      setCardDownloaded(true);
+    } catch (err) {
+      console.error('Failed to generate member card PDF', err);
+    } finally {
+      setIsGeneratingCard(false);
+    }
+  };
+
+  const shareMemberCard = async () => {
+    if (isGeneratingCard) return;
+    setIsGeneratingCard(true);
+    try {
+      const blob = await captureMemberCardBlob();
+      if (!blob) return;
+      const file = new File([blob], `CPM-Member-Card-${passNumber || 'member'}.png`, { type: 'image/png' });
+      const nav = navigator as Navigator & { canShare?: (data?: ShareData) => boolean };
+      if (nav.canShare && nav.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
+            files: [file],
+            title: t('joinModal.shareTitle'),
+            text: t('joinModal.shareCardText', { name: visitorName }),
+          });
+          return;
+        } catch (shareErr) {
+          if ((shareErr as DOMException)?.name === 'AbortError') return;
+          // fall through to download fallback below
+        }
+      }
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.download = file.name;
+      link.href = url;
+      link.click();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('Failed to share member card image', err);
+    } finally {
+      setIsGeneratingCard(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!passClaimed) {
+      setCardDownloaded(false);
+      return;
+    }
+    const timer = setTimeout(() => {
+      downloadMemberCard();
+    }, 1000);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [passClaimed]);
 
   return (
     <section id="conference" className="bg-gradient-to-b from-[#020A16] via-[#081836] to-[#041026] text-[#F8F6F0] py-16 lg:py-24 border-b-4 border-[#FFB800] relative overflow-hidden shadow-2xl">
@@ -734,35 +829,122 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                     initial={{ opacity: 0, y: 16 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.4 }}
-                    className="p-6 bg-white border-2 border-[#0A1F44] rounded-none space-y-4 relative overflow-hidden shadow-xl text-[#0A1F44]"
+                    ref={memberCardRef}
+                    className="bg-white border-2 border-[#0A1F44] rounded-none relative overflow-hidden shadow-xl text-[#0A1F44]"
                   >
-                    <div className="bg-[#0A1F44] text-[#FFD700] py-2 px-3 rounded-none text-center font-mono text-[11px] font-extrabold uppercase tracking-widest flex items-center justify-center gap-2">
+                    {/* Watermark Logo Background — centered and fully visible, never cropped */}
+                    <img
+                      src={cpmLogoImage}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 w-full h-full object-contain opacity-[0.07] pointer-events-none select-none p-8"
+                    />
+
+                    {/* Tricolor accent strip */}
+                    <div className="relative h-1.5 w-full bg-gradient-to-r from-[#FF9933] via-[#FFF5C0] to-[#138808]" />
+
+                    <div className="relative bg-[#0A1F44] text-[#FFD700] py-2 px-3 text-center font-mono text-[11px] font-extrabold uppercase tracking-widest flex items-center justify-center gap-2">
                       <Shield className="w-3.5 h-3.5 text-[#FFD700]" />
                       <span>{t('joinModal.officialMember')}</span>
                     </div>
 
-                    <div className="space-y-1 pt-1">
-                      <div className="text-2xl font-serif-display font-black text-[#0A1F44]">
-                        {visitorName}
+                    <div className="relative p-5 space-y-4">
+                      <div className="flex items-start gap-3">
+                        <img
+                          src={cpmLogoImage}
+                          alt=""
+                          className="w-12 h-12 object-cover rounded-full border-2 border-[#0A1F44]/20 shrink-0"
+                        />
+                        <div className="text-left min-w-0 flex-1">
+                          <div className="text-[9px] font-mono font-bold text-[#0A1F44]/55 uppercase tracking-widest">
+                            {t('joinModal.cardOrgName')}
+                          </div>
+                          <div className="text-xl sm:text-2xl font-serif-display font-black text-[#0A1F44] leading-[1.15] break-words">
+                            {visitorName}
+                          </div>
+                          <div className="text-xs font-mono text-[#D97706] font-extrabold tracking-wider mt-0.5">
+                            {t('joinModal.memberId')} {passNumber}
+                          </div>
+                        </div>
                       </div>
-                      <div className="text-xs font-mono text-[#D97706] font-extrabold tracking-wider">
-                        {t('joinModal.memberId')} {passNumber}
-                      </div>
-                    </div>
 
-                    <div className="bg-[#F8F6F0] p-3.5 rounded-none border border-[#0A1F44]/15 grid grid-cols-2 gap-2 text-[11px] font-mono text-[#0A1F44] text-left">
-                      <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.mobileLabel')}</span> {visitorPhone || t('joinModal.notAvailable')}</div>
-                      <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.stateLabel')}</span> {visitorState}</div>
-                      <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.districtLabel')}</span> {visitorDistrict}</div>
-                      <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.subDistrictLabel')}</span> {visitorSubDistrict || t('joinModal.notAvailable')}</div>
-                      <div><span className="font-bold text-[#0A1F44]/60">{t('joinModal.villageOrTownLabel')}</span> {visitorVillageOrTown || t('joinModal.notAvailable')}</div>
+                      <div className="grid grid-cols-2 gap-x-3 gap-y-3 p-3.5 text-left">
+                        <div className="flex items-start gap-1.5 min-w-0">
+                          <Phone className="w-3 h-3 text-[#0A1F44]/45 mt-0.5 shrink-0" />
+                          <div className="min-w-0">
+                            <div className="text-[8px] font-mono font-bold text-[#0A1F44]/55 uppercase tracking-wider">{t('joinModal.mobileLabel')}</div>
+                            <div className="text-[11px] font-mono font-semibold text-[#0A1F44] truncate">{visitorPhone ? maskMobile(visitorPhone) : t('joinModal.notAvailable')}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-1.5 min-w-0">
+                          <MapPin className="w-3 h-3 text-[#0A1F44]/45 mt-0.5 shrink-0" />
+                          <div className="min-w-0">
+                            <div className="text-[8px] font-mono font-bold text-[#0A1F44]/55 uppercase tracking-wider">{t('joinModal.stateLabel')}</div>
+                            <div className="text-[11px] font-mono font-semibold text-[#0A1F44] truncate">{visitorState}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-1.5 min-w-0">
+                          <MapPin className="w-3 h-3 text-[#0A1F44]/45 mt-0.5 shrink-0" />
+                          <div className="min-w-0">
+                            <div className="text-[8px] font-mono font-bold text-[#0A1F44]/55 uppercase tracking-wider">{t('joinModal.districtLabel')}</div>
+                            <div className="text-[11px] font-mono font-semibold text-[#0A1F44] truncate">{visitorDistrict}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-1.5 min-w-0">
+                          <MapPin className="w-3 h-3 text-[#0A1F44]/45 mt-0.5 shrink-0" />
+                          <div className="min-w-0">
+                            <div className="text-[8px] font-mono font-bold text-[#0A1F44]/55 uppercase tracking-wider">{t('joinModal.subDistrictLabel')}</div>
+                            <div className="text-[11px] font-mono font-semibold text-[#0A1F44] truncate">{visitorSubDistrict || t('joinModal.notAvailable')}</div>
+                          </div>
+                        </div>
+                        <div className="flex items-start gap-1.5 min-w-0 col-span-2">
+                          <MapPin className="w-3 h-3 text-[#0A1F44]/45 mt-0.5 shrink-0" />
+                          <div className="min-w-0">
+                            <div className="text-[8px] font-mono font-bold text-[#0A1F44]/55 uppercase tracking-wider">{t('joinModal.villageOrTownLabel')}</div>
+                            <div className="text-[11px] font-mono font-semibold text-[#0A1F44] truncate">{visitorVillageOrTown || t('joinModal.notAvailable')}</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
 
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 0.65, duration: 0.4 }}
+                    transition={{ delay: 0.6, duration: 0.4 }}
+                    className="space-y-2"
+                  >
+                    {(isGeneratingCard || cardDownloaded) && (
+                      <p className="text-[11px] font-mono text-[#0A1F44]/60">
+                        {isGeneratingCard ? t('joinModal.cardGenerating') : t('joinModal.cardDownloaded')}
+                      </p>
+                    )}
+                    <div className="flex gap-3">
+                      <button
+                        type="button"
+                        onClick={downloadMemberCard}
+                        disabled={isGeneratingCard}
+                        className="flex-1 py-3 bg-white hover:bg-[#F8F6F0] text-[#0A1F44] font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border border-[#0A1F44]/30 shadow-sm flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>{t('joinModal.downloadCard')}</span>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={shareMemberCard}
+                        disabled={isGeneratingCard}
+                        className="flex-1 py-3 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer shadow-md flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                      >
+                        <Share2 className="w-3.5 h-3.5" />
+                        <span>{t('joinModal.shareCard')}</span>
+                      </button>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.7, duration: 0.4 }}
                     className="flex gap-3"
                   >
                     <button
