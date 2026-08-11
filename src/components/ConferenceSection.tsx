@@ -310,13 +310,15 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
           className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 border-b border-white/15 pb-8"
         >
           <div className="flex items-center gap-3">
-            <button
+            <motion.button
               type="button"
               onClick={openModal}
+              animate={{ scale: [1, 1.06, 1] }}
+              transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
               className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-gradient-to-r from-[#FFB800] via-[#FFA000] to-[#FF8F00] text-[#0A1F44] font-mono text-xs font-black uppercase tracking-[0.25em] rounded-full shadow-[0_0_20px_rgba(255,184,0,0.4)] border border-[#FFE082] cursor-pointer hover:shadow-[0_0_28px_rgba(255,184,0,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               <span>{t('badge')}</span>
-            </button>
+            </motion.button>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-xs font-mono">
@@ -770,14 +772,16 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                     </div>
                   )}
 
-                  <button
+                  <motion.button
                     type="submit"
                     disabled={isSubmitting}
+                    animate={isSubmitting ? undefined : { scale: [1, 1.06, 1] }}
+                    transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
                     className="w-full py-3.5 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-black text-xs uppercase tracking-[0.2em] rounded-none shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 border border-[#FFD700]/30 active:scale-[0.99] mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <CheckCircle2 className="w-4 h-4 text-[#FFD700]" />
                     <span>{isSubmitting ? t('joinModal.submitting') : t('joinModal.submit')}</span>
-                  </button>
+                  </motion.button>
                 </form>
               ) : (
                 <motion.div
