@@ -8,6 +8,7 @@ export interface CreateUserInput {
   subDistrict: string;
   villageOrTown: string;
   country?: string;
+  wantsToVolunteer?: boolean;
 }
 
 export interface ApiUser {
@@ -21,6 +22,7 @@ export interface ApiUser {
   district: string;
   subDistrict: string;
   villageOrTown: string;
+  wantsToVolunteer: boolean;
   createdAt: string;
   updatedAt: string;
 }

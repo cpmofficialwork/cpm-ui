@@ -47,6 +47,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
   const [otherDistrictText, setOtherDistrictText] = useState('');
   const [visitorSubDistrict, setVisitorSubDistrict] = useState('');
   const [visitorVillageOrTown, setVisitorVillageOrTown] = useState('');
+  const [wantsToVolunteer, setWantsToVolunteer] = useState(false);
   const [passNumber, setPassNumber] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -171,6 +172,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
         district: visitorDistrict,
         subDistrict: visitorSubDistrict.trim(),
         villageOrTown: visitorVillageOrTown.trim(),
+        wantsToVolunteer,
       });
       setPassNumber(user.memberID);
       setPassClaimed(true);
@@ -766,6 +768,23 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                     </div>
                   </div>
 
+                  <label className="flex items-start gap-3 px-4 py-3 bg-white border border-[#0A1F44]/25 rounded-none cursor-pointer hover:border-[#0A1F44]/50 transition-colors">
+                    <input
+                      type="checkbox"
+                      checked={wantsToVolunteer}
+                      onChange={(e) => setWantsToVolunteer(e.target.checked)}
+                      className="mt-0.5 w-4 h-4 accent-[#0A1F44] shrink-0 cursor-pointer"
+                    />
+                    <span>
+                      <span className="block font-mono text-xs text-[#0A1F44] font-bold uppercase tracking-wider">
+                        {t('joinModal.volunteerLabel')}
+                      </span>
+                      <span className="block mt-1 text-xs text-[#0A1F44]/70 font-sans-body leading-relaxed">
+                        {t('joinModal.volunteerDescription')}
+                      </span>
+                    </span>
+                  </label>
+
                   {submitError && (
                     <div className="px-4 py-3 bg-red-50 border border-red-300 text-red-700 text-xs font-sans-body rounded-none">
                       {submitError}
@@ -839,6 +858,16 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                       aria-hidden="true"
                       className="absolute inset-0 w-full h-full object-contain opacity-[0.07] pointer-events-none select-none p-8"
                     />
+
+                    {/* Volunteer corner ribbon — only shown when the member opted in */}
+                    {wantsToVolunteer && (
+                      <div className="absolute top-4 -right-11 z-30 w-40 rotate-45 bg-gradient-to-r from-[#FFD700] to-[#D97706] text-[#0A1F44] text-center py-1 shadow-[0_2px_8px_rgba(0,0,0,0.25)] border-y border-[#0A1F44]/20">
+                        <span className="inline-flex items-center justify-center gap-1 text-[9px] font-mono font-black uppercase tracking-widest">
+                          <UserCheck className="w-2.5 h-2.5" />
+                          {t('joinModal.volunteerBadge')}
+                        </span>
+                      </div>
+                    )}
 
                     {/* Tricolor accent strip */}
                     <div className="relative h-1.5 w-full bg-gradient-to-r from-[#FF9933] via-[#FFF5C0] to-[#138808]" />
@@ -954,6 +983,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         setVisitorPhone('');
                         setVisitorSubDistrict('');
                         setVisitorVillageOrTown('');
+                        setWantsToVolunteer(false);
                       }}
                       className="flex-1 py-3 bg-white hover:bg-[#F8F6F0] text-[#0A1F44] font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer border border-[#0A1F44]/30 shadow-sm"
                     >
@@ -968,6 +998,7 @@ export const ConferenceSection: React.FC<ConferenceSectionProps> = ({
                         setVisitorPhone('');
                         setVisitorSubDistrict('');
                         setVisitorVillageOrTown('');
+                        setWantsToVolunteer(false);
                       }}
                       className="flex-1 py-3 bg-[#0A1F44] hover:bg-[#132D5E] text-[#FFD700] font-mono text-xs font-bold uppercase tracking-wider rounded-none transition-colors cursor-pointer shadow-md"
                     >
