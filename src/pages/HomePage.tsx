@@ -50,8 +50,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#F8F6F0] text-[#0A1F44] flex flex-col font-sans-body selection:bg-[#0A1F44] selection:text-white relative">
-      {/* First-visit welcome video */}
-      <WelcomeVideoModal />
+      {/* First-visit welcome video - not shown on /join */}
+      {location.pathname !== ROUTES.JOIN && <WelcomeVideoModal />}
 
       {/* Scrollable content wrapper */}
       <div className="flex-1 flex flex-col">
