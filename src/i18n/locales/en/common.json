@@ -1,6 +1,8 @@
 {
   "nav": {
-    "conference": "Conference 2026",
+    "events": "Events",
+    "eventCompleted": "Completed",
+    "eventUpcoming": "Upcoming",
     "whoConducts": "Who Conducts",
     "whyProtect": "Why Protect",
     "demands": "Demands",

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -225,7 +226,12 @@ export const ConferencePamphlet: React.FC<ConferencePamphletProps> = ({
       )}
 
 
-      {/* FULL-SCREEN INTERACTIVE 4-PAGE BOOKLET MODAL */}
+      {/* FULL-SCREEN INTERACTIVE 4-PAGE BOOKLET MODAL — portaled to <body> so
+          its "fixed inset-0" sizes against the real viewport regardless of
+          where this component is mounted (any ancestor with a `transform`,
+          e.g. a motion.div scroll-in wrapper, would otherwise become the
+          containing block for fixed descendants and clip it). */}
+      {createPortal(
       <AnimatePresence>
         {isModalOpen && (
           <motion.div 
@@ -623,7 +629,9 @@ export const ConferencePamphlet: React.FC<ConferencePamphletProps> = ({
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
     </>
   );
 };

@@ -132,3 +132,37 @@ export interface MemberData {
   pledgedAt: string;
   membershipId: string;
 }
+
+export interface EventGalleryImage {
+  id: string;
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+export interface EventVideo {
+  id: string;
+  title: string;
+  youtubeId: string;
+}
+
+export interface ConferenceEvent {
+  id: string;
+  title: string;
+  tamilTitle: string;
+  status: 'concluded' | 'upcoming';
+  dateLabel: string;
+  venue: string;
+  city: string;
+  mapUrl?: string;
+  // Up to 5 photos that rotate as a slider in the section banner background.
+  // Falls back to a single static `coverImage` slide when omitted.
+  bannerImages?: string[];
+  summary: string;
+  coverImage: string;
+  // Only the 2026 conference has an official pamphlet reader wired up (ConferencePamphlet).
+  hasPamphlet?: boolean;
+  // Empty until real photos/videos are added — see src/data/events.ts for how to populate these.
+  gallery: EventGalleryImage[];
+  videos: EventVideo[];
+}

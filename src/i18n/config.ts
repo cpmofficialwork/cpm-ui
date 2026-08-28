@@ -41,12 +41,14 @@ import conferenceDemandsEn from './locales/en/conferenceDemands.json';
 import conferenceDemandsTa from './locales/ta/conferenceDemands.json';
 import genZYouthHubEn from './locales/en/genZYouthHub.json';
 import genZYouthHubTa from './locales/ta/genZYouthHub.json';
-import conferenceSectionEn from './locales/en/conferenceSection.json';
-import conferenceSectionTa from './locales/ta/conferenceSection.json';
+import joinMovementEn from './locales/en/joinMovement.json';
+import joinMovementTa from './locales/ta/joinMovement.json';
 import conferencePamphletEn from './locales/en/conferencePamphlet.json';
 import conferencePamphletTa from './locales/ta/conferencePamphlet.json';
 import welcomeVideoEn from './locales/en/welcomeVideo.json';
 import welcomeVideoTa from './locales/ta/welcomeVideo.json';
+import eventsSectionEn from './locales/en/eventsSection.json';
+import eventsSectionTa from './locales/ta/eventsSection.json';
 
 export const LANGUAGE_STORAGE_KEY = 'cpm-language';
 // Tamil temporarily disabled — English is the primary site language for now.
@@ -87,9 +89,10 @@ i18next.use(initReactI18next).init({
     'citizenResponsibilities',
     'conferenceDemands',
     'genZYouthHub',
-    'conferenceSection',
+    'joinMovement',
     'conferencePamphlet',
     'welcomeVideo',
+    'eventsSection',
   ],
   resources: {
     en: {
@@ -113,9 +116,10 @@ i18next.use(initReactI18next).init({
       citizenResponsibilities: citizenResponsibilitiesEn,
       conferenceDemands: conferenceDemandsEn,
       genZYouthHub: genZYouthHubEn,
-      conferenceSection: conferenceSectionEn,
+      joinMovement: joinMovementEn,
       conferencePamphlet: conferencePamphletEn,
       welcomeVideo: welcomeVideoEn,
+      eventsSection: eventsSectionEn,
     },
     ta: {
       common: commonTa,
@@ -138,9 +142,10 @@ i18next.use(initReactI18next).init({
       citizenResponsibilities: citizenResponsibilitiesTa,
       conferenceDemands: conferenceDemandsTa,
       genZYouthHub: genZYouthHubTa,
-      conferenceSection: conferenceSectionTa,
+      joinMovement: joinMovementTa,
       conferencePamphlet: conferencePamphletTa,
       welcomeVideo: welcomeVideoTa,
+      eventsSection: eventsSectionTa,
     },
   },
   interpolation: {
