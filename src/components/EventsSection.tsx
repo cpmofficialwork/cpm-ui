@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTranslation } from 'react-i18next';
@@ -17,12 +17,22 @@ import {
   Clock3,
   UserPlus,
   BookOpen,
+  Loader2,
+  AlertCircle,
 } from 'lucide-react';
 import { EVENTS } from '../data/events';
-import type { ConferenceEvent, EventVideo } from '../types';
+import type { ConferenceEvent, EventGalleryImage } from '../types';
 import { ConferencePamphlet } from './ConferencePamphlet';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useLanguage } from '../hooks/useLanguage';
+import { ApiError, getPublicEvents } from '../lib/api';
+
+// Unifies the two video sources the dialog can render: curated YouTube
+// entries baked into src/data/events.ts, or raw video files uploaded through
+// the admin panel and served straight from S3.
+type DisplayVideo =
+  | { kind: 'youtube'; id: string; title: string; youtubeId: string }
+  | { kind: 'direct'; id: string; title: string; url: string };
 
 interface EventsSectionProps {
   onOpenJoinModal: () => void;
@@ -239,10 +249,30 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
 
   const [visibleGalleryCount, setVisibleGalleryCount] = useState(GALLERY_PAGE_SIZE);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [videoLightbox, setVideoLightbox] = useState<EventVideo | null>(null);
+  const [videoLightbox, setVideoLightbox] = useState<DisplayVideo | null>(null);
   const [activeTab, setActiveTab] = useState<'photos' | 'videos'>('photos');
 
+  // Live media merged from every admin-managed Event (GET /api/events/public).
+  // 'idle' before the dialog has opened once — the static gallery/videos
+  // below are used as a fallback only if the fetch itself fails.
+  const [apiImageUrls, setApiImageUrls] = useState<string[]>([]);
+  const [apiVideoUrls, setApiVideoUrls] = useState<string[]>([]);
+  const [apiStatus, setApiStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
   useScrollLock(!!selectedEvent);
+
+  // Full-page dialog: Escape closes it (no visible backdrop left to click).
+  // Skipped while a lightbox is open — its own Escape handler closes that first.
+  useEffect(() => {
+    if (!selectedEvent) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && lightboxIndex === null && !videoLightbox) {
+        setSelectedEventId(null);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [selectedEvent, lightboxIndex, videoLightbox]);
 
   // Reset per-event viewer state whenever the open event changes
   useEffect(() => {
@@ -252,10 +282,49 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
     setActiveTab('photos');
   }, [selectedEventId]);
 
+  // Fetch every admin-managed event and merge their imageUrls/videoUrls into
+  // one combined gallery/video list whenever the dialog opens.
+  useEffect(() => {
+    if (!selectedEventId) return;
+    let cancelled = false;
+    setApiStatus('loading');
+    getPublicEvents()
+      .then((events) => {
+        if (cancelled) return;
+        setApiImageUrls(events.flatMap((e) => e.imageUrls));
+        setApiVideoUrls(events.flatMap((e) => e.videoUrls));
+        setApiStatus('success');
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        console.error('Failed to load event media:', err instanceof ApiError ? err.message : err);
+        setApiStatus('error');
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedEventId]);
+
+  // Gallery/videos actually rendered — live merged data once the fetch
+  // succeeds, falling back to the static per-conference arrays only if it errors.
+  const effectiveGallery: EventGalleryImage[] = useMemo(() => {
+    if (apiStatus === 'success') {
+      return apiImageUrls.map((src, i) => ({ id: `api-image-${i}`, src, alt: selectedEvent?.title ?? '' }));
+    }
+    return selectedEvent?.gallery ?? [];
+  }, [apiStatus, apiImageUrls, selectedEvent]);
+
+  const effectiveVideos: DisplayVideo[] = useMemo(() => {
+    if (apiStatus === 'success') {
+      return apiVideoUrls.map((url, i) => ({ kind: 'direct', id: `api-video-${i}`, title: selectedEvent?.title ?? '', url }));
+    }
+    return (selectedEvent?.videos ?? []).map((v) => ({ kind: 'youtube', id: v.id, title: v.title, youtubeId: v.youtubeId }));
+  }, [apiStatus, apiVideoUrls, selectedEvent]);
+
   // Photo lightbox keyboard navigation
   useEffect(() => {
-    if (lightboxIndex === null || !selectedEvent) return;
-    const total = selectedEvent.gallery.length;
+    if (lightboxIndex === null) return;
+    const total = effectiveGallery.length;
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setLightboxIndex(null);
       else if (e.key === 'ArrowRight') setLightboxIndex((i) => (i === null ? null : Math.min(i + 1, total - 1)));
@@ -263,7 +332,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [lightboxIndex, selectedEvent]);
+  }, [lightboxIndex, effectiveGallery.length]);
 
   // Video lightbox: Escape closes
   useEffect(() => {
@@ -323,62 +392,80 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedEventId(null)}
-              className="fixed inset-0 z-50 bg-[#0A1F44]/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+              className="fixed inset-0 z-50 bg-[#0A1F44]/80 backdrop-blur-md"
             >
               <motion.div
-                initial={{ scale: 0.95, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.95, opacity: 0 }}
+                initial={{ y: 16, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: 16, opacity: 0 }}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-[#F8F6F0] text-[#0A1F44] border-2 border-[#0A1F44] max-w-4xl w-full max-h-[90vh] overflow-y-auto rounded-2xl shadow-2xl relative"
+                className="bg-[#F8F6F0] text-[#0A1F44] w-full h-full overflow-y-auto"
               >
                 {/* Header strip */}
-                <div className="sticky top-0 z-10 bg-[#0A1F44] border-b-2 border-[#0A1F44] p-5 sm:p-6 flex items-start justify-between gap-4 rounded-t-2xl">
-                  <div className="space-y-1 min-w-0">
-                    <h3 className="text-lg sm:text-2xl font-serif-display font-bold text-white">
-                      {selectedEvent.title}
-                    </h3>
-                    <p className="text-xs font-serif italic text-[#FFE082]/90">
-                      {isTamil ? selectedEvent.title : selectedEvent.tamilTitle}
-                    </p>
+                <div className="sticky top-0 z-10 bg-[#0A1F44] border-b-2 border-[#0A1F44]">
+                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex items-start justify-between gap-4">
+                    <div className="space-y-1 min-w-0">
+                      <h3 className="text-lg sm:text-2xl font-serif-display font-bold text-white">
+                        {selectedEvent.title}
+                      </h3>
+                      <p className="text-xs font-serif italic text-[#FFE082]/90">
+                        {isTamil ? selectedEvent.title : selectedEvent.tamilTitle}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setSelectedEventId(null)}
+                      className="shrink-0 p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
+                      aria-label={t('eventsSection:modal.close')}
+                    >
+                      <X className="w-5 h-5" />
+                    </button>
                   </div>
-                  <button
-                    onClick={() => setSelectedEventId(null)}
-                    className="shrink-0 p-2 text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-colors cursor-pointer"
-                    aria-label={t('eventsSection:modal.close')}
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
                 </div>
 
                 {/* Photos / Videos tab switcher */}
-                <div className="sticky top-[73px] sm:top-[85px] z-10 bg-[#F8F6F0] border-b border-[#0A1F44]/15 px-5 sm:px-6 flex gap-6">
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('photos')}
-                    className={`flex items-center gap-2 py-3.5 text-xs font-mono font-bold uppercase tracking-wider border-b-2 transition-colors cursor-pointer ${activeTab === 'photos' ? 'border-[#D97706] text-[#D97706]' : 'border-transparent text-[#0A1F44]/50 hover:text-[#0A1F44]'}`}
-                  >
-                    <Images className="w-4 h-4" />
-                    {t('eventsSection:modal.galleryLabel')}
-                    {selectedEvent.gallery.length > 0 && <span className="text-[10px] opacity-70">({selectedEvent.gallery.length})</span>}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTab('videos')}
-                    className={`flex items-center gap-2 py-3.5 text-xs font-mono font-bold uppercase tracking-wider border-b-2 transition-colors cursor-pointer ${activeTab === 'videos' ? 'border-[#D97706] text-[#D97706]' : 'border-transparent text-[#0A1F44]/50 hover:text-[#0A1F44]'}`}
-                  >
-                    <Film className="w-4 h-4" />
-                    {t('eventsSection:modal.videosLabel')}
-                    {selectedEvent.videos.length > 0 && <span className="text-[10px] opacity-70">({selectedEvent.videos.length})</span>}
-                  </button>
+                <div className="sticky top-[73px] sm:top-[85px] z-10 bg-[#F8F6F0] border-b border-[#0A1F44]/15">
+                  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-6">
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab('photos')}
+                      className={`flex items-center gap-2 py-3.5 text-xs font-mono font-bold uppercase tracking-wider border-b-2 transition-colors cursor-pointer ${activeTab === 'photos' ? 'border-[#D97706] text-[#D97706]' : 'border-transparent text-[#0A1F44]/50 hover:text-[#0A1F44]'}`}
+                    >
+                      <Images className="w-4 h-4" />
+                      {t('eventsSection:modal.galleryLabel')}
+                      {effectiveGallery.length > 0 && <span className="text-[10px] opacity-70">({effectiveGallery.length})</span>}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveTab('videos')}
+                      className={`flex items-center gap-2 py-3.5 text-xs font-mono font-bold uppercase tracking-wider border-b-2 transition-colors cursor-pointer ${activeTab === 'videos' ? 'border-[#D97706] text-[#D97706]' : 'border-transparent text-[#0A1F44]/50 hover:text-[#0A1F44]'}`}
+                    >
+                      <Film className="w-4 h-4" />
+                      {t('eventsSection:modal.videosLabel')}
+                      {effectiveVideos.length > 0 && <span className="text-[10px] opacity-70">({effectiveVideos.length})</span>}
+                    </button>
+                  </div>
                 </div>
 
-                <div className="p-5 sm:p-6">
-                  {activeTab === 'photos' && (
-                    selectedEvent.gallery.length > 0 ? (
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                  {apiStatus === 'loading' && (
+                    <div className="flex flex-col items-center justify-center gap-2 py-14 px-4 text-center">
+                      <Loader2 className="w-6 h-6 text-[#0A1F44]/40 animate-spin" />
+                      <p className="text-sm font-semibold text-[#0A1F44]/70">{t('eventsSection:modal.mediaLoading')}</p>
+                    </div>
+                  )}
+
+                  {apiStatus === 'error' && (
+                    <div className="flex flex-col items-center justify-center gap-2 py-14 px-4 border border-dashed border-red-300 rounded-xl bg-red-50 text-center">
+                      <AlertCircle className="w-6 h-6 text-red-500/70" />
+                      <p className="text-sm font-semibold text-red-700">{t('eventsSection:modal.mediaLoadError')}</p>
+                    </div>
+                  )}
+
+                  {apiStatus !== 'loading' && apiStatus !== 'error' && activeTab === 'photos' && (
+                    effectiveGallery.length > 0 ? (
                       <>
-                        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2 sm:gap-3">
-                          {selectedEvent.gallery.slice(0, visibleGalleryCount).map((img, idx) => (
+                        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                          {effectiveGallery.slice(0, visibleGalleryCount).map((img, idx) => (
                             <button
                               key={img.id}
                               type="button"
@@ -395,13 +482,13 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                             </button>
                           ))}
                         </div>
-                        {visibleGalleryCount < selectedEvent.gallery.length && (
+                        {visibleGalleryCount < effectiveGallery.length && (
                           <button
                             type="button"
                             onClick={() => setVisibleGalleryCount((c) => c + GALLERY_PAGE_SIZE)}
                             className="w-full mt-3 py-2.5 border border-[#0A1F44]/20 hover:border-[#D97706]/60 hover:bg-[#D97706]/5 rounded-lg text-xs font-mono font-bold uppercase tracking-wider text-[#0A1F44]/70 hover:text-[#D97706] transition-colors cursor-pointer"
                           >
-                            {t('eventsSection:modal.loadMore', { count: selectedEvent.gallery.length - visibleGalleryCount })}
+                            {t('eventsSection:modal.loadMore', { count: effectiveGallery.length - visibleGalleryCount })}
                           </button>
                         )}
                       </>
@@ -414,22 +501,32 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                     )
                   )}
 
-                  {activeTab === 'videos' && (
-                    selectedEvent.videos.length > 0 ? (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {selectedEvent.videos.map((video) => (
+                  {apiStatus !== 'loading' && apiStatus !== 'error' && activeTab === 'videos' && (
+                    effectiveVideos.length > 0 ? (
+                      <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                        {effectiveVideos.map((video) => (
                           <div key={video.id} className="space-y-1.5">
                             <button
                               type="button"
                               onClick={() => setVideoLightbox(video)}
                               className="w-full aspect-video rounded-lg overflow-hidden border border-[#0A1F44]/15 bg-[#0A1F44]/5 relative group/video cursor-pointer shadow-sm"
                             >
-                              <img
-                                src={youtubeThumbnail(video.youtubeId)}
-                                alt={video.title}
-                                loading="lazy"
-                                className="w-full h-full object-cover"
-                              />
+                              {video.kind === 'youtube' ? (
+                                <img
+                                  src={youtubeThumbnail(video.youtubeId)}
+                                  alt={video.title}
+                                  loading="lazy"
+                                  className="w-full h-full object-cover"
+                                />
+                              ) : (
+                                <video
+                                  src={`${video.url}#t=0.1`}
+                                  muted
+                                  playsInline
+                                  preload="metadata"
+                                  className="w-full h-full object-cover pointer-events-none"
+                                />
+                              )}
                               <div className="absolute inset-0 bg-black/25 group-hover/video:bg-black/35 transition-colors flex items-center justify-center">
                                 <div className="w-12 h-12 rounded-full bg-[#FFB800] flex items-center justify-center shadow-lg group-hover/video:scale-110 transition-transform">
                                   <Play className="w-5 h-5 text-[#0A1F44] fill-[#0A1F44] ml-0.5" />
@@ -477,7 +574,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
               </button>
 
               <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/10 rounded-full text-xs font-mono text-white/80">
-                {lightboxIndex + 1} / {selectedEvent.gallery.length}
+                {lightboxIndex + 1} / {effectiveGallery.length}
               </div>
 
               {lightboxIndex > 0 && (
@@ -492,11 +589,11 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                   <ChevronLeft className="w-6 h-6" />
                 </button>
               )}
-              {lightboxIndex < selectedEvent.gallery.length - 1 && (
+              {lightboxIndex < effectiveGallery.length - 1 && (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    setLightboxIndex((i) => (i === null ? null : Math.min(i + 1, selectedEvent.gallery.length - 1)));
+                    setLightboxIndex((i) => (i === null ? null : Math.min(i + 1, effectiveGallery.length - 1)));
                   }}
                   className="absolute right-2 sm:right-6 p-2.5 sm:p-3 text-white/80 hover:text-white bg-white/5 hover:bg-white/15 rounded-full transition-colors cursor-pointer"
                   aria-label="Next"
@@ -511,8 +608,8 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2 }}
                 onClick={(e) => e.stopPropagation()}
-                src={selectedEvent.gallery[lightboxIndex].src}
-                alt={selectedEvent.gallery[lightboxIndex].alt}
+                src={effectiveGallery[lightboxIndex].src}
+                alt={effectiveGallery[lightboxIndex].alt}
                 className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
               />
             </motion.div>
@@ -548,13 +645,24 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                 className="w-full max-w-4xl space-y-3"
               >
                 <div className="aspect-video w-full rounded-lg overflow-hidden shadow-2xl bg-black">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${videoLightbox.youtubeId}?autoplay=1`}
-                    title={videoLightbox.title}
-                    allow="autoplay; encrypted-media"
-                    allowFullScreen
-                    className="w-full h-full"
-                  />
+                  {videoLightbox.kind === 'youtube' ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${videoLightbox.youtubeId}?autoplay=1`}
+                      title={videoLightbox.title}
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                      className="w-full h-full"
+                    />
+                  ) : (
+                    <video
+                      src={videoLightbox.url}
+                      title={videoLightbox.title}
+                      controls
+                      autoPlay
+                      playsInline
+                      className="w-full h-full"
+                    />
+                  )}
                 </div>
                 <p className="text-sm text-white/80 font-sans-body text-center">{videoLightbox.title}</p>
               </motion.div>

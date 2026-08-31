@@ -162,7 +162,9 @@ export interface ConferenceEvent {
   coverImage: string;
   // Only the 2026 conference has an official pamphlet reader wired up (ConferencePamphlet).
   hasPamphlet?: boolean;
-  // Empty until real photos/videos are added — see src/data/events.ts for how to populate these.
+  // Fallback shown only if the live fetch from GET /api/events/public fails —
+  // see EventsSection, which merges imageUrls/videoUrls from every
+  // admin-managed Event into the "View Gallery & Videos" dialog.
   gallery: EventGalleryImage[];
   videos: EventVideo[];
 }

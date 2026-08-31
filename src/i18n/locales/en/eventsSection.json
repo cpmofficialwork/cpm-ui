@@ -11,7 +11,9 @@
     "galleryEmptyBody": "We're curating photos from this conference — check back soon.",
     "videosLabel": "Videos",
     "videosEmptyTitle": "Videos coming soon",
-    "videosEmptyBody": "Highlight videos from this conference will be posted here shortly."
+    "videosEmptyBody": "Highlight videos from this conference will be posted here shortly.",
+    "mediaLoading": "Loading photos and videos…",
+    "mediaLoadError": "Couldn't load photos and videos right now. Please try again shortly."
   },
   "moreEventsNote": "More conferences and events will be added here as the movement grows."
 }

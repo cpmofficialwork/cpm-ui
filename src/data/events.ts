@@ -8,8 +8,14 @@ import type { ConferenceEvent } from '../types';
 // "Events" hover dropdown, and the per-event anchor links (#event-{id}).
 // To add a future conference, push a new entry to the top of this array.
 //
-// `gallery` and `videos` start empty and render an empty state until real
-// files are added. To populate them:
+// `gallery` and `videos` below are ONLY a fallback for when the live fetch
+// fails — the "View Gallery & Videos" dialog normally fetches every event
+// from GET /api/events/public (see EventsSection) and merges all of their
+// imageUrls/videoUrls into one combined gallery/video list. To add real
+// photos/videos, upload them to an event in the admin app's Events tab —
+// no rebuild needed, they show up on next page load.
+//
+// To populate the static fallback instead:
 //   1. Drop images in src/assets/images/ and import them at the top of this
 //      file, then add entries: { id: 'photo-1', src: importedImage, alt: '...' }
 //   2. For videos, add: { id: 'video-1', title: '...', youtubeId: '<the 11-char YouTube video ID>' }
