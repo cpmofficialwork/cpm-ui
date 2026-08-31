@@ -15,7 +15,6 @@ import { ConstitutionalValues } from '../components/ConstitutionalValues';
 import { CitizenResponsibilities } from '../components/CitizenResponsibilities';
 import { Footer } from '../components/Footer';
 import { AnimatedSection } from '../components/AnimatedSection';
-import { WelcomeVideoModal } from '../components/WelcomeVideoModal';
 import { ROUTES } from '../routes';
 
 export default function HomePage() {
@@ -51,9 +50,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#F8F6F0] text-[#0A1F44] flex flex-col font-sans-body selection:bg-[#0A1F44] selection:text-white relative">
-      {/* First-visit welcome video - not shown on /join */}
-      {location.pathname !== ROUTES.JOIN && <WelcomeVideoModal />}
-
       {/* Scrollable content wrapper */}
       <div className="flex-1 flex flex-col">
       {/* Header Bar - stays mounted so its internal state (mobile drawer,

@@ -94,24 +94,12 @@ const EventBanner: React.FC<EventBannerProps> = ({ event, index, isTamil, t, onS
           transition={{ duration: 0.9, ease: 'easeInOut' }}
           className="absolute inset-0"
         >
-          {/* Layer 1: blurred, fully-covering backdrop fill so the section
-              background is always fully covered by imagery */}
-          <img
-            src={slides[currentSlide]}
-            alt=""
-            aria-hidden="true"
-            loading="lazy"
-            className="absolute inset-0 w-full h-full object-cover scale-125 blur-3xl opacity-40"
-          />
-          <div className="absolute inset-0 bg-[#020A16]/45" />
-
-          {/* Layer 2: the actual photo/artwork, shown fully uncropped */}
           <img
             src={slides[currentSlide]}
             alt={event.title}
             loading="lazy"
             decoding="async"
-            className="absolute inset-0 w-full h-full object-contain p-6 sm:p-10 lg:p-14 drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-transform duration-700 group-hover/banner:scale-[1.02]"
+            className="absolute inset-0 w-full h-full object-cover object-[center_15%] drop-shadow-[0_20px_50px_rgba(0,0,0,0.6)] transition-transform duration-700 group-hover/banner:scale-[1.02]"
           />
         </motion.div>
       </AnimatePresence>
@@ -261,19 +249,6 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
 
   useScrollLock(!!selectedEvent);
 
-  // Full-page dialog: Escape closes it (no visible backdrop left to click).
-  // Skipped while a lightbox is open — its own Escape handler closes that first.
-  useEffect(() => {
-    if (!selectedEvent) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && lightboxIndex === null && !videoLightbox) {
-        setSelectedEventId(null);
-      }
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [selectedEvent, lightboxIndex, videoLightbox]);
-
   // Reset per-event viewer state whenever the open event changes
   useEffect(() => {
     setVisibleGalleryCount(GALLERY_PAGE_SIZE);
@@ -321,31 +296,21 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
     return (selectedEvent?.videos ?? []).map((v) => ({ kind: 'youtube', id: v.id, title: v.title, youtubeId: v.youtubeId }));
   }, [apiStatus, apiVideoUrls, selectedEvent]);
 
-  // Photo lightbox keyboard navigation
+  // Photo lightbox keyboard navigation (Escape intentionally does not close —
+  // the X button is the only way to close, per product requirement).
   useEffect(() => {
     if (lightboxIndex === null) return;
     const total = effectiveGallery.length;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setLightboxIndex(null);
-      else if (e.key === 'ArrowRight') setLightboxIndex((i) => (i === null ? null : Math.min(i + 1, total - 1)));
+      if (e.key === 'ArrowRight') setLightboxIndex((i) => (i === null ? null : Math.min(i + 1, total - 1)));
       else if (e.key === 'ArrowLeft') setLightboxIndex((i) => (i === null ? null : Math.max(i - 1, 0)));
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [lightboxIndex, effectiveGallery.length]);
 
-  // Video lightbox: Escape closes
-  useEffect(() => {
-    if (!videoLightbox) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setVideoLightbox(null);
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [videoLightbox]);
-
   return (
-    <section id="events" className="bg-gradient-to-b from-[#020A16] via-[#081836] to-[#041026] py-10 lg:py-14 border-b-4 border-[#FFB800] relative overflow-hidden shadow-2xl">
+    <section id="events" className="bg-gradient-to-b from-[#020A16] via-[#081836] to-[#041026] pb-10 lg:pb-14 border-b-4 border-[#FFB800] relative overflow-hidden shadow-2xl">
       {/* Golden Metallic Top Accent Line */}
       <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#FFB800] via-[#FFF5C0] to-[#138808] shadow-[0_0_15px_#FFB800] z-20" />
 
@@ -391,14 +356,12 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setSelectedEventId(null)}
               className="fixed inset-0 z-50 bg-[#0A1F44]/80 backdrop-blur-md"
             >
               <motion.div
                 initial={{ y: 16, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 16, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
                 className="bg-[#F8F6F0] text-[#0A1F44] w-full h-full overflow-y-auto"
               >
                 {/* Header strip */}
@@ -503,7 +466,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
 
                   {apiStatus !== 'loading' && apiStatus !== 'error' && activeTab === 'videos' && (
                     effectiveVideos.length > 0 ? (
-                      <div className="grid grid-cols-1 gap-3 sm:gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                         {effectiveVideos.map((video) => (
                           <div key={video.id} className="space-y-1.5">
                             <button
@@ -562,7 +525,6 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setLightboxIndex(null)}
               className="fixed inset-0 z-[70] bg-black/95 flex items-center justify-center p-4"
             >
               <button
@@ -626,8 +588,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setVideoLightbox(null)}
-              className="fixed inset-0 z-[70] bg-black/95 flex items-center justify-center p-4"
+              className="fixed inset-0 z-[70] bg-black/95 flex items-center justify-center p-4 overflow-y-auto"
             >
               <button
                 onClick={() => setVideoLightbox(null)}
@@ -642,9 +603,12 @@ export const EventsSection: React.FC<EventsSectionProps> = ({
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2 }}
                 onClick={(e) => e.stopPropagation()}
-                className="w-full max-w-4xl space-y-3"
+                className="w-full max-w-4xl space-y-3 my-auto"
               >
-                <div className="aspect-video w-full rounded-lg overflow-hidden shadow-2xl bg-black">
+                {/* Width bounded by max-w-4xl AND by 80% of viewport height (via
+                    the aspect-video ratio), so the player always fits on screen
+                    without forcing a scroll — same intent as the photo lightbox's max-h-[85vh]. */}
+                <div className="aspect-video w-[min(100%,calc(80vh*16/9))] mx-auto rounded-lg overflow-hidden shadow-2xl bg-black">
                   {videoLightbox.kind === 'youtube' ? (
                     <iframe
                       src={`https://www.youtube.com/embed/${videoLightbox.youtubeId}?autoplay=1`}

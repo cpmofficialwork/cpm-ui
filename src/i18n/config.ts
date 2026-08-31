@@ -45,8 +45,6 @@ import joinMovementEn from './locales/en/joinMovement.json';
 import joinMovementTa from './locales/ta/joinMovement.json';
 import conferencePamphletEn from './locales/en/conferencePamphlet.json';
 import conferencePamphletTa from './locales/ta/conferencePamphlet.json';
-import welcomeVideoEn from './locales/en/welcomeVideo.json';
-import welcomeVideoTa from './locales/ta/welcomeVideo.json';
 import eventsSectionEn from './locales/en/eventsSection.json';
 import eventsSectionTa from './locales/ta/eventsSection.json';
 
@@ -91,7 +89,6 @@ i18next.use(initReactI18next).init({
     'genZYouthHub',
     'joinMovement',
     'conferencePamphlet',
-    'welcomeVideo',
     'eventsSection',
   ],
   resources: {
@@ -118,7 +115,6 @@ i18next.use(initReactI18next).init({
       genZYouthHub: genZYouthHubEn,
       joinMovement: joinMovementEn,
       conferencePamphlet: conferencePamphletEn,
-      welcomeVideo: welcomeVideoEn,
       eventsSection: eventsSectionEn,
     },
     ta: {
@@ -144,7 +140,6 @@ i18next.use(initReactI18next).init({
       genZYouthHub: genZYouthHubTa,
       joinMovement: joinMovementTa,
       conferencePamphlet: conferencePamphletTa,
-      welcomeVideo: welcomeVideoTa,
       eventsSection: eventsSectionTa,
     },
   },

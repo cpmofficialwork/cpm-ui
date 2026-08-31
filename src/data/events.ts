@@ -1,7 +1,8 @@
 import pamphletCoverImg from '../assets/images/pamphlet_cover_page1.png';
-import pamphletCoverAltImg from '../assets/images/pamphlet_cover_page1_1785666053368.jpg';
-import pamphletCoverTaImg from '../assets/images/pamphlet_cover_page1_ta.png';
-import introCardImg from '../assets/images/intro_card_image.jpeg';
+import slider1 from '../assets/images/slider1.jpeg';
+import slider2 from '../assets/images/slider2.jpeg';
+import slider4 from '../assets/images/slider4.jpeg';
+import slider3 from '../assets/images/slider3.jpeg';
 import type { ConferenceEvent } from '../types';
 
 // Ordered newest-first — this drives the Events section list, the navbar
@@ -37,7 +38,7 @@ export const EVENTS: ConferenceEvent[] = [
     // Placeholder banner slides using the site's existing official promo
     // graphics, just so the slider visibly moves before real event photos
     // are ready. Replace this array with real photos whenever you have them.
-    bannerImages: [pamphletCoverImg, introCardImg, pamphletCoverAltImg, pamphletCoverTaImg],
+    bannerImages: [slider1, slider3, slider4, slider2],
     hasPamphlet: true,
     gallery: [],
     videos: [],
