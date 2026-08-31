@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Header } from '../components/Header';
-import { ConferenceSection } from '../components/ConferenceSection';
+import { EventsSection } from '../components/EventsSection';
+import { JoinMovementModal } from '../components/JoinMovementModal';
 import { ConferenceDemands } from '../components/ConferenceDemands';
 import { FourPillars } from '../components/FourPillars';
 import { ConstitutionalPrinciples } from '../components/ConstitutionalPrinciples';
@@ -14,7 +15,6 @@ import { ConstitutionalValues } from '../components/ConstitutionalValues';
 import { CitizenResponsibilities } from '../components/CitizenResponsibilities';
 import { Footer } from '../components/Footer';
 import { AnimatedSection } from '../components/AnimatedSection';
-import { WelcomeVideoModal } from '../components/WelcomeVideoModal';
 import { ROUTES } from '../routes';
 
 export default function HomePage() {
@@ -35,7 +35,7 @@ export default function HomePage() {
   // of just local state. Closing it goes back to /.
   useEffect(() => {
     if (location.pathname !== ROUTES.JOIN) return;
-    scrollToSection('conference');
+    scrollToSection('events');
     setIsPassModalOpen(true);
   }, [location.pathname]);
 
@@ -50,9 +50,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-[#F8F6F0] text-[#0A1F44] flex flex-col font-sans-body selection:bg-[#0A1F44] selection:text-white relative">
-      {/* First-visit welcome video - not shown on /join */}
-      {location.pathname !== ROUTES.JOIN && <WelcomeVideoModal />}
-
       {/* Scrollable content wrapper */}
       <div className="flex-1 flex flex-col">
       {/* Header Bar - stays mounted so its internal state (mobile drawer,
@@ -77,15 +74,15 @@ export default function HomePage() {
       <div id="scroll-lock-target" className="flex-1 flex flex-col">
         {/* Main Flow */}
         <main className="flex-1 space-y-0">
-          {/* Top Highlighted Conference Section */}
+          {/* Events — photos, videos & recap of past/upcoming conferences.
+              Top section on the page, replacing the old single-conference hero
+              now that the 2026 conference has concluded. */}
           <AnimatedSection direction="none">
-            <ConferenceSection
-              isPassModalOpen={isPassModalOpen}
-              onOpenPassModal={openPassModal}
-              onClosePassModal={closePassModal}
-              isPamphletModalOpen={isPamphletModalOpen}
-              onOpenPamphletModal={() => setIsPamphletModalOpen(true)}
-              onClosePamphletModal={() => setIsPamphletModalOpen(false)}
+            <EventsSection
+              onOpenJoinModal={openPassModal}
+              isPamphletOpen={isPamphletModalOpen}
+              onOpenPamphlet={() => setIsPamphletModalOpen(true)}
+              onClosePamphlet={() => setIsPamphletModalOpen(false)}
             />
           </AnimatedSection>
 
@@ -147,6 +144,11 @@ export default function HomePage() {
         {!isPamphletModalOpen && <Footer />}
       </div>
       </div>
+
+      {/* Join the Movement — general membership registration, not tied to
+          any single conference, so it's mounted once at the page level and
+          triggered from Header's CTA, the /join route, or EventsSection. */}
+      <JoinMovementModal isOpen={isPassModalOpen} onClose={closePassModal} />
     </div>
   );
 }

@@ -1,49 +1,4 @@
 {
-  "badge": "Join the Movement",
-  "registrationOpen": "FREE CITIZEN REGISTRATION OPEN",
-  "chennaiAssembly": "CHENNAI ASSEMBLY",
-  "statewideRally": "STATELEVEL CONFERENCE • TAMIL NADU",
-  "dateHighlight": "AUG 21",
-  "title": "Constitution Protection Conference",
-  "titleTamil": "அரசமைப்புச் சட்டப் பாதுகாப்பு மாநாடு",
-  "description": "A landmark gathering bringing together citizens, judges, advocates, student leaders, civil society representatives and Citizens Committed to Democracy and Constitutional Values from all 38 districts of Tamil Nadu, united by a shared commitment to the Constitution of India; at a time when constitutional institutions and democratic values face growing challenges. The Constitution belongs to the people and its protection is the collective responsibility of every citizen.",
-  "pillars": {
-    "judicialTitle": "Keynote Address",
-    "judicialDesc": "Distinguished retired judges and constitutional experts",
-    "assemblyTitle": "Gathering",
-    "assemblyDesc": "Open entry for all citizens who respect constitutional values",
-    "oathTitle": "Oath Taking",
-    "oathDesc": "Mass public pledge to protect Constitution"
-  },
-  "countdown": {
-    "label": "Live Event Countdown",
-    "dateLabel": "FRIDAY, AUGUST 21, 2026",
-    "days": "Days",
-    "hours": "Hours",
-    "minutes": "Mins",
-    "seconds": "Secs"
-  },
-  "schedule": {
-    "label": "CONFERENCE SCHEDULE & VENUE DETAILS",
-    "dateCardLabel": "Conference Date",
-    "date": "21 August 2026",
-    "dateSub": "Friday Evening Assembly",
-    "timeCardLabel": "Assembly Time",
-    "time": "4:00 PM IST",
-    "timeSub": "Gates Open at 3:00 PM",
-    "venueCardLabel": "Venue Address",
-    "venueName": "YMCA Ground Nanthanam",
-    "venueAddress": "Chennai, Tamil Nadu - 600035",
-    "venueMetro": "1 Min Walk from Nandanam Metro"
-  },
-  "pamphletCard": {
-    "clickToView": "Click to view full 4-page pamphlet booklet",
-    "openReader": "Open Reader",
-    "coverAlt": "Constitution Protection Conference Official Pamphlet Cover Image",
-    "officialPamphlet": "OFFICIAL PAMPHLET • PAGE 1 OF 4",
-    "clickToOpen": "Click to Open Reader"
-  },
-  "shareText": "Constitutional Protection Conference\nDate: 21 August 2026 (Fri 4 PM)\nVenue: YMCA Ground Nanthanam, Chennai - 600035\nMap: {{mapUrl}}",
   "joinModal": {
     "badge": "JOIN THE MOVEMENT",
     "title": "Join the Movement",

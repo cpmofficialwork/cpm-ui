@@ -98,20 +98,6 @@ export const Footer: React.FC = () => {
                 </div>
               </div>
 
-              <div className="pt-1 border-t border-white/10">
-                <div className="text-[10px] font-mono text-[#FF9933] font-bold uppercase">{t('assemblyVenue2026')}</div>
-                <a
-                  href="https://maps.app.goo.gl/fAhXKpBMDZ7FF6KL7"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-[10px] font-mono text-sky-300 hover:text-[#FF9933] underline mt-0.5"
-                >
-                  <MapPin className="w-3 h-3 text-[#FF9933]" />
-                  <span>{t('assemblyVenueMapLabel')}</span>
-                  <ExternalLink className="w-2.5 h-2.5" />
-                </a>
-              </div>
-
               <div className="flex items-center gap-2 pt-1 border-t border-white/10">
                 <Phone className="w-4 h-4 text-[#FF9933] shrink-0" />
                 <span>{t('helplineNumber')}</span>

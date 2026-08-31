@@ -1,6 +1,8 @@
 {
   "nav": {
-    "conference": "மாநாடு 2026",
+    "events": "நிகழ்வுகள்",
+    "eventCompleted": "நிறைவடைந்தது",
+    "eventUpcoming": "வரவிருக்கிறது",
     "whoConducts": "நடத்துவோர் யார்",
     "whyProtect": "ஏன் பாதுகாக்க வேண்டும்",
     "demands": "கோரிக்கைகள்",

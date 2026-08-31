@@ -43,6 +43,36 @@ export class ApiError extends Error {
   }
 }
 
+export interface ApiEvent {
+  _id: string;
+  name: string;
+  descriptions: string;
+  imageUrls: string[];
+  videoUrls: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Public, unauthenticated read — backs the "View Gallery & Videos" dialog.
+// Returns every admin-managed event; the dialog merges all of their
+// imageUrls/videoUrls into one combined gallery/video list.
+export async function getPublicEvents(): Promise<ApiEvent[]> {
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE_URL}/events/public`);
+  } catch {
+    throw new ApiError('Unable to reach the server. Check your connection and try again.', 0);
+  }
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new ApiError(data.message || 'Something went wrong', response.status, data.errors || []);
+  }
+
+  return data as ApiEvent[];
+}
+
 export async function createUser(input: CreateUserInput): Promise<ApiUser> {
   let response: Response;
   try {

@@ -2,13 +2,14 @@ import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Shield, Users, Award, Menu, X, Scale, Ticket, UserPlus } from 'lucide-react';
+import { Shield, Users, Award, Menu, X, Scale, Ticket, UserPlus, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import cpmLogoImage from '../assets/images/cpm_official_logo_1785581949419.jpg';
 // import { LanguageSwitcher } from './LanguageSwitcher'; // Tamil temporarily disabled — English is primary
 import { useLanguage } from '../hooks/useLanguage';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { ROUTES } from '../routes';
+import { EVENTS } from '../data/events';
 
 interface HeaderProps {
   onRegisterMember: () => void;
@@ -17,6 +18,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(null);
   const [pendingScrollTarget, setPendingScrollTarget] = useState<string | null>(null);
   const { t } = useTranslation(['header', 'common']);
   const { isTamil } = useLanguage();
@@ -37,6 +39,12 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
   useEffect(() => {
     if (isDisabled) setIsMobileMenuOpen(false);
   }, [isDisabled]);
+
+  // Collapse any expanded accordion item once the drawer itself closes, so
+  // it doesn't reopen already-expanded next time.
+  useEffect(() => {
+    if (!isMobileMenuOpen) setExpandedMobileItem(null);
+  }, [isMobileMenuOpen]);
 
   // Header height varies with viewport width, language (Tamil script wraps
   // differently), and text reflow, so it's measured live rather than
@@ -62,8 +70,20 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
     setPendingScrollTarget(null);
   }, [isMobileMenuOpen, pendingScrollTarget]);
 
-  const navLinks = [
-    { name: t('common:nav.conference'), href: '#conference', badge: t('common:nav.badgeDate') },
+  // "Events" grows a hover dropdown listing every conference — built from
+  // src/data/events.ts so adding a future conference there automatically
+  // adds it here too, without touching this component.
+  const navLinks: {
+    name: string;
+    href: string;
+    badge?: string;
+    dropdown?: { name: string; href: string; status: 'concluded' | 'upcoming' }[];
+  }[] = [
+    {
+      name: t('common:nav.events'),
+      href: '#events',
+      dropdown: EVENTS.map((event) => ({ name: event.title, href: `#event-${event.id}`, status: event.status })),
+    },
     { name: t('common:nav.whyProtect'), href: '#why-it-matters' },
     { name: t('common:nav.demands'), href: '#conference-demands' },
     { name: t('common:nav.fourPillars'), href: '#four-pillars' },
@@ -90,10 +110,10 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
     <header ref={headerRef} className="w-full bg-[#F8F6F0]/95 backdrop-blur-md border-b border-[#0A1F44]/10 text-[#0A1F44]">
       {/* Top Banner Notice — relative z-50 so it stays above page content scrolling underneath the sticky header */}
       <a
-        href="#conference"
+        href="#events"
         onClick={(e) => {
           e.preventDefault();
-          handleNavClick('#conference');
+          handleNavClick('#events');
         }}
         className="relative z-50 bg-[#0A1F44] hover:bg-[#06152E] py-2 px-4 text-center text-[11px] font-sans-body border-b border-[#0A1F44]/20 flex items-center justify-center gap-2 text-[#F8F6F0] transition-colors group"
       >
@@ -161,22 +181,55 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center justify-center flex-wrap gap-x-8 gap-y-1 py-2.5 text-[11px] font-sans-body uppercase tracking-[0.18em] font-semibold text-[#0A1F44]/80">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(link.href);
-              }}
-              className="relative hover:text-[#0A1F44] hover:font-bold transition-all py-2 border-b-2 border-transparent hover:border-[#0A1F44] flex items-center whitespace-nowrap"
-            >
-              {link.badge && (
-                <span className="absolute -top-2.5 left-0 bg-[#FF9933] text-[#0A1F44] text-[8px] font-mono font-black uppercase px-1.5 py-[1px] rounded shadow-sm tracking-wider whitespace-nowrap leading-none border border-[#0A1F44]/15 animate-pulse">
-                  {link.badge}
-                </span>
+            <div key={link.name} className={link.dropdown ? "relative group/nav" : undefined}>
+              <a
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(link.href);
+                }}
+                className="relative hover:text-[#0A1F44] hover:font-bold transition-all py-2 border-b-2 border-transparent hover:border-[#0A1F44] flex items-center gap-1 whitespace-nowrap"
+              >
+                {link.badge && (
+                  <span className="absolute -top-2.5 left-0 bg-[#FF9933] text-[#0A1F44] text-[8px] font-mono font-black uppercase px-1.5 py-[1px] rounded shadow-sm tracking-wider whitespace-nowrap leading-none border border-[#0A1F44]/15 animate-pulse">
+                    {link.badge}
+                  </span>
+                )}
+                <span className={link.badge ? "pt-1" : ""}>{link.name}</span>
+                {link.dropdown && <ChevronDown className="w-3 h-3 transition-transform group-hover/nav:rotate-180" />}
+              </a>
+
+              {/* Hover dropdown — lists every conference by name; hidden until
+                  hovered/focused, built to grow as more events are added. */}
+              {link.dropdown && link.dropdown.length > 0 && (
+                <div className="invisible opacity-0 translate-y-1 group-hover/nav:visible group-hover/nav:opacity-100 group-hover/nav:translate-y-0 group-focus-within/nav:visible group-focus-within/nav:opacity-100 group-focus-within/nav:translate-y-0 transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-2 z-50 min-w-[260px]">
+                  <div className="bg-white border-2 border-[#0A1F44] rounded-none shadow-[5px_5px_0px_0px_rgba(10,31,68,0.15)] py-2 normal-case tracking-normal">
+                    {link.dropdown.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNavClick(item.href);
+                        }}
+                        className="group/item flex items-center justify-between gap-3 px-4 py-2.5 text-xs font-sans-body font-semibold text-[#0A1F44] hover:bg-[#0A1F44] hover:text-white transition-colors"
+                      >
+                        <span className="truncate">{item.name}</span>
+                        {item.status === 'concluded' ? (
+                          <span className="shrink-0 px-1.5 py-0.5 bg-emerald-50 group-hover/item:bg-emerald-400/20 border border-emerald-300 text-emerald-700 group-hover/item:text-emerald-300 rounded text-[9px] font-mono font-bold uppercase tracking-wider">
+                            {t('common:nav.eventCompleted')}
+                          </span>
+                        ) : (
+                          <span className="shrink-0 px-1.5 py-0.5 bg-[#FFB800]/10 group-hover/item:bg-[#FFB800]/20 border border-[#FFB800]/40 text-[#B8860B] group-hover/item:text-[#FFD966] rounded text-[9px] font-mono font-bold uppercase tracking-wider">
+                            {t('common:nav.eventUpcoming')}
+                          </span>
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                </div>
               )}
-              <span className={link.badge ? "pt-1" : ""}>{link.name}</span>
-            </a>
+            </div>
           ))}
         </nav>
       </div>
@@ -221,26 +274,75 @@ export const Header: React.FC<HeaderProps> = ({ onRegisterMember, isDisabled }) 
           </motion.button>
         </div>
         <div className="space-y-1">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick(link.href);
-              }}
-              className="relative flex items-center justify-between px-3 py-3 border-b border-[#0A1F44]/5 text-[#0A1F44] hover:bg-[#0A1F44] hover:text-[#F8F6F0] transition-colors text-xs uppercase tracking-widest font-medium"
-            >
-              <div className="flex items-center gap-2">
-                <span>{link.name}</span>
+          {navLinks.map((link) => {
+            const isExpanded = expandedMobileItem === link.name;
+            return (
+              <div key={link.name}>
+                <a
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (link.dropdown && link.dropdown.length > 0) {
+                      setExpandedMobileItem(isExpanded ? null : link.name);
+                    } else {
+                      handleNavClick(link.href);
+                    }
+                  }}
+                  className="relative flex items-center justify-between px-3 py-3 border-b border-[#0A1F44]/5 text-[#0A1F44] hover:bg-[#0A1F44] hover:text-[#F8F6F0] transition-colors text-xs uppercase tracking-widest font-medium"
+                >
+                  <div className="flex items-center gap-2">
+                    <span>{link.name}</span>
+                  </div>
+                  {link.badge && (
+                    <span className="px-1.5 py-0.5 bg-[#FF9933] text-[#0A1F44] text-[9px] font-mono font-extrabold uppercase rounded shadow-sm border border-[#0A1F44]/20 animate-pulse">
+                      {link.badge}
+                    </span>
+                  )}
+                  {link.dropdown && link.dropdown.length > 0 && (
+                    <ChevronDown className={`w-4 h-4 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                  )}
+                </a>
+
+                {/* Expandable conference list — same status badges as the desktop hover dropdown */}
+                {link.dropdown && link.dropdown.length > 0 && isExpanded && (
+                  <div className="bg-[#0A1F44]/5 space-y-0.5 py-1">
+                    {link.dropdown.map((item) => (
+                      <a
+                        key={item.href}
+                        href={item.href}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNavClick(item.href);
+                        }}
+                        className="flex items-center justify-between gap-3 pl-6 pr-3 py-2.5 text-[#0A1F44]/85 hover:bg-[#0A1F44] hover:text-white transition-colors text-[11px] normal-case tracking-normal font-semibold"
+                      >
+                        <span className="truncate">{item.name}</span>
+                        {item.status === 'concluded' ? (
+                          <span className="shrink-0 px-1.5 py-0.5 bg-emerald-50 border border-emerald-300 text-emerald-700 rounded text-[9px] font-mono font-bold uppercase tracking-wider">
+                            {t('common:nav.eventCompleted')}
+                          </span>
+                        ) : (
+                          <span className="shrink-0 px-1.5 py-0.5 bg-[#FFB800]/10 border border-[#FFB800]/40 text-[#B8860B] rounded text-[9px] font-mono font-bold uppercase tracking-wider">
+                            {t('common:nav.eventUpcoming')}
+                          </span>
+                        )}
+                      </a>
+                    ))}
+                    <a
+                      href={link.href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick(link.href);
+                      }}
+                      className="block pl-6 pr-3 py-2.5 text-[#0A1F44]/60 hover:text-[#0A1F44] transition-colors text-[10px] normal-case tracking-normal font-semibold underline"
+                    >
+                      {t('common:nav.events')} →
+                    </a>
+                  </div>
+                )}
               </div>
-              {link.badge && (
-                <span className="px-1.5 py-0.5 bg-[#FF9933] text-[#0A1F44] text-[9px] font-mono font-extrabold uppercase rounded shadow-sm border border-[#0A1F44]/20 animate-pulse">
-                  {link.badge}
-                </span>
-              )}
-            </a>
-          ))}
+            );
+          })}
         </div>
       </div>,
       document.body
