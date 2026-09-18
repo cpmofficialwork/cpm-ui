@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Header } from '../components/Header';
 import { EventsSection } from '../components/EventsSection';
 import { JoinMovementModal } from '../components/JoinMovementModal';
+import { EventPosterPopup } from '../components/EventPosterPopup';
 import { ConferenceDemands } from '../components/ConferenceDemands';
 import { FourPillars } from '../components/FourPillars';
 import { ConstitutionalPrinciples } from '../components/ConstitutionalPrinciples';
@@ -149,6 +150,10 @@ export default function HomePage() {
           any single conference, so it's mounted once at the page level and
           triggered from Header's CTA, the /join route, or EventsSection. */}
       <JoinMovementModal isOpen={isPassModalOpen} onClose={closePassModal} />
+
+      {/* Peer Listening Circle event poster — shows on arrival until the
+          event's registration window closes. */}
+      <EventPosterPopup />
     </div>
   );
 }
