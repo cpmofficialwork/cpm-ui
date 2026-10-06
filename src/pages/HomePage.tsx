@@ -5,6 +5,7 @@ import { Header } from '../components/Header';
 import { EventsSection } from '../components/EventsSection';
 import { JoinMovementModal } from '../components/JoinMovementModal';
 import { EventPosterPopup } from '../components/EventPosterPopup';
+import { VisionIndiaModal, hasSeenVisionThisSession } from '../components/VisionIndiaModal';
 import { ConferenceDemands } from '../components/ConferenceDemands';
 import { FourPillars } from '../components/FourPillars';
 import { ConstitutionalPrinciples } from '../components/ConstitutionalPrinciples';
@@ -23,6 +24,11 @@ export default function HomePage() {
   const [isPamphletModalOpen, setIsPamphletModalOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  // Shown first on each new visit (once per browser session), skipped on
+  // /join so direct registration links aren't blocked.
+  const [isVisionOpen, setIsVisionOpen] = useState(
+    () => location.pathname !== ROUTES.JOIN && !hasSeenVisionThisSession()
+  );
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -151,9 +157,12 @@ export default function HomePage() {
           triggered from Header's CTA, the /join route, or EventsSection. */}
       <JoinMovementModal isOpen={isPassModalOpen} onClose={closePassModal} />
 
+      {/* "இதுவா நாம் விரும்பும் இந்தியா?" — shown first on every new visit */}
+      <VisionIndiaModal isOpen={isVisionOpen} onClose={() => setIsVisionOpen(false)} />
+
       {/* Peer Listening Circle event poster — shows on arrival until the
-          event's registration window closes. */}
-      <EventPosterPopup />
+          event's registration window closes, after the vision pop-up. */}
+      {!isVisionOpen && <EventPosterPopup />}
     </div>
   );
 }
