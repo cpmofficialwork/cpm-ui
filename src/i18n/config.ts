@@ -47,6 +47,8 @@ import conferencePamphletEn from './locales/en/conferencePamphlet.json';
 import conferencePamphletTa from './locales/ta/conferencePamphlet.json';
 import eventsSectionEn from './locales/en/eventsSection.json';
 import eventsSectionTa from './locales/ta/eventsSection.json';
+import visionIndiaEn from './locales/en/visionIndia.json';
+import visionIndiaTa from './locales/ta/visionIndia.json';
 
 export const LANGUAGE_STORAGE_KEY = 'cpm-language';
 // Tamil temporarily disabled — English is the primary site language for now.
@@ -90,6 +92,7 @@ i18next.use(initReactI18next).init({
     'joinMovement',
     'conferencePamphlet',
     'eventsSection',
+    'visionIndia',
   ],
   resources: {
     en: {
@@ -115,6 +118,7 @@ i18next.use(initReactI18next).init({
       genZYouthHub: genZYouthHubEn,
       joinMovement: joinMovementEn,
       conferencePamphlet: conferencePamphletEn,
+      visionIndia: visionIndiaEn,
       eventsSection: eventsSectionEn,
     },
     ta: {
@@ -140,6 +144,7 @@ i18next.use(initReactI18next).init({
       genZYouthHub: genZYouthHubTa,
       joinMovement: joinMovementTa,
       conferencePamphlet: conferencePamphletTa,
+      visionIndia: visionIndiaTa,
       eventsSection: eventsSectionTa,
     },
   },
