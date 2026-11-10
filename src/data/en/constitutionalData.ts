@@ -313,7 +313,7 @@ export const TIMELINE_MILESTONES: TimelineMilestone[] = [
     category: 'amendments',
     description: 'Citizens across Indian states unite to build grassroots constitutional literacy centers, defend judicial independence, and protect the secular democratic republic.',
     quote: 'The Constitution will survive only as long as citizens are willing to defend it.',
-    quoteAuthor: 'Constitution Protection Movement',
+    quoteAuthor: 'Movement for Constitutional Protection',
     significance: 'Reigniting civic vigilance and constitutional stewardship nationwide.',
     keyFigures: ['Indian Citizens', 'Civil Society', 'Youth Scholars']
   }
@@ -619,7 +619,7 @@ export const INITIAL_PLEDGES: PledgeSignature[] = [
     state: 'Tamil Nadu',
     occupation: 'Software Engineer',
     pledgeDate: '2026-07-31',
-    message: 'Defending digital privacy under Article 21. Proud to join the Constitution Protection Movement!',
+    message: 'Defending digital privacy under Article 21. Proud to join the Movement for Constitutional Protection!',
     isVerified: true
   }
 ];
@@ -755,7 +755,7 @@ export const ORGANIZERS: Organizer[] = [
     badgeColor: 'bg-[#0A1F44] text-[#FFE082]',
     image: judgeImg,
     roleDescription: 'First-generation lawyer turned distinguished judge of madras high court, providing supreme judicial oversight, constitutional jurisprudence, and guidance on safeguarding fundamental rights.',
-extendedBio: 'Born on 17 March 1954 in Kondanchery village, Justice D. Hariparanthaman was the first in his family to attend school and the first graduate in his village. Enrolling as an advocate in 1980, he built a four-decade legal practice across the Madras High Court, Madurai Bench, labour courts, and tribunals, specialising in labour law, service law, human rights, and the rights of persons with disabilities and Scheduled Castes. As a primary convenor of the Constitution Protection Movement, he views his judicial role as a continuation of a lifelong commitment to social, economic, and political justice enshrined in the Preamble.',    keyFocusAreas: ['Judicial Independence', 'Labour & Disability Rights', 'Constitutional Literacy'],
+extendedBio: 'Born on 17 March 1954 in Kondanchery village, Justice D. Hariparanthaman was the first in his family to attend school and the first graduate in his village. Enrolling as an advocate in 1980, he built a four-decade legal practice across the Madras High Court, Madurai Bench, labour courts, and tribunals, specialising in labour law, service law, human rights, and the rights of persons with disabilities and Scheduled Castes. As a primary convenor of the Movement for Constitutional Protection, he views his judicial role as a continuation of a lifelong commitment to social, economic, and political justice enshrined in the Preamble.',    keyFocusAreas: ['Judicial Independence', 'Labour & Disability Rights', 'Constitutional Literacy'],
     socials: [
     //   {
     //     platform: 'Twitter (X)',

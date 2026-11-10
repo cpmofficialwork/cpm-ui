@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://constitutionprotectionmovement.org/sitemap.xml
+Sitemap: https://movementforconstitutionalprotection.org/sitemap.xml

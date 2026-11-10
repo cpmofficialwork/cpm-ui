@@ -138,7 +138,7 @@ export const JoinMovementModal: React.FC<JoinMovementModalProps> = ({ isOpen, on
         format: [width, height],
       });
       pdf.addImage(dataUrl, 'PNG', 0, 0, width, height);
-      pdf.save(`CPM-Member-Card-${passNumber || 'member'}.pdf`);
+      pdf.save(`MCP-Member-Card-${passNumber || 'member'}.pdf`);
       setCardDownloaded(true);
     } catch (err) {
       console.error('Failed to generate member card PDF', err);
@@ -153,7 +153,7 @@ export const JoinMovementModal: React.FC<JoinMovementModalProps> = ({ isOpen, on
     try {
       const blob = await captureMemberCardBlob();
       if (!blob) return;
-      const file = new File([blob], `CPM-Member-Card-${passNumber || 'member'}.png`, { type: 'image/png' });
+      const file = new File([blob], `MCP-Member-Card-${passNumber || 'member'}.png`, { type: 'image/png' });
       const nav = navigator as Navigator & { canShare?: (data?: ShareData) => boolean };
       if (nav.canShare && nav.canShare({ files: [file] })) {
         try {

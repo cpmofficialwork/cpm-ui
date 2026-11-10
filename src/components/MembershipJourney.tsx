@@ -51,7 +51,7 @@ export const MembershipJourney: React.FC<MembershipJourneyProps> = ({ onComplete
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const randomId = `CPM-2026-IND-${Math.floor(10000 + Math.random() * 90000)}`;
+    const randomId = `MCP-2026-IND-${Math.floor(10000 + Math.random() * 90000)}`;
     const newMember: MemberData = {
       id: randomId,
       fullName: formData.fullName || t('defaultsSubmit.fullName'),
