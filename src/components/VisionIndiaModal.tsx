@@ -22,13 +22,16 @@ interface VisionIndiaModalProps {
   onClose: () => void;
 }
 
+interface PolicySection {
+  heading?: string;
+  items?: string[];
+  paragraphs?: string[];
+}
+
 export function VisionIndiaModal({ isOpen, onClose }: VisionIndiaModalProps) {
   const { t } = useTranslation('visionIndia');
-  const asList = (value: unknown) => (Array.isArray(value) ? (value as string[]) : []);
-  const intro = asList(t('intro', { returnObjects: true }));
-  const questions = asList(t('questions', { returnObjects: true }));
-  const finalQuestion = questions[questions.length - 1];
-  const listQuestions = questions.slice(0, -1);
+  const rawSections: unknown = t('sections', { returnObjects: true });
+  const sections = Array.isArray(rawSections) ? (rawSections as PolicySection[]) : [];
 
   useScrollLock(isOpen);
 
@@ -50,6 +53,12 @@ export function VisionIndiaModal({ isOpen, onClose }: VisionIndiaModalProps) {
     return () => window.removeEventListener('keydown', onKey);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
+
+  const contactRows = [
+    { label: t('contact.joinLabel'), value: t('contact.website'), href: `https://${t('contact.website')}` },
+    { label: t('contact.mailLabel'), value: t('contact.email'), href: `mailto:${t('contact.email')}` },
+    { label: t('contact.mobileLabel'), value: t('contact.mobile'), href: `tel:${t('contact.mobile').replace(/\s/g, '')}` },
+  ];
 
   return createPortal(
     <AnimatePresence>
@@ -86,8 +95,9 @@ export function VisionIndiaModal({ isOpen, onClose }: VisionIndiaModalProps) {
                 <X className="w-5 h-5" />
               </button>
 
-              <p className="text-[11px] sm:text-xs font-sans-body font-semibold uppercase tracking-[0.2em] text-[#FF9933]">
-                {t('badge')}
+              <p className="pr-8 flex flex-wrap gap-x-3 gap-y-1 text-[11px] sm:text-xs font-sans-body font-semibold tracking-[0.2em] text-[#FF9933]">
+                <span>{t('sloganTamil')}</span>
+                <span>{t('sloganEnglish')}</span>
               </p>
               <h2
                 id="vision-india-title"
@@ -95,85 +105,69 @@ export function VisionIndiaModal({ isOpen, onClose }: VisionIndiaModalProps) {
               >
                 {t('title')}
               </h2>
+              <p className="mt-2 pr-8 text-sm sm:text-lg font-serif-heading font-semibold text-white/85">
+                {t('subtitle')}
+              </p>
             </div>
 
             {/* Scrollable body */}
             <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain">
               <div className="px-6 py-7 sm:px-10 sm:py-9 space-y-8">
-                {/* Intro */}
-                <div className="space-y-4">
-                  {intro.map((para, i) => (
-                    <p
-                      key={i}
-                      className="text-[15px] sm:text-base font-sans-body text-[#0A1F44]/80 leading-[1.8]"
-                    >
-                      {para}
+                <p className="text-base sm:text-lg font-serif-heading font-bold text-[#0A1F44]">
+                  {t('greeting')}
+                </p>
+
+                {sections.map((section, sectionIndex) => (
+                  <section key={sectionIndex} className="space-y-4">
+                    {section.heading && (
+                      <div className="flex items-center gap-4">
+                        <h3 className="text-lg sm:text-xl font-serif-heading font-bold text-[#0A1F44]">
+                          {section.heading}
+                        </h3>
+                        <div className="flex-1 h-px bg-[#0A1F44]/15" />
+                      </div>
+                    )}
+
+                    {section.items && (
+                      <ul className="space-y-3">
+                        {section.items.map((item, itemIndex) => (
+                          <li key={itemIndex} className="flex items-baseline gap-3">
+                            <span aria-hidden="true" className="shrink-0 w-1.5 h-1.5 translate-y-[-2px] rounded-full bg-[#FF9933]" />
+                            <span className="text-[15px] sm:text-base font-sans-body text-[#0A1F44] leading-relaxed">
+                              {item}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {section.paragraphs?.map((paragraph, paragraphIndex) => (
+                      <p
+                        key={paragraphIndex}
+                        className="text-[15px] sm:text-base font-sans-body text-[#0A1F44]/80 leading-[1.8]"
+                      >
+                        {paragraph}
+                      </p>
+                    ))}
+                  </section>
+                ))}
+
+                {/* Contact details */}
+                <div className="bg-[#0A1F44] px-5 py-6 sm:px-7 sm:py-7 space-y-2">
+                  {contactRows.map((row) => (
+                    <p key={row.label} className="text-sm sm:text-base font-sans-body text-white leading-relaxed">
+                      <span className="font-semibold text-[#FF9933]">{row.label}: </span>
+                      <a href={row.href} target={row.href.startsWith('https') ? '_blank' : undefined} rel="noreferrer" className="break-all hover:underline">
+                        {row.value}
+                      </a>
                     </p>
                   ))}
                 </div>
-
-                {/* Pull quote: the shift in politics */}
-                <div className="border-l-2 border-[#FF9933] bg-[#F8F6F0] px-5 py-4">
-                  <p className="text-base sm:text-lg font-serif-quote text-[#0A1F44] leading-relaxed">
-                    <span className="text-[#138808] font-semibold">{t('shift.from')}</span>
-                    <span className="mx-2 text-[#0A1F44]/40">→</span>
-                    <span className="text-[#8B0000] font-semibold">{t('shift.to')}</span>
-                  </p>
-                </div>
-
-                {/* Questions */}
-                <section>
-                  <div className="flex items-center gap-4 mb-2">
-                    <h3 className="text-lg sm:text-xl font-serif-heading font-bold text-[#0A1F44]">
-                      {t('questionsHeading')}
-                    </h3>
-                    <div className="flex-1 h-px bg-[#0A1F44]/15" />
-                  </div>
-
-                  <ol className="divide-y divide-[#0A1F44]/10">
-                    {listQuestions.map((q, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3, delay: 0.2 + i * 0.04 }}
-                        className="flex items-baseline gap-4 sm:gap-5 py-4"
-                      >
-                        <span className="shrink-0 w-7 text-right font-serif-display text-xl sm:text-2xl font-bold text-[#FF9933] tabular-nums">
-                          {String(i + 1).padStart(2, '0')}
-                        </span>
-                        <span className="text-[15px] sm:text-base font-sans-body text-[#0A1F44] leading-relaxed">
-                          {q}
-                        </span>
-                      </motion.li>
-                    ))}
-                  </ol>
-
-                  {/* Final question — the call to collective responsibility */}
-                  {finalQuestion && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: 0.2 + listQuestions.length * 0.04 }}
-                      className="mt-4 bg-[#0A1F44] px-5 py-6 sm:px-7 sm:py-7"
-                    >
-                      <p className="text-[11px] font-sans-body font-semibold uppercase tracking-[0.2em] text-[#FF9933]">
-                        {String(questions.length).padStart(2, '0')} · {t('finalLabel')}
-                      </p>
-                      <p className="mt-3 text-base sm:text-lg font-serif-heading text-white leading-relaxed">
-                        {finalQuestion}
-                      </p>
-                    </motion.div>
-                  )}
-                </section>
               </div>
             </div>
 
             {/* Footer */}
-            <div className="shrink-0 flex items-center justify-between gap-4 px-6 py-4 sm:px-10 border-t border-[#0A1F44]/10 bg-[#F8F6F0]">
-              <p className="text-sm font-serif-quote italic text-[#0A1F44]/70">
-                {t('footerNote')}
-              </p>
+            <div className="shrink-0 flex items-center justify-end gap-4 px-6 py-4 sm:px-10 border-t border-[#0A1F44]/10 bg-[#F8F6F0]">
               <button
                 onClick={handleClose}
                 className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[#0A1F44] hover:bg-[#132D5E] text-white text-sm font-sans-body font-semibold transition-colors cursor-pointer group"
